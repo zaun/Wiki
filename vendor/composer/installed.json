@@ -1,0 +1,248 @@
+[
+    {
+        "name": "phpixie/core",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/dracony/PHPixie-Core.git",
+            "reference": "9af1205a357e5c656cac1f426c3d785fe157b538"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/dracony/PHPixie-Core/zipball/9af1205a357e5c656cac1f426c3d785fe157b538",
+            "reference": "9af1205a357e5c656cac1f426c3d785fe157b538",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "time": "2013-04-27 09:45:22",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.*-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "PHPixie": "classes/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD"
+        ],
+        "authors": [
+            {
+                "name": "Roman Tsiupa",
+                "email": "draconyster@gmail.com",
+                "homepage": "http://dracony.org"
+            }
+        ],
+        "description": "PHPixie Framework",
+        "homepage": "http://phpixie.com",
+        "keywords": [
+            "framework"
+        ]
+    },
+    {
+        "name": "phpixie/db",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/dracony/PHPixie-DB.git",
+            "reference": "928811fca9c3e9f1f493c3c83c3e3c339fe9451c"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/dracony/PHPixie-DB/zipball/928811fca9c3e9f1f493c3c83c3e3c339fe9451c",
+            "reference": "928811fca9c3e9f1f493c3c83c3e3c339fe9451c",
+            "shasum": ""
+        },
+        "require": {
+            "phpixie/core": "2.*@dev"
+        },
+        "time": "2013-04-23 20:27:47",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "PHPixie": "classes/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD"
+        ],
+        "authors": [
+            {
+                "name": "Roman Tsiupa",
+                "email": "draconyster@gmail.com",
+                "homepage": "http://dracony.org"
+            }
+        ],
+        "description": "PHPixie Database library",
+        "homepage": "http://phpixie.com",
+        "keywords": [
+            "database",
+            "mysql",
+            "postgresql",
+            "sqlite"
+        ]
+    },
+    {
+        "name": "phpixie/orm",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/dracony/PHPixie-ORM.git",
+            "reference": "39c47f13e74c8d390b2e9880f5b893f65acdffc9"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/dracony/PHPixie-ORM/zipball/39c47f13e74c8d390b2e9880f5b893f65acdffc9",
+            "reference": "39c47f13e74c8d390b2e9880f5b893f65acdffc9",
+            "shasum": ""
+        },
+        "require": {
+            "phpixie/db": "2.*@dev"
+        },
+        "time": "2013-04-23 20:26:48",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "PHPixie": "classes/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD"
+        ],
+        "authors": [
+            {
+                "name": "Roman Tsiupa",
+                "email": "draconyster@gmail.com",
+                "homepage": "http://dracony.org"
+            }
+        ],
+        "description": "ORM library for PHPixie",
+        "homepage": "http://phpixie.com",
+        "keywords": [
+            "database",
+            "orm"
+        ]
+    },
+    {
+        "name": "phpixie/auth",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/dracony/PHPixie-Auth.git",
+            "reference": "b77133da74f3d4b11d586a73584839ccd7c40714"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/dracony/PHPixie-Auth/zipball/b77133da74f3d4b11d586a73584839ccd7c40714",
+            "reference": "b77133da74f3d4b11d586a73584839ccd7c40714",
+            "shasum": ""
+        },
+        "require": {
+            "phpixie/orm": "2.*@dev"
+        },
+        "time": "2013-04-27 09:35:02",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "PHPixie": "classes/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD"
+        ],
+        "authors": [
+            {
+                "name": "Roman Tsiupa",
+                "email": "draconyster@gmail.com",
+                "homepage": "http://dracony.org"
+            }
+        ],
+        "description": "PHPixie Auth library",
+        "homepage": "http://phpixie.com",
+        "keywords": [
+            "Authentication",
+            "authorization",
+            "facebook"
+        ]
+    },
+    {
+        "name": "phpixie/migrate",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/dracony/PHPixie-Migrate.git",
+            "reference": "f612d6031ab3bc34fe2c0bfdd4bf68b1d06577cb"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/dracony/PHPixie-Migrate/zipball/f612d6031ab3bc34fe2c0bfdd4bf68b1d06577cb",
+            "reference": "f612d6031ab3bc34fe2c0bfdd4bf68b1d06577cb",
+            "shasum": ""
+        },
+        "require": {
+            "phpixie/db": "2.*@dev"
+        },
+        "time": "2013-04-30 11:59:09",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "PHPixie": "classes/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD"
+        ],
+        "authors": [
+            {
+                "name": "Roman Tsiupa",
+                "email": "draconyster@gmail.com",
+                "homepage": "http://dracony.org"
+            }
+        ],
+        "description": "Migration library for PHPixie",
+        "homepage": "http://phpixie.com",
+        "keywords": [
+            "validate"
+        ]
+    }
+]
