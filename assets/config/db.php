@@ -1,16 +1,20 @@
 <?php
-
-return array(
-	'default' => array(
-		'user'=>'root',
-		'password' => '',
-		'driver' => 'pdo',
-		
-		//'Connection' is required if you use the PDO driver
-		'connection'=>'mysql:host=localhost;dbname=pixies',
-		
-		// 'db' and 'host' are required if you use Mysql driver
-		'db' => 'pixies',
-		'host'=>'localhost'
-	)
+return array (
+  'default' => 
+  array (
+    'user' => 'root',
+    'password' => 'root',
+    'driver' => 'pdo',
+    'connection' => 'mysql:host=localhost;dbname=wiki',
+    'db' => 'wiki',
+    'host' => 'localhost',
+  ),
+  'test' => 
+  array (
+    'host' => '',
+    'db' => '',
+    'user' => '',
+    'password' => '',
+    'connection' => '',
+  ),
 );

@@ -1,0 +1,454 @@
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    background-color: #f6f6f6;
+    font-size: 13px;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
+input,
+select,
+textarea,
+button {
+    outline: none;
+    margin: 0px;
+    padding: 2px;
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+     box-sizing: border-box;
+     border: 1px solid #ccc;
+}
+
+.search input {
+    padding: 2px;
+    width: auto;
+}
+
+#overlay {
+    position: fixed;
+    display: none;
+    top: 0px;
+    height: 100%;
+    width: 100%;
+    background: black;
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=75)";
+	filter: alpha(opacity=75);
+	-moz-opacity:0.75;
+	-khtml-opacity: 0.75;
+	opacity: 0.75;
+	z-index: 99;
+}
+
+.page {
+    width: 1010px;
+    padding: 0 5px 0 5px;
+    margin: 0 auto 30px auto;
+    
+}
+
+.topBar {
+    height: 15px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-family: sans-serif;
+    font-size: 12px;
+}
+
+.pageAttributes {
+    width: 170px;
+    margin-bottom: 20px;
+}
+
+.pageAttributes h1 {
+    display: block;
+    width: 100%;
+    margin: 20px 0 0 0;
+    padding: 0px;
+    font-weight: bold;
+    font-size: 13px;
+    text-align: center;
+    border-bottom: 1px solid black;
+    cursor: default;
+}
+
+.pageAttributes .row {
+    height: 13px;
+    margin-top: 1px;
+    margin-bottom: 2px;
+}
+
+.pageAttributes label {
+    display: block;
+    float: left;
+    width: 45%;
+    height: 13px;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 13px;
+}
+
+.pageAttributes data {
+    display: block;
+    width: 55%;
+    float:left;
+    height: 13px;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 13px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.pageMenu {
+    height: 25px;
+    margin-bottom: -1px;
+    border-bottom: 1px solid #a7d7f9;
+    padding-left: 1px;
+    padding-right: 1px;
+}
+
+.pageMenu .button {
+    height: 24px;
+    border-top: 1px solid #a7d7f9;
+    border-left: 1px solid #a7d7f9;
+    border-right: 1px solid #a7d7f9;
+    padding-left: 15px;
+    padding-right: 15px;
+    text-align: center;
+    line-height: 25px;
+    font-family: sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.pageMenu .button.selected {
+    background-color: white;
+    border-bottom: 1px solid white;
+    cursor: default;
+}
+
+.pageMenu .search {
+    height: 24px;
+    border-top: 1px solid #a7d7f9;
+    border-left: 1px solid #a7d7f9;
+    border-right: 1px solid #a7d7f9;
+    padding-left: 15px;
+    padding-right: 15px;
+    text-align: center;
+    line-height: 25px;
+    font-family: sans-serif;
+    font-size: 13px;
+    cursor: default;
+}
+
+.pageMenu .options {
+    height: 24px;
+    border-top: 1px solid #a7d7f9;
+    border-left: 1px solid #a7d7f9;
+    border-right: 1px solid #a7d7f9;
+    padding-left: 15px;
+    padding-right: 15px;
+    text-align: center;
+    line-height: 25px;
+    font-family: sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.pageContent {
+    position: relative;
+    border: 1px solid #a7d7f9;
+    margin-bottom: 20px;
+    padding: 5px;
+    padding-bottom: 30px;
+    background-color: white;
+}
+
+.pageContent .quote {
+    margin: 20px 20px 20px 35px;
+    padding-left: 5px;
+    border-left: 2px solid #a7d7f9;
+}
+
+/* button bar */
+#buttonbar {
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    border-top: 1px dotted #a7d7f9;
+    margin-top: 20px;
+    padding: 5px;
+    text-align: center;
+}
+
+#buttonbar button {
+    padding: 2px;
+    border: 1px solid #cccccc;
+    background: #f6f6f6;
+    font-weight: bold;
+}
+
+
+.pageFooter {
+    clear: both;
+    border-top: 3px double #CCC;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 11px;
+    text-align: center;
+}
+
+
+.pageImage {
+    margin: 0 auto 0 auto;
+    width: 150px;
+    padding: 5px;
+    margin-bottom: 5px;
+    border: 1px solid #CCC;
+    background-color: #F9F9F9;
+}
+
+.pageImage label {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-top: 3px;
+    font-size: 12px;
+    float: none;
+}
+
+.pageImage img {
+    width: 100%;
+}
+
+/* Table of contents */
+
+.toc {
+    margin-bottom: 5px;
+    padding: 5px;
+    border: 1px solid #CCC;
+    background-color: #F9F9F9;
+}
+
+.toc ul {
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+}
+
+.toc li {
+    margin-bottom: 2px;
+    cursor: pointer;
+}
+
+.toc h1 {
+    margin: 3px 0px 3px 0px;
+    padding: 0x;
+    text-align: center;
+    font-size: 14px;
+}
+
+
+/* login dialog */
+.btnLoginDialog, .btnLogout {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+#loginBox {
+	position: fixed;
+	display: none;
+	top: 25%;
+	left: 50%;
+	margin-top: -75px;
+	margin-left: -125px;
+	width: 200px;
+	padding-left: 25px;
+	padding-right: 25px;
+	height: 175px;
+	background: white;
+	z-index:999;
+    border-radius: 10px;
+}
+
+#loginBox input[type="text"], #loginBox input[type="password"] {
+    border: 1px solid  #d8d8d8;
+    border-radius: 3px;
+    font: italic 14px Georgia,times,sans-serif;
+    height: 37px;
+    width: 200px;
+    margin-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#loginBox  h2 {
+    color: #19677e;
+    font: italic 15px Georgia,times,sans-serif;
+    margin-bottom: 0px;
+    text-align: center;
+    cursor: default;
+}
+
+#loginBox div {
+    margin-top: 2px;
+    margin-botton: 2px;
+}
+
+#loginBox span {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#loginBox button {
+    float: right;
+    margin-left: 10px;
+    border: 1px solid #d8d8d8;
+    background-color: white;
+    padding: 4px;
+    cursor: pointer;
+}
+
+
+/* forgot password dialog */
+#forgotBox {
+	position: fixed;
+	display: none;
+	top: 25%;
+	left: 50%;
+	margin-top: -75px;
+	margin-left: -125px;
+	width: 200px;
+	padding-left: 25px;
+	padding-right: 25px;
+	height: 110px;
+	background: white;
+	z-index:999;
+    border-radius: 10px;
+}
+
+#forgotBox input[type="text"] {
+    border: 1px solid  #d8d8d8;
+    border-radius: 3px;
+    font: italic 14px Georgia,times,sans-serif;
+    height: 37px;
+    width: 200px;
+    margin-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#forgotBox  h2 {
+    color: #19677e;
+    font: italic 15px Georgia,times,sans-serif;
+    margin-bottom: 0px;
+    text-align: center;
+    cursor: default;
+}
+
+#forgotBox div {
+    margin-top: 2px;
+    margin-botton: 2px;
+}
+
+#forgotBox span {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#forgotBox button {
+    float: right;
+    margin-left: 10px;
+    border: 1px solid #d8d8d8;
+    background-color: white;
+    padding: 4px;
+    cursor: pointer;
+}
+
+
+/* General content */
+
+.pageContent P {
+    margin-top: 0px;
+}
+
+.pageContent h1 {
+    margin-top: 0px;
+    margin-bottom: 3px;
+    font-size: 19px;
+    text-align: center;
+}
+
+.pageContent h1 small {
+    font-size: 15px;
+    font-weight: normal;
+}
+
+.pageContent h2 {
+    margin-top: 25px;
+    margin-bottom: 3px;
+    font-size: 16px;
+    border-bottom: 1px dotted #CCC;
+}
+
+.pageContent h2:fist-child {
+    margin-top: 0px;
+}
+
+.pageContent h2 small {
+    font-size: 12px;
+    font-weight: normal;
+}
+
+.pageContent .para {
+    margin-top: 0px;
+    margin-bottom: 15px;
+    font-size:14px;
+    line-height: 16px;
+}
+
+.pageContent  img.link {
+    height: 1em; 
+}
+
+.pageContent pre {
+    padding: 5px;
+    font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
+    margin-bottom: 10px;
+    background-color: #eeeeee;
+    overflow: auto;
+    padding-bottom: 20px !ie7;
+    max-height: 600px;
+}
+
+.pageContent blockquote {
+    position: relative;
+    margin: 10px 10px 10px 40px;
+    padding: 10px 10px 10px 10px;
+    background-color: #eeeeee;
+    border-left: 3px dashed #CCC;
+}
+
+.pageContent blockquote .attribution {
+    position: absolute;
+    right: 0px;
+    font-size: 12px;
+    bottom: -7px;
+    background-color: #eeeeee;
+    padding: 0px 5px 0px 5px;
+    border: 1px dotted #CCC;
+    font-style: italic;
+}
+
+

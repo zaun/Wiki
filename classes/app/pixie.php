@@ -11,6 +11,13 @@ namespace App;
 class Pixie extends \PHPixie\Pixie {
 	protected $modules = array(
 		'db' => '\PHPixie\DB',
-		'orm' => '\PHPixie\ORM'
+		'orm' => '\PHPixie\ORM',
+		'migrate' => '\PHPixie\Migrate',
+		'auth' => '\PHPixie\Auth',
 	);
+	
+    public $util;
+    public function after_bootstrap() {
+        $this->util = new Util;
+    }
 }

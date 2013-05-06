@@ -1,0 +1,37 @@
+/* No color information in this file */
+.topBar {
+    margin-left: 180px;
+    text-align: right;
+}
+
+.pageMenu {
+    clear: right;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.pageMenu .button {
+    float: left;
+    margin-left: -1px;
+}
+
+.pageMenu .search {
+    float: right;
+    margin-right: -1px;
+}
+
+.pageMenu .options {
+    float: right;
+    margin-right: -1px;
+}
+
+.pageContent {
+    clear: right;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.toc {
+    float: right;
+    margin-left: 5px;
+}
