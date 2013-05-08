@@ -276,48 +276,9 @@ button {
 	width: 200px;
 	padding-left: 25px;
 	padding-right: 25px;
-	height: 175px;
 	background: white;
 	z-index:999;
     border-radius: 10px;
-}
-
-#loginBox input[type="text"], #loginBox input[type="password"] {
-    border: 1px solid  #d8d8d8;
-    border-radius: 3px;
-    font: italic 14px Georgia,times,sans-serif;
-    height: 37px;
-    width: 200px;
-    margin-top: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
-}
-
-#loginBox  h2 {
-    color: #19677e;
-    font: italic 15px Georgia,times,sans-serif;
-    margin-bottom: 0px;
-    text-align: center;
-    cursor: default;
-}
-
-#loginBox div {
-    margin-top: 2px;
-    margin-botton: 2px;
-}
-
-#loginBox span {
-    text-decoration: underline;
-    cursor: pointer;
-}
-
-#loginBox button {
-    float: right;
-    margin-left: 10px;
-    border: 1px solid #d8d8d8;
-    background-color: white;
-    padding: 4px;
-    cursor: pointer;
 }
 
 
@@ -332,13 +293,12 @@ button {
 	width: 200px;
 	padding-left: 25px;
 	padding-right: 25px;
-	height: 110px;
 	background: white;
 	z-index:999;
     border-radius: 10px;
 }
 
-#forgotBox input[type="text"] {
+.dialog input[type="text"], #loginBox input[type="password"] {
     border: 1px solid  #d8d8d8;
     border-radius: 3px;
     font: italic 14px Georgia,times,sans-serif;
@@ -349,7 +309,7 @@ button {
     padding-right: 10px;
 }
 
-#forgotBox  h2 {
+.dialog h2 {
     color: #19677e;
     font: italic 15px Georgia,times,sans-serif;
     margin-bottom: 0px;
@@ -357,25 +317,48 @@ button {
     cursor: default;
 }
 
-#forgotBox div {
+.dialog div {
     margin-top: 2px;
     margin-botton: 2px;
 }
 
-#forgotBox span {
+.dialog span {
     text-decoration: underline;
     cursor: pointer;
 }
 
-#forgotBox button {
+.dialog button {
     float: right;
     margin-left: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
     border: 1px solid #d8d8d8;
     background-color: white;
     padding: 4px;
     cursor: pointer;
 }
 
+.dialog input[type="text"] {
+    border: 1px solid  #d8d8d8;
+    border-radius: 3px;
+    font: italic 14px Georgia,times,sans-serif;
+    height: 37px;
+    width: 200px;
+    margin-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.dialog input[type="file"] {
+    border: 1px solid  #d8d8d8;
+    border-radius: 3px;
+    font: italic 14px Georgia,times,sans-serif;
+    height: 25px;
+    width: 200px;
+    margin-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
 
 /* General content */
 

@@ -27,11 +27,14 @@ class Article extends \App\Page {
             
             // Load in sections
             $sectionList = array();
-            $articleSections = $this->articleORM->sections->find_all();
+            $articleSections = $this->template->sections->order_by('order', 'ASC')->find_all()->as_array(true);
             foreach ($articleSections as $s) {
-    		        $object = (object)array('title' => $s->template->title,
-    		                                'html' => $s->html);
-    		        array_push($sectionList, $object);
+                $articleSection = $this->articleORM->sections->where('section_id', $s->id)->find();
+                if ($articleSection->loaded()) {
+                    $object = (object)array('title' => $s->title,
+                                            'html' => $articleSection->html);
+        		        array_push($sectionList, $object);
+                }
             }
             $this->view->articleSections = $sectionList;
     

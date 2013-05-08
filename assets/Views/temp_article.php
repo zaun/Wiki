@@ -20,22 +20,32 @@
         <div id="overlay">
         </div>
 
-        <div id="loginBox">
+        <div id="loginBox" class="dialog">
             <h2>Login</h2>
-            <input type="text" id="loginUsername" placeholder="Email">
-            <input type="password" id="loginPassword" placeholder="Password">
+            <input type="text" id="loginUsername" placeholder="Email" />
+            <input type="password" id="loginPassword" placeholder="Password" />
             <div><span class='btnForgotDialog'>Forgot Password</span></div>
             <button class='btnLogin'>Login</button>
             <button class='btnLoginCancel'>Cancel</button>
         </div>
 
-        <div id="forgotBox">
+        <div id="forgotBox" class="dialog">
             <h2>Forgot Password</h2>
-            <input type="text" id="forgotEmail" placeholder="Email">
+            <input type="text" id="forgotEmail" placeholder="Email" />
             <div></div>
             <button class='btnForgot'>Send Email</button>
             <button class='btnLoginCancel'>Cancel</button>
         </div>
+        
+        <?php if ($canEdit === true && $mode === "edit") { ?>
+        <div id="uploadBox" class="dialog">
+            <h2>Upload Media</h2>
+            <input type="text" id="mediaTitle" name="mediaTitle" placeholder="Title" />
+            <input type="file" id="mediaFile" name="mediaFile" />
+            <button class='btnUploadSent'>Upload</button>
+            <button class='btnUploadCancel'>Cancel</button>
+        </div>
+        <?php } ?>
 
         <div class="page">
         <div class="topBar">
@@ -72,7 +82,7 @@
             <div class="options">
             Insert Media
             </div>
-            <div class="options">
+            <div class="options" id="btnUpload">
             Upload File
             </div>
             <?php } ?>

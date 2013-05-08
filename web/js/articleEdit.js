@@ -1,5 +1,19 @@
 $(document).ready(function() {
 
+    // Show the the upload dialog
+    $(document).on('click', '#btnUpload', function() {
+        overlay(true);
+        $("#uploadBox").fadeIn("fast");
+        return false;
+    });
+
+    // Cancel a login or forgot password
+    $(document).on('click', '.btnUploadCancel', function() {
+        overlay(false);
+        $("#uploadBox").fadeOut("fast");
+        return false;
+    });
+
     // Limit textareas
 	$('textarea[maxlength]').keyup(function(){
 		//get the limit from maxlength attribute

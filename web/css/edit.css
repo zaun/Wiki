@@ -162,3 +162,19 @@ input {
     width: 100%;
     float: none;
 }
+
+#uploadBox {
+	position: fixed;
+	display: none;
+	top: 25%;
+	left: 50%;
+	margin-top: -75px;
+	margin-left: -125px;
+	width: 200px;
+	padding-left: 25px;
+	padding-right: 25px;
+	background: white;
+	z-index:999;
+    border-radius: 10px;
+}
+
