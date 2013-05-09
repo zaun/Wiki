@@ -18,10 +18,10 @@ class Article extends \App\Page {
 
             $this->view->pageTitle = $this->title;
             $this->view->articleTitle = $this->title;
-            $this->view->articleSummary = $this->pixie->util->TextToHtml($this->summary);
+            $this->view->articleSummary = $this->summaryHtml;
             $this->view->imageName = $this->imageName;
             $this->view->imageTitle = $this->imageTitle;
-            $this->view->articleTemplate = $this->template->name;
+            $this->view->articleTemplate = $this->templateName;
             $this->view->lastUpdated = $this->lastUpdated;
             
             
@@ -43,12 +43,14 @@ class Article extends \App\Page {
             $attributeList = array();
             $attributeListTemp = array();
             $articleAttributes = $this->template->attributes->order_by('order', 'ASC')->find_all()->as_array(true);
+            $kvAttr = [];
             foreach ($articleAttributes as $s) {
                 $articleAttribute = $this->articleORM->attributes->where('attribute_id', $s->id)->find();
                 $value = "";
                 if ($articleAttribute->loaded()) {
                     $value = $articleAttribute->value;
                 }
+                $kvAttr[trim(strtolower($s->title))] = $value;
     		        $object = (object)array('id' => $s->id,
     		                                'type' => $s->type, 
     		                                'title' => $s->title,
@@ -59,6 +61,8 @@ class Article extends \App\Page {
         		        array_push($attributeListTemp, $object);
     		        }
             }
+            
+            $this->view->articleSummary = $this->pixie->util->replaceValues($kvAttr, $this->view->articleSummary);
             
             // Remove unneeded headers
             for ($i=0; $i < count($attributeListTemp) - 1; $i++) {
@@ -105,7 +109,7 @@ class Article extends \App\Page {
             $this->view->articleSummary = $this->summary;
             $this->view->imageName = $this->imageName;
             $this->view->imageTitle = $this->imageTitle;
-            $this->view->articleTemplate = $this->template->name;
+            $this->view->articleTemplate = $this->templateName;
             $this->view->lastUpdated = $this->lastUpdated;
     	    
         	    // If this is a post save the form just save it
@@ -268,9 +272,10 @@ class Article extends \App\Page {
 	        $this->loaded = true;
 	        $this->title = $this->articleORM->title;
 	        $this->summary = $this->articleORM->summary;
+	        $this->summaryHtml = $this->articleORM->summary_html;
 	        $this->imageName = $this->articleORM->image_name;
 	        $this->imageTitle = $this->articleORM->image_title;
-	        $this->template = $this->articleORM->template->find();
+	        $this->template = $this->articleORM->template;
 	        $this->templateID = $this->articleORM->template_id;
 	        $this->templateName = $this->template->name;
 	        $this->lastUpdated = $this->articleORM->lastEditDate;
@@ -278,6 +283,7 @@ class Article extends \App\Page {
 	        $this->loaded = false;
 	        $this->title = "Article Not Loaded";
 	        $this->summary = "";
+	        $this->summaryHtml = "";
 	        $this->imageName = "";
 	        $this->imageTitle = "";
 	        $this->template = null;
@@ -298,6 +304,7 @@ class Article extends \App\Page {
         // Save the article
         $this->articleORM->title = $this->request->post('articleTitle', $this->id);
         $this->articleORM->summary = $this->request->post('articleSummary', $this->summary);
+        $this->articleORM->summary_html = $this->pixie->util->summaryHtml($this->articleORM->summary);
         $this->articleORM->image_title = $this->request->post('imageTitle', $this->imageTitle);
         $this->articleORM->template_id = $this->request->post('articleTemplate', $this->templateID);
         $this->articleORM->lastEditIP = $_SERVER['REMOTE_ADDR'];
@@ -308,32 +315,9 @@ class Article extends \App\Page {
         $selectedTemplate = $this->pixie->orm->get('template', $this->articleORM->template_id);
         $sectionList = $selectedTemplate->sections->order_by('order', 'ASC')->find_all()->as_array(true);
         $attributeList = $selectedTemplate->attributes->order_by('order', 'ASC')->find_all()->as_array(true);
-        
-        // Loop through the sections and save them
-        foreach ($sectionList as $s) {
-            $sID = 'section-' . $s->id;
-            $sValue = $this->request->post($sID, '', false);
-            $articleSection = $this->articleORM->sections->where('section_id', $s->id)->find();
-            $articleSection->article_id = $this->articleORM->id;
-            $articleSection->section_id = $s->id;
-            $articleSection->raw = trim($this->sectionTypeObjects[$s->type]->rawValue($this->request, $s->id));
-            $articleSection->html = trim($this->sectionTypeObjects[$s->type]->htmlValue($this->request, $s->id));
-            
-            // Do a little cleanup
-            if ($articleSection->raw == "") {
-                $articleSection->html = "";
-            }
-            
-            $articleSection->lastEditIP = $_SERVER['REMOTE_ADDR'];
-            $articleSection->lastEditDate = gmdate("Y-m-d\TH:i:s\Z");
-            if (empty($articleSection->raw) && empty($articleSection->html)) {
-                $articleSection->delete();
-            } else {
-                $articleSection->save();
-            }
-        }
-        
+                
         // Loop through the attributes and save them
+        $kvAttr = [];
         foreach ($attributeList as $s) {
             if ($s->type != "hdr") {
                 $sID = 'attribute-' . $s->id;
@@ -349,6 +333,35 @@ class Article extends \App\Page {
                 $articleAttribute->lastEditIP = $_SERVER['REMOTE_ADDR'];
                 $articleAttribute->lastEditDate = gmdate("Y-m-d\TH:i:s\Z");
                 $articleAttribute->save();
+                $kvAttr[trim(strtolower($s->title))] = $articleAttribute->value;
+            }
+        }
+
+        // Loop through the sections and save them
+        foreach ($sectionList as $s) {
+            $sID = 'section-' . $s->id;
+            $sValue = $this->request->post($sID, '', false);
+            $articleSection = $this->articleORM->sections->where('section_id', $s->id)->find();
+            $articleSection->article_id = $this->articleORM->id;
+            $articleSection->section_id = $s->id;
+            $articleSection->raw = trim($this->sectionTypeObjects[$s->type]->rawValue($this->request, $s->id));
+            $html = trim($this->sectionTypeObjects[$s->type]->htmlValue($this->request, $s->id));
+            $html = $this->pixie->util->replaceValues($kvAttr, $html);
+            $articleSection->html = $html;
+            
+            // Do a little cleanup
+            if ($articleSection->raw == "") {
+                $articleSection->html = "";
+            }
+            
+            $articleSection->lastEditIP = $_SERVER['REMOTE_ADDR'];
+            $articleSection->lastEditDate = gmdate("Y-m-d\TH:i:s\Z");
+            if (empty($articleSection->raw) && empty($articleSection->html)) {
+                if ($articleSection->loaded()) {
+                    $articleSection->delete();
+                }
+            } else {
+                $articleSection->save();
             }
         }
 	}

@@ -12,6 +12,7 @@
         <?php if($mode === "edit") { ?>
         <link rel="stylesheet" href="/css/edit.css" type="text/css" />
         <script type="text/javascript" src="/js/expanding.js"></script>
+        <script type="text/javascript" src="/js/ajaxfileupload.js"></script>
         <script type="text/javascript" src="/js/articleEdit.js"></script>
         <?php } ?>
     </head>
@@ -42,7 +43,7 @@
             <h2>Upload Media</h2>
             <input type="text" id="mediaTitle" name="mediaTitle" placeholder="Title" />
             <input type="file" id="mediaFile" name="mediaFile" />
-            <button class='btnUploadSent'>Upload</button>
+            <button class='btnUploadSend'>Upload</button>
             <button class='btnUploadCancel'>Cancel</button>
         </div>
         <?php } ?>

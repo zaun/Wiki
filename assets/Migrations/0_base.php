@@ -183,6 +183,9 @@ return array(
 			'type' => 'varchar',
 			'size' => 4056
 		),
+		'summary_html' => array(
+			'type' => 'text'
+		),
 		'owner_id' => array(
 			'type' => 'int'
 		),

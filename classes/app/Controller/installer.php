@@ -228,16 +228,52 @@ class Installer extends \App\Wizard {
         $admin->add('rights', $right);
         $admin->save();
         
+        $this->addDefaultTemplate();
+        $this->addPersonTemplate();
         
-        // Add a default theme
+        // Set as application initilaze
+        $this->pixie->config->set('application.initilized', true);
+        $this->pixie->config->write('application');
+    }
+    
+    
+    private function addDefaultTemplate() {
+        // Add a default template
         $template = $this->pixie->orm->get('template');
         $template->name = "Default";
         $template->description = "Basic template to be used for simple pages.";
         $template->owner_id = 1;
         $template->save();
         
-        // Set as application initilaze
-        $this->pixie->config->set('application.initilized', true);
-        $this->pixie->config->write('application');
-    }
+        $templateSection = $this->pixie->orm->get('templateSection');
+        $templateSection->template_id = $template->id;
+        $templateSection->title = "Contents";
+        $templateSection->type = "mu";
+        $templateSection->order = 0;
+        $templateSection->save();
+   }
+    
+    
+    private function addPersonTemplate() {
+        // Add a default template
+        $template = $this->pixie->orm->get('template');
+        $template->name = "Person";
+        $template->description = "Setup for use with people.";
+        $template->owner_id = 1;
+        $template->save();
+        
+        $templateSection = $this->pixie->orm->get('templateSection');
+        $templateSection->template_id = $template->id;
+        $templateSection->title = "Early Years";
+        $templateSection->type = "mu";
+        $templateSection->order = 0;
+        $templateSection->save();
+        
+        $templateSection = $this->pixie->orm->get('templateSection');
+        $templateSection->template_id = $template->id;
+        $templateSection->title = "Schools Attendend";
+        $templateSection->type = "sl";
+        $templateSection->order = 1;
+        $templateSection->save();
+   }
 }

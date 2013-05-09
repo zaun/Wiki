@@ -1,6 +1,6 @@
 <?php
 namespace PixieTest {
-	require_once(ROOT.'/vendor/phpixie/core/classes/PHPixie/pixie.php');
+	require_once(ROOT.'/vendor/phpixie/core/classes/PHPixie/Pixie.php');
 	class Pixie extends \PHPixie\Pixie { 
 		public $basepath = '/tester/';
 		protected $modules = array(
@@ -84,7 +84,9 @@ namespace {
 		}
 		
 		public function testRoute() {
-			$this->assertEquals('PHPixie\Route', get_class($this->object->route('a','/',array())));
+			$route = $this->object->route('a','/',array(),'POST');
+			$this->assertEquals('PHPixie\Route', get_class($route));
+			$this->assertEquals('POST', $route->methods[0]);
 		}
 		public function testRequest() {
 			$this->assertEquals('PHPixie\Request', get_class($this->object->request(null)));

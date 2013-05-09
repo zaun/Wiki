@@ -6,6 +6,28 @@ $(document).ready(function() {
         $("#uploadBox").fadeIn("fast");
         return false;
     });
+    
+    $(document).on('click', '.btnUploadSend', function() {
+        $.ajaxFileUpload({
+            url: '/~api/upload/media', 
+            secureuri: false,
+            fileElementId: 'mediaFile',
+            dataType: 'json',
+            success: function (data, status) {
+                if(typeof(data.error) != 'undefined') {
+                    if(data.error != '') {
+                        alert(data.error);
+                    } else {
+                        alert(data.msg);
+                    }
+                }
+            },
+            error: function (data, status, e) {
+                alert(e);
+            }
+        });
+        return false;
+    });
 
     // Cancel a login or forgot password
     $(document).on('click', '.btnUploadCancel', function() {
