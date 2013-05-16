@@ -1,6 +1,7 @@
 <?php
 return array (
   'name' => 'Wiki',
-  'license' => 'by-sa',
+  'license' => 'by-nc-sa',
   'initilized' => true,
+  'plugins' => array('Markup', 'EducationList', 'SimpleList', 'EmploymentList', 'Text'),
 );

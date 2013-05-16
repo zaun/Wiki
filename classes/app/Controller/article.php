@@ -48,7 +48,7 @@ class Article extends \App\Page {
                 $articleAttribute = $this->articleORM->attributes->where('attribute_id', $s->id)->find();
                 $value = "";
                 if ($articleAttribute->loaded()) {
-                    $value = $articleAttribute->value;
+                    $value = $articleAttribute->raw;
                 }
                 $kvAttr[trim(strtolower($s->title))] = $value;
     		        $object = (object)array('id' => $s->id,
@@ -98,7 +98,7 @@ class Article extends \App\Page {
         // if we can't create a new one, bounce over to the template
         // because its missing
 	    if (!$this->loaded) {
-	        if(!$this->create_article()) {
+	        if($this->create_article() === false) {
                 return $this->response->redirect('/!Default');
              }
 	    } else {
@@ -133,7 +133,7 @@ class Article extends \App\Page {
                 $articleAttribute = $this->articleORM->attributes->where('attribute_id', $s->id)->find();
                 $value = "";
                 if ($articleAttribute->loaded()) {
-                    $value = $articleAttribute->value;
+                    $value = $articleAttribute->raw;
                 }
     		        $object = (object)array('id' => $s->id,
     		                                'type' => $s->type, 
@@ -193,7 +193,7 @@ class Article extends \App\Page {
         $this->init_article();
 
 	    if (!$this->loaded) {
-	        if(!$this->create_article()) {
+	        if($this->create_article() === false) {
                 return $this->response->redirect('/!Default');
              }
 	    } else {
@@ -218,7 +218,7 @@ class Article extends \App\Page {
                 $articleAttribute = $this->articleORM->attributes->where('attribute_id', $s->id)->find();
                 $value = "";
                 if ($articleAttribute->loaded()) {
-                    $value = $articleAttribute->value;
+                    $value = $articleAttribute->raw;
                 }
     		        $object = (object)array('id' => $s->id,
     		                                'type' => $s->type, 
@@ -238,14 +238,14 @@ class Article extends \App\Page {
                 
                 if ($current->type == "hdr" && $next->type != "hdr") {
         		        array_push($attributeList, $current);
-                } else if ($current->value != "") {
+                } else if ($current->raw != "") {
         		        array_push($attributeList, $current);
                 }
             }
             
             // Setup the attribute list
             if (count($attributeListTemp)) {
-                if ($attributeListTemp[count($attributeListTemp) - 1]->value != "") {
+                if ($attributeListTemp[count($attributeListTemp) - 1]->raw != "") {
         		        array_push($attributeList, $attributeListTemp[count($attributeListTemp) - 1]);
                 }
             }
@@ -266,6 +266,9 @@ class Article extends \App\Page {
 	private function init_article() {
         // Find the article in the database
 		$this->articleORM = $this->articleORM = $this->pixie->orm->get('article')->where('title', $this->id)->find();
+		if (! $this->articleORM->loaded()) {
+		    $this->articleORM = $this->articleORM = $this->pixie->orm->get('article')->where('title', str_replace("_", " ", $this->id))->find();
+		}
 		
 		// Initilize article variable
 	    if ($this->articleORM->loaded()) {
@@ -327,13 +330,13 @@ class Article extends \App\Page {
                 $articleAttribute->attribute_id = $s->id;
                 switch($s->type) {
                     default:
-                        $articleAttribute->value = $sValue;
+                        $articleAttribute->raw = $sValue;
                         break;
                 }
                 $articleAttribute->lastEditIP = $_SERVER['REMOTE_ADDR'];
                 $articleAttribute->lastEditDate = gmdate("Y-m-d\TH:i:s\Z");
                 $articleAttribute->save();
-                $kvAttr[trim(strtolower($s->title))] = $articleAttribute->value;
+                $kvAttr[trim(strtolower($s->title))] = $articleAttribute->raw;
             }
         }
 
@@ -383,7 +386,8 @@ class Article extends \App\Page {
 
     	    if($this->isPost()) {
     	        $this->save_article();
-            return $this->response->redirect('/' . $this->title);
+            $this->response->redirect('/' . $this->title);
+            return true;
     	    }
         
         // Grab templates

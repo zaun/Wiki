@@ -262,18 +262,58 @@ class Installer extends \App\Wizard {
         $template->owner_id = 1;
         $template->save();
         
-        $templateSection = $this->pixie->orm->get('templateSection');
-        $templateSection->template_id = $template->id;
-        $templateSection->title = "Early Years";
-        $templateSection->type = "mu";
-        $templateSection->order = 0;
-        $templateSection->save();
+        $order = 0;
+        $this->addSection($template->id, "Early life", "mu", $order++);
+        $this->addSection($template->id, "Family", "mu", $order++);
+        $this->addSection($template->id, "Later life", "mu", $order++);
+        $this->addSection($template->id, "Education", "sl", $order++);
+        $this->addSection($template->id, "Career", "sl", $order++);
         
+        $order = 0;
+        $this->addAttribute($template->id, "Personal Details", "hdr", $order++);
+        $this->addAttribute($template->id, "Given Name", "text", $order++);
+        $this->addAttribute($template->id, "Middle Name", "text", $order++);
+        $this->addAttribute($template->id, "Family Name", "text", $order++);
+        $this->addAttribute($template->id, "Nickname", "text", $order++);
+        $this->addAttribute($template->id, "Maiden Name", "text", $order++);
+        $this->addAttribute($template->id, "Gender", "text", $order++);
+        $this->addAttribute($template->id, "Birth Place", "text", $order++);
+        $this->addAttribute($template->id, "Date of Birth", "date", $order++);
+        $this->addAttribute($template->id, "Death Place", "text", $order++);
+        $this->addAttribute($template->id, "Date of Death", "date", $order++);
+        $this->addAttribute($template->id, "Height", "text", $order++);
+        $this->addAttribute($template->id, "Weight", "text", $order++);
+        $this->addAttribute($template->id, "Occupation", "text", $order++);
+        $this->addAttribute($template->id, "Known for", "text", $order++);
+
+        $this->addAttribute($template->id, "Family", "hdr", $order++);
+        $this->addAttribute($template->id, "Spouse", "text", $order++);
+        $this->addAttribute($template->id, "Children", "list", $order++);
+        $this->addAttribute($template->id, "2nd Spouse", "text", $order++);
+        $this->addAttribute($template->id, "2nd Children", "list", $order++);
+        $this->addAttribute($template->id, "3rd Spouse", "text", $order++);
+        $this->addAttribute($template->id, "3rd Children", "list", $order++);
+        $this->addAttribute($template->id, "4th Spouse", "text", $order++);
+        $this->addAttribute($template->id, "4th Children", "list", $order++);
+        $this->addAttribute($template->id, "5th Spouse", "text", $order++);
+        $this->addAttribute($template->id, "5th Children", "list", $order++);
+   }
+   
+   private function addSection($templateID, $title, $type, $order) {
         $templateSection = $this->pixie->orm->get('templateSection');
-        $templateSection->template_id = $template->id;
-        $templateSection->title = "Schools Attendend";
-        $templateSection->type = "sl";
-        $templateSection->order = 1;
+        $templateSection->template_id = $templateID;
+        $templateSection->title = $title;
+        $templateSection->type = $type;
+        $templateSection->order = $order;
         $templateSection->save();
+   }
+   
+   private function addAttribute($templateID, $title, $type, $order) {
+        $templateAttr = $this->pixie->orm->get('templateAttribute');
+        $templateAttr->template_id = $templateID;
+        $templateAttr->title = $title;
+        $templateAttr->type = $type;
+        $templateAttr->order = $order;
+        $templateAttr->save();
    }
 }

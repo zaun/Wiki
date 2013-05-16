@@ -86,6 +86,9 @@ return array(
 	    'id' => array (
 	        'type' => 'id'
 	    ),
+		'parent_id' => array(
+			'type' => 'int'
+		),
 		'owner_id' => array(
 			'type' => 'int'
 		),
@@ -244,7 +247,10 @@ return array(
 	    'attribute_id' => array (
 	        'type' => 'int'
 	    ),
-		'value' => array(
+		'raw' => array(
+			'type' => 'text'
+		),
+		'html' => array(
 			'type' => 'text'
 		),
 		'lastEditUser' => array(

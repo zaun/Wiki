@@ -1,6 +1,6 @@
 <?php
 
-namespace Plugins;
+namespace Plugins\Sections;
 
 class Text {
     public $abbr = "txt";
@@ -87,5 +87,3 @@ class Text {
 	    return $text;
     }
 }
-
-return new Text();

@@ -84,12 +84,14 @@ class Page extends \PHPixie\Controller {
     
     
     private function loadPlugins() {
-        $sectionTypeObjects = [];
+        $this->sectionTypeObjects = [];
         
-        $directory = "../Classes/Plugins/";
+        $directory = "../Classes/Plugins/Sections/";
         $files = glob($directory . "*.php");
-        foreach($files as $file) {
-            $obj = (include $file);
+        $plugins = $this->pixie->config->get('application.plugins', array());
+        foreach($plugins as $plugin) {
+            $class = '\Plugins\\Sections\\' . $plugin;
+            $obj = new $class;
             $this->sectionTypeObjects[$obj->abbr] = $obj;
         }
     }

@@ -25,90 +25,6 @@ input {
     column-count: 3 !important;
 }
 
-.sortable {
-    position: relative;
-    list-style-type: none;
-    margin: 0;
-    margin-top: 5px;
-    padding: 0;
-    -webkit-column-count: 2;
-    -webkit-column-gap: 5px;
-    -moz-column-count: 2;
-    -moz-column-gap: 5px;
-    column-count: 2;
-    column-gap: 5px;
-    cursor:default;
- }
- 
-.sortable li {
-    position: relative;
-    display: inline-block;
-    margin: 0px 0px 5px 0px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-left: 20px;
-    font-size: 14px;
-    height: 18px;
-    width: 90%;
-}
-
-.sortable .ui-state-highlight {
-    margin: 0px 0px 2px 0px !important;
-}
-
-.sortable li .ui-icon {
-    position: absolute;
-    margin-left: -1.3em;
-}
-
-.sortable li .order {
-    margin-right: .5em;
-}
-
-.sortable li .title,
-.sortable li .editTitle {
-    position: absolute;
-    display: block;
-    top: 5px;
-    bottom: 5px;
-    left: 40px;
-    right: 140px;
-    z-index: 90;
-}
-
-.simpleList li .title,
-.simpleList li .editTitle {
-    right: 40px;
-}
-
-.sortable li .editTitle {
-    display: none;
-}
-
-.sortable li .editTitle input {
-    width: 100%;
-    height: 100%;
-    color: black;
-    font-size: 14px;
-    padding: 0px;
-    z-index: 100;
-}
-
-.sortable li button {
-    position: absolute;
-    right: 5px;
-    padding: 2px;
-    border: 1px solid #cccccc;
-    background: #f6f6f6;
-    font-weight: bold;
-    width: 20px;
-}
-
-.sortable li select {
-    position: absolute;
-    right:30px;
-}
-
 .pageContent h2 button {
     float: right;
     padding: 2px;
@@ -176,5 +92,138 @@ input {
 	background: white;
 	z-index:999;
     border-radius: 10px;
+}
+
+/*
+ * Sortable
+ */
+
+
+.sortable {
+    position: relative;
+    list-style-type: none;
+    margin: 0;
+    margin-top: 5px;
+    padding: 0;
+    -webkit-column-count: 2;
+    -webkit-column-gap: 5px;
+    -moz-column-count: 2;
+    -moz-column-gap: 5px;
+    column-count: 2;
+    column-gap: 5px;
+    cursor:default;
+}
+ 
+.sortable li {
+    position: relative;
+    display: inline-block;
+    font-size: 14px;
+    width: 100%;
+    border-width: 0px;
+    border-style: solid;
+    margin-bottom: 5px;
+}
+ 
+.sortable li .listItemContent {
+    border-width: 1px;
+    border-style: inherit;
+    border-color: inherit;
+}
+
+.sortable .ui-state-highlight {
+    margin: 0px 0px 2px 0px !important;
+}
+
+
+.sortable li select {
+    position: absolute;
+    right:30px;
+}
+
+
+
+/*
+ * Lists
+ */
+.listItemContent .row {
+    position: relative;
+    min-height: 24px;
+}
+
+.listItemContent .rowBig {
+    min-height: 84px;
+}
+
+.listItemContent .ui-icon,
+.listItemContent .order {
+    float:left;
+    line-height: 20px;
+    height: 20px;
+    margin: 2px;
+}
+.listItemContent .order {
+    width: 21px;
+}
+
+.listItemContent .btnDelete {
+    float: right;
+    padding: 2px;
+    margin: 2px;
+    border: 1px solid #cccccc;
+    background: #f6f6f6;
+    font-weight: bold;
+    width: 20px;
+    height: 20px;
+}
+
+.listItemContent .inpTitle,
+.listItemContent .inpDetailFull,
+.listItemContent .inpSubdetailFull,
+.listItemContent .inpTitleSelect,
+.listItemContent .inpTopSelect,
+.listItemContent .inpMiddleSelect,
+.listItemContent .inpBottomSelect {
+    position: absolute;
+    width: auto;
+    height: 20px;
+    right: 25px;
+    left: 45px;
+    margin: 2px;
+    background-color: white;
+}
+
+.listItemContent .inpTitleSmall,
+.listItemContent .inpTitleSelectSmall,
+.listItemContent .inpDetailSmall,
+.listItemContent .inpSubdetailSmall {
+    position: absolute;
+    width: auto;
+    height: 20px;
+    right: 25px;
+    left: 135px;
+    margin: 2px;
+    background-color: white;
+}
+
+.listItemContent .inpTitleDate,
+.listItemContent .inpDetailDate,
+.listItemContent .inpSubdetailDate {
+    position: absolute;
+    width: auto;
+    height: 20px;
+    width: 85px;
+    left: 45px;
+    margin: 2px;
+}
+
+
+.listItemContent .inpMore {
+    position: absolute;
+    width: auto;
+    height: 80px;
+    right: 25px;
+    left: 45px;
+    margin: 2px;
+    background-color: white;
 }
 

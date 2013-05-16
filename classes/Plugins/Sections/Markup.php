@@ -1,6 +1,6 @@
 <?php
 
-namespace Plugins;
+namespace Plugins\Sections;
 
 class Markup {
     public $abbr = "mu";
@@ -235,5 +235,3 @@ class Markup {
         return "\n" . trim($text) . "\n";
     }    
 }
-
-return new Markup();

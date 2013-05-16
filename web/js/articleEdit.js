@@ -71,7 +71,14 @@ $(document).ready(function() {
 		$('#' + $(this).attr('id') + 'Count').html(chars + '/' + limit);
 	});
 	
-	        
+	////
+	// Hookup the date picker
+	////
+	$('.dateField').datepicker({
+        changeMonth: true,
+        changeYear: true,
+        dateFormat: 'yy-mm-dd'
+	});
     
     
     ////
