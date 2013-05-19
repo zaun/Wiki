@@ -15,4 +15,12 @@ class TemplateAttribute extends \PHPixie\ORM\Model {
             'key'=>'template_id'
         )
     );
+
+    // Each template attribute can be used by many article attributes
+    protected $has_many=array(
+        'attributes'=>array(
+            'model'=>'ArticleAttribute',
+            'key'=>'attribute_id'
+        )
+    );
 }

@@ -338,7 +338,7 @@ class SimpleList {
         $out .= "    });" . $EOL;
         $out .= "    Update" . $this->abbr . "ListData();" . $EOL;
         $out .= "}" . $EOL;
-        // Store the sections list in json
+        // Store the list in json
         $out .= "function Update" . $this->abbr . "ListData() {" . $EOL;
         $out .= "    $('." . $this->abbr . "List').each(function(index) {" . $EOL;
         $out .= "        var data = Array();" . $EOL;

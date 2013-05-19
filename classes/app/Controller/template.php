@@ -117,6 +117,7 @@ class Template extends \App\Page {
 		
 		// Setup the template sections
         $this->view->sectionTypeObjects = $this->sectionTypeObjects;
+        $this->view->attributeTypeObjects = $this->attributeTypeObjects;
         
 	    if ($this->templateData->loaded()) {
         		$this->view->pageTitle = 'Editing template ' . $this->templateData->name;
@@ -152,6 +153,9 @@ class Template extends \App\Page {
         		    $attributeList= array();
         		    foreach($tempAttributes as $tempAttribute) {
         		        $inuse = 0;
+        		        if ($tempAttribute->attributes->count_all() != 0) {
+        		            $inuse = 1;
+        		        }
         		        $object = (object)array('title' => $tempAttribute->title,
         		                                'type' => $tempAttribute->type,
         		                                'inuse' => $inuse);

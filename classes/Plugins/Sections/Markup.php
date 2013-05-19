@@ -203,35 +203,66 @@ class Markup {
             $text
         );
 
-        // external link
+        // Titled Links
+        // [Digg](http://digg.com)
+        // [Google](http://google.com)
         $text = preg_replace_callback(
-            '/(\[)(.*?)(\])(\(((http[s]?)|ftp):\/\/)(.*?)(\))/',
+            '/\[([^]]+)\]\(((?:https?|ftp):\/\/.*?)\)/',
             function ($match) {
-                $link = strtolower(str_replace(" ", "+", trim($match[7])));
-                $ret = "<a target='_blank' href='" . strtolower($match[5]) . "://" . $link . "'>" . trim($match[2]) . "</a>";
-                if (strtolower($match[5]) == "http") {
-                    $ret .= "<img src='/images/link_http.png' class='link' />";
-                } else if (strtolower($match[5]) == "https") {
-                    $ret .= "<img src='/images/link_https.png' class='link' />";
-                } else if (strtolower($match[5]) == "ftp") {
-                    $ret .= "<img src='/images/link_ftp.png' class='link' />";
+                $title = trim($match[1]);
+                $link = trim($match[2]);
+                
+                $ret = "";
+                if ($this->startsWith(strtolower($link), "https")) {
+                    $ret = "<a target='_blank' href='" . $link . "'>" . $title . "</a>";
+                    $ret .= "&nbsp;<img src='/images/link_https.png' class='link' title='Secure HTTP external link' />";
+                } else if ($this->startsWith(strtolower($link), "http")) {
+                    $ret = "<a target='_blank' href='" . $link . "'>" . $title . "</a>";
+                    $ret .= "&nbsp;<img src='/images/link_http.png' class='link' title='External link' />";
+                } else if ($this->startsWith(strtolower($link),  "ftp")) {
+                    $ret = "<a target='_blank' href='" . $link . "'>" . $title . "</a>";
+                    $ret .= "&nbsp;<img src='/images/link_ftp.png' class='link' title='File Transfer Protocol link' />";
+                } else {
+                    $link = str_replace(" ", "_", $link);
+                    $ret = "<a href='" . $link . "'>" . $title . "</a>";
                 }
                 return $ret;
             },
             $text
         );
 
-        // internal link
+        // Untitled Links
+        // [Internal Page]
+        // [http://google.com]
         $text = preg_replace_callback(
             '/(\[)(.*?)(\])/',
             function ($match) {
-                $link = str_replace(" ", "+", trim($match[2]));
-                return "<a href='" . $link . "'>" . trim($match[2]) . "</a>";
+                $link = trim($match[2]);
+
+                $ret = "";
+                if ($this->startsWith(strtolower($link), "https")) {
+                    $ret = "<a target='_blank' href='" . $link . "'>" . $link . "</a>";
+                    $ret .= "&nbsp;<img src='/images/link_https.png' class='link' title='Secure HTTP external link' />";
+                } else if ($this->startsWith(strtolower($link), "http")) {
+                    $ret = "<a target='_blank' href='" . $link . "'>" . $link . "</a>";
+                    $ret .= "&nbsp;<img src='/images/link_http.png' class='link' title='External link' />";
+                } else if ($this->startsWith(strtolower($link),  "ftp")) {
+                    $ret = "<a target='_blank' href='" . $link . "'>" . $link . "</a>";
+                    $ret .= "&nbsp;<img src='/images/link_ftp.png' class='link' title='File Transfer Protocol link' />";
+                } else {
+                    $link = str_replace(" ", "_", $link);
+                    $ret = "<a href='" . $link . "'>" . trim($match[2]) . "</a>";
+                }
+                return $ret;
             },
             $text
         );
         
         
         return "\n" . trim($text) . "\n";
-    }    
+    }
+    
+    private function startsWith($haystack, $needle) {
+        return !strncmp($haystack, $needle, strlen($needle));
+    }
 }

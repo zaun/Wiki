@@ -1,4 +1,5 @@
 /* No color information in this file */
+
 .topBar {
     margin-left: 180px;
     text-align: right;
@@ -10,7 +11,7 @@
 
 .pageMenu {
     clear: right;
-    margin-left: 180px;
+    margin-left: 250px;
 }
 
 .pageMenu .button {
@@ -30,7 +31,7 @@
 
 .pageContent {
     clear: right;
-    margin-left: 180px;
+    margin-left: 250px;
 }
 
 .toc {

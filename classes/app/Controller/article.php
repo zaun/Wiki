@@ -307,7 +307,7 @@ class Article extends \App\Page {
         // Save the article
         $this->articleORM->title = $this->request->post('articleTitle', $this->id);
         $this->articleORM->summary = $this->request->post('articleSummary', $this->summary);
-        $this->articleORM->summary_html = $this->pixie->util->summaryHtml($this->articleORM->summary);
+        $this->articleORM->summary_html = $this->sectionTypeObjects['txt']->convertRawToHtml($this->articleORM->summary);
         $this->articleORM->image_title = $this->request->post('imageTitle', $this->imageTitle);
         $this->articleORM->template_id = $this->request->post('articleTemplate', $this->templateID);
         $this->articleORM->lastEditIP = $_SERVER['REMOTE_ADDR'];
@@ -335,7 +335,13 @@ class Article extends \App\Page {
                 }
                 $articleAttribute->lastEditIP = $_SERVER['REMOTE_ADDR'];
                 $articleAttribute->lastEditDate = gmdate("Y-m-d\TH:i:s\Z");
-                $articleAttribute->save();
+                if (empty($articleAttribute->raw) && empty($articleAttribute->html)) {
+                    if ($articleAttribute->loaded()) {
+                        $articleAttribute->delete();
+                    }
+                } else {
+                    $articleAttribute->save();
+                }
                 $kvAttr[trim(strtolower($s->title))] = $articleAttribute->raw;
             }
         }
@@ -379,7 +385,7 @@ class Article extends \App\Page {
 	 */
 	private function create_article() {
         $this->view->pageTitle = "Create page  " . $this->id;
-        $this->view->articleTitle = $this->id;
+        $this->view->articleTitle = ucwords(str_replace("_", " ", $this->id));
         $this->view->articleSummary = "";
         $this->view->articleTemplate = "";
         $this->view->lastUpdated = "";

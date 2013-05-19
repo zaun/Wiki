@@ -1,15 +1,14 @@
 <?php
 
-namespace Plugins\Sections;
+namespace Plugins\Attributes;
 
 class Text {
-    public $abbr = "txt";
+    public $abbr = "text";
     public $name = "Text";
     
     
     public function edit($id, $title, $raw) {
-        $out  = "<h2>" . $title . "</h2>";
-        $out .= "<textarea class='text expanding' id='section-" . $id . "' name='section-" . $id . "'>" . $raw . "</textarea>";
+        $out .= "<textarea class='text expanding' id='attr-" . $id . "' name='attr-" . $id . "'>" . $raw . "</textarea>";
         return $out;
     }
     

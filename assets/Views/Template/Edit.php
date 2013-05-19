@@ -13,13 +13,13 @@ foreach ($templateSections as $s) {
     } else {
         echo "<li class='ui-state-default' data-can-delete='no'>";
     }
-    echo "<input type='hidden' value='" . $s->title . "' />";
+    echo "<div class='listItemContent'>";
+    echo "<div class='row'>";
+    echo "<button class='btnDelete'>-</button>";
     echo "<span class='ui-icon ui-icon-arrowthick-2-n-s'></span>";
     echo "<span class='order'></span>";
-    echo "<span class='title'>" . $s->title . "</span>";
-    echo "<span class='editTitle'><input value='" . $s->title . "'/></span>";
     if ($s->inuse === 0) {
-        echo "<select class='type'>";
+        echo "<select class='inpType'>";
         foreach ($sectionTypeObjects as $st) {
             if ($s->type == $st->abbr) {
                 echo "<option value='" . $st->abbr . "' selected>" . $st->name . "</option>";
@@ -27,11 +27,18 @@ foreach ($templateSections as $s) {
                 echo "<option value='" . $st->abbr . "'>" . $st->name . "</option>";
             }
         }
-        echo "<select>";
-        echo "<button>-</button>";
     } else {
-        echo "<input type='hidden' class='type' value='" . $s-> type . "' />";
+        echo "<select class='inpType' disabled>";
+        foreach ($sectionTypeObjects as $st) {
+            if ($s->type == $st->abbr) {
+                echo "<option value='" . $st->abbr . "' selected>" . $st->name . "</option>";
+            }
+        }
     }
+    echo "</select>";
+    echo "<input class='inpSection' placeholder='Section Title' value='" . $s->title . "'>";
+    echo "</div>";
+    echo "</div>";
     echo "</li>";
 }
 ?>
@@ -41,64 +48,92 @@ foreach ($templateSections as $s) {
 <ol id='lstAttributes' class='sortable smallColumns'>
 <?php
 foreach ($templateAttributes as $a) {
-    if ($s->inuse === 0) {
+    if ($a->inuse === 0) {
         echo "<li class='ui-state-default' data-can-delete='yes'>";
     } else {
         echo "<li class='ui-state-default' data-can-delete='no'>";
     }
-    echo "<input type='hidden' value='" . $a->title . "' />";
+    
+    echo "<div class='listItemContent'>";
+    echo "<div class='row'>";
+    echo "<button class='btnDelete'>-</button>";
     echo "<span class='ui-icon ui-icon-arrowthick-2-n-s'></span>";
     echo "<span class='order'></span>";
-    echo "<span class='title'>" . $a->title . "</span>";
-    echo "<span class='editTitle'><input value='" . $a->title . "'/></span>";
     if ($a->inuse === 0) {
-        echo "<select class='type'>";
-        if($a->type === 'date') {
-            echo "<option value='date' selected>Date</option>";
-        } else {
-            echo "<option value='date'>Date</option>";
+        echo "<select class='inpType'>";
+        foreach ($attributeTypeObjects as $at) {
+            if ($a->type == $at->abbr) {
+                echo "<option value='" . $at->abbr . "' selected>" . $at->name . "</option>";
+            } else {
+                echo "<option value='" . $at->abbr . "'>" . $at->name . "</option>";
+            }
         }
-        if($a->type === 'int') {
-            echo "<option value='int' selected>Integer</option>";
-        } else {
-            echo "<option value='int'>Integer</option>";
-        }
-        if($a->type === 'float') {
-            echo "<option value='float' selected>Decimal</option>";
-        } else {
-            echo "<option value='float'>Decimal</option>";
-        }
-        if($a->type === 'cur') {
-            echo "<option value='cur' selected>Currency</option>";
-        } else {
-            echo "<option value='cur'>Currency</option>";
-        }
-        if($a->type === 'text') {
-            echo "<option value='text' selected>Text</option>";
-        } else {
-            echo "<option value='text'>Text</option>";
-        }
-        if($a->type === 'link') {
-            echo "<option value='link' selected>Link to Page</option>";
-        } else {
-            echo "<option value='link'>Link to Page</option>";
-        }
-        if($a->type === 'img') {
-            echo "<option value='img' selected>Image</option>";
-        } else {
-            echo "<option value='img'>Image</option>";
-        }
-        if($a->type === 'hdr') {
-            echo "<option value='hdr' selected>Header</option>";
-        } else {
-            echo "<option value='hdr'> Header </option>";
-        }
-        echo "<select>";
-        echo "<button>-</button>";
     } else {
-        echo "<input type='hidden' class='type' value='" . $a->type . "' />";
+        echo "<select class='inpType' disabled>";
+        foreach ($attributeTypeObjects as $at) {
+            if ($a->type == $at->abbr) {
+                echo "<option value='" . $at->abbr . "' selected>" . $at->name . "</option>";
+            }
+        }
     }
-    echo "<input type='hidden' value='" . $s->title . "' />";
+    echo "</select>";
+    echo "<input class='inpAttribute' placeholder='Section Title' value='" . $a->title . "'>";
+    echo "</div>";
+    echo "</div>";
+    
+//    echo "<input type='hidden' value='" . $a->title . "' />";
+//    echo "<span class='ui-icon ui-icon-arrowthick-2-n-s'></span>";
+//    echo "<span class='order'></span>";
+//    echo "<span class='title'>" . $a->title . "</span>";
+//    echo "<span class='editTitle'><input value='" . $a->title . "'/></span>";
+//    if ($a->inuse === 0) {
+//        echo "<select class='type'>";
+//        if($a->type === 'date') {
+//            echo "<option value='date' selected>Date</option>";
+//        } else {
+//            echo "<option value='date'>Date</option>";
+//        }
+//        if($a->type === 'int') {
+//            echo "<option value='int' selected>Integer</option>";
+//        } else {
+//            echo "<option value='int'>Integer</option>";
+//        }
+//        if($a->type === 'float') {
+//            echo "<option value='float' selected>Decimal</option>";
+//        } else {
+//            echo "<option value='float'>Decimal</option>";
+//        }
+//        if($a->type === 'cur') {
+//            echo "<option value='cur' selected>Currency</option>";
+//        } else {
+//            echo "<option value='cur'>Currency</option>";
+//        }
+//        if($a->type === 'text') {
+//            echo "<option value='text' selected>Text</option>";
+//        } else {
+//            echo "<option value='text'>Text</option>";
+//        }
+//        if($a->type === 'link') {
+//            echo "<option value='link' selected>Link to Page</option>";
+//        } else {
+//            echo "<option value='link'>Link to Page</option>";
+//        }
+//        if($a->type === 'img') {
+//            echo "<option value='img' selected>Image</option>";
+//        } else {
+//            echo "<option value='img'>Image</option>";
+//        }
+//        if($a->type === 'hdr') {
+//            echo "<option value='hdr' selected>Header</option>";
+//        } else {
+//            echo "<option value='hdr'> Header </option>";
+//        }
+//        echo "<select>";
+//        echo "<button>-</button>";
+//    } else {
+//        echo "<input type='hidden' class='type' value='" . $a->type . "' />";
+//    }
+//    echo "<input type='hidden' value='" . $s->title . "' />";
     echo "</li>";
 }
 ?>
@@ -134,18 +169,19 @@ foreach ($templateAttributes as $a) {
 
     echo "<div id='tmpSection' class='template'>";
     echo "<li class='ui-state-default' data-can-delete='yes'>";
-    echo "<input type='hidden' value='-' />";
+    echo "<div class='listItemContent'>";
+    echo "<div class='row'>";
+    echo "<button class='btnDelete'>-</button>";
     echo "<span class='ui-icon ui-icon-arrowthick-2-n-s'></span>";
     echo "<span class='order'></span>";
-    echo "<span class='title'>Untitled</span>";
-    echo "<span class='editTitle'><input value='Untitled'/></span>";
-    echo "<select class='type'>";
+    echo "<select class='inpType'>";
     foreach ($sectionTypeObjects as $st) {
         echo "<option value='" . $st->abbr . "'>" . $st->name . "</option>";
     }
-    echo "<select>";
-    echo "<input type='hidden' value='' />";
-    echo "<button>-</button>";
+    echo "</select>";
+    echo "<input class='inpSection' placeholder='Section Title' value=''>";
+    echo "</div>";
+    echo "</div>";
     echo "</li>";
     echo "</div>";
 ?>

@@ -227,3 +227,24 @@ input {
     background-color: white;
 }
 
+/* Template edit items */
+.listItemContent .inpType {
+    position: absolute;
+    width: auto;
+    height: 20px;
+    width: 145px;
+    left: 45px;
+    margin: 2px;
+}
+
+.listItemContent .inpSection,
+.listItemContent .inpAttribute {
+    position: absolute;
+    width: auto;
+    height: 20px;
+    right: 25px;
+    left: 195px;
+    margin: 2px;
+    background-color: white;
+}
+

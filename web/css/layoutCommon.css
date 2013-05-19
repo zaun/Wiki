@@ -4,7 +4,10 @@ html, body {
     margin: 0px;
     padding: 0px;
     background-color: #f6f6f6;
-    font-size: 13px;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight: 300;
+    line-height: 1.5em;
+    font-size: 14px;
 }
 
 input:focus,
@@ -65,7 +68,7 @@ button {
 }
 
 .pageAttributes {
-    width: 170px;
+    width: 245px;
     margin-bottom: 20px;
 }
 
@@ -90,7 +93,7 @@ button {
 .pageAttributes label {
     display: block;
     float: left;
-    width: 45%;
+    width: 100px;
     height: 13px;
     font-weight: bold;
     font-size: 12px;
@@ -361,6 +364,9 @@ button {
 }
 
 /* General content */
+.pageContent {
+    line-height: 1.5em;
+}
 
 .pageContent P {
     margin-top: 0px;
@@ -397,8 +403,6 @@ button {
 .pageContent .para {
     margin-top: 0px;
     margin-bottom: 15px;
-    font-size:14px;
-    line-height: 16px;
 }
 
 .pageContent  img.link {
@@ -435,3 +439,15 @@ button {
 }
 
 
+.pageContent a,
+.pageContent a:visited {
+    text-decoration: none;
+    color: #0645ad;
+    background: none;
+    border-bottom: 1px dotted #0645ad;
+    border-radius: 0px;
+}
+.pageContent a:hover {
+    border-bottom: 1px solid #0645ad;
+    border-radius: 3px;
+}

@@ -90,9 +90,9 @@ $(document).ready(function() {
 // Update the order values on the list and
 // update the lists json data
 function UpdateListCounts() {
-    $(".sortable").each(function(index) {
-        $(this).children("li").each(function(index) {
-            $(this).children(".order").text(index + 1);
+    $('.sortable').each(function(index) {
+        $(this).find('.listItemContent').each(function(index) {
+            $(this).find('.order').text(index + 1);
         });
     });
     UpdateSectionData();

@@ -9,6 +9,13 @@ namespace App;
  * @property-read \PHPixie\ORM $orm ORM module
  */
 class Pixie extends \PHPixie\Pixie {
+    protected $instance_classes = array(
+		'config'  => '\PHPixie\Config',
+		'debug'   => '\PHPixie\Debug',
+		'router'  => '\App\Router',
+		'session' => '\PHPixie\Session',
+	);
+	
 	protected $modules = array(
 		'db' => '\PHPixie\DB',
 		'orm' => '\PHPixie\ORM',

@@ -8,6 +8,7 @@ class Page extends \PHPixie\Controller {
     protected $pageView;
     protected $view;
     protected $sectionTypeObjects;
+    protected $attributeTypeObjects;
     
     private $runStart;
     private $runTime;
@@ -85,14 +86,20 @@ class Page extends \PHPixie\Controller {
     
     private function loadPlugins() {
         $this->sectionTypeObjects = [];
+        $this->attributeTypeObjects = [];
         
-        $directory = "../Classes/Plugins/Sections/";
-        $files = glob($directory . "*.php");
-        $plugins = $this->pixie->config->get('application.plugins', array());
+        $plugins = $this->pixie->config->get('application.sections', array());
         foreach($plugins as $plugin) {
             $class = '\Plugins\\Sections\\' . $plugin;
             $obj = new $class;
             $this->sectionTypeObjects[$obj->abbr] = $obj;
+        }
+        
+        $plugins = $this->pixie->config->get('application.attributes', array());
+        foreach($plugins as $plugin) {
+            $class = '\Plugins\\Attributes\\' . $plugin;
+            $obj = new $class;
+            $this->attributeTypeObjects[$obj->abbr] = $obj;
         }
     }
 }
