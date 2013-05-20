@@ -48,7 +48,7 @@ class Article extends \App\Page {
                 $articleAttribute = $this->articleORM->attributes->where('attribute_id', $s->id)->find();
                 $value = "";
                 if ($articleAttribute->loaded()) {
-                    $value = $articleAttribute->raw;
+                    $value = $articleAttribute->html;
                 }
                 $kvAttr[trim(strtolower($s->title))] = $value;
     		        $object = (object)array('id' => $s->id,
@@ -128,20 +128,29 @@ class Article extends \App\Page {
     
             // grab the article attributes
             $attributeList = array();
+            $this->view->articleAttributeTemplates = "";
+            $this->view->articleAttributeJavascript = "";
+            $attributeTypeSeen = array();
             $articleAttributes = $this->template->attributes->order_by('order', 'ASC')->find_all()->as_array(true);
             foreach ($articleAttributes as $s) {
                 $articleAttribute = $this->articleORM->attributes->where('attribute_id', $s->id)->find();
-                $value = "";
+                $raw = "";
                 if ($articleAttribute->loaded()) {
-                    $value = $articleAttribute->raw;
+                    $raw = $articleAttribute->raw;
                 }
-    		        $object = (object)array('id' => $s->id,
-    		                                'type' => $s->type, 
-    		                                'title' => $s->title,
-    		                                'value' => $value);
-    		        array_push($attributeList, $object);
+
+                $html = "Unknown type " . $s->type;
+                if (isset($this->attributeTypeObjects[$s->type])) {
+                    $html = $this->attributeTypeObjects[$s->type]->edit($s->id, $s->title, $raw);
+                    if (!isset($attributeTypeSeen[$s->type])) {
+                        $this->view->articleAttributeTemplates .= $this->attributeTypeObjects[$s->type]->editOnce();
+                        $this->view->articleAttributeJavascript .= $this->attributeTypeObjects[$s->type]->jsEdit();
+                        $attributeTypeSeen[$s->type] = true;
+                    }
+                }
+                array_push($attributeList, $html);
     		        
-    		        if ($value != "") {
+    		        if ($raw != "") {
     		            $pageHasContent = true;
     		        }
             }
@@ -323,16 +332,17 @@ class Article extends \App\Page {
         $kvAttr = [];
         foreach ($attributeList as $s) {
             if ($s->type != "hdr") {
-                $sID = 'attribute-' . $s->id;
-                $sValue = $this->request->post($sID, '', false);
                 $articleAttribute = $this->articleORM->attributes->where('attribute_id', $s->id)->find();
                 $articleAttribute->article_id = $this->articleORM->id;
                 $articleAttribute->attribute_id = $s->id;
-                switch($s->type) {
-                    default:
-                        $articleAttribute->raw = $sValue;
-                        break;
+                $articleAttribute->raw = trim($this->attributeTypeObjects[$s->type]->rawValue($this->request, $s->id));
+                $articleAttribute->html = trim($this->attributeTypeObjects[$s->type]->htmlValue($this->request, $s->id));
+            
+                // Do a little cleanup
+                if ($articleAttribute->raw == "") {
+                    $articleAttribute->html = "";
                 }
+
                 $articleAttribute->lastEditIP = $_SERVER['REMOTE_ADDR'];
                 $articleAttribute->lastEditDate = gmdate("Y-m-d\TH:i:s\Z");
                 if (empty($articleAttribute->raw) && empty($articleAttribute->html)) {
@@ -342,14 +352,12 @@ class Article extends \App\Page {
                 } else {
                     $articleAttribute->save();
                 }
-                $kvAttr[trim(strtolower($s->title))] = $articleAttribute->raw;
+                $kvAttr[trim(strtolower($s->title))] = $articleAttribute->html;
             }
         }
 
         // Loop through the sections and save them
         foreach ($sectionList as $s) {
-            $sID = 'section-' . $s->id;
-            $sValue = $this->request->post($sID, '', false);
             $articleSection = $this->articleORM->sections->where('section_id', $s->id)->find();
             $articleSection->article_id = $this->articleORM->id;
             $articleSection->section_id = $s->id;

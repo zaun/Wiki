@@ -1,3 +1,7 @@
+<script>
+<?php echo $articleAttributeJavascript; ?>
+</script>
+
 <div class='pageImage'>
     <img src='<?php echo $pageImage; ?>' />
     <?php
@@ -5,53 +9,16 @@
     ?>
 </div>
 
+<?php if (isset($articleAttributes) > 0) { ?>
 <?php
-if (isset($articleAttributes)) {
-    foreach ($articleAttributes as $a) {
-        if ($a->type == "hdr") {
-            echo "<h1>" . $a->title . "</h1>";
-        } else {
-            echo "<div class=\"row\">";
-            switch($a->type) {
-                case 'int':
-                    echo "<label>" . $a->title . "</label>";
-                    echo "<input class='attribute-int' name='attribute-" . $a->id . "' id='attribute-" . $a->id . "' value='" . $a->value . "' />";
-                    break;
-                case 'float':
-                    echo "<label>" . $a->title . "</label>";
-                    echo "<input class='attribute-float' name='attribute-" . $a->id . "' id='attribute-" . $a->id . "' value='" . $a->value . "' />";
-                    break;
-                case 'text':
-                    echo "<label>" . $a->title . "</label>";
-                    echo "<input class='attribute-text' name='attribute-" . $a->id . "' id='attribute-" . $a->id . "' value='" . $a->value . "' />";
-                    break;
-                case 'date':
-                    echo "<label>" . $a->title . "</label>";
-                    echo "<input class='attribute-date' name='attribute-" . $a->id . "' id='attribute-" . $a->id . "' value='" . $a->value . "' />";
-                    echo "<span class='ui-icon ui-icon-calendar'></span>";
-                    break;
-                case 'cur':
-                    echo "<label>" . $a->title . "</label>";
-                    echo "<input class='attribute-cur' name='attribute-" . $a->id . "' id='attribute-" . $a->id . "' value='" . $a->value . "' />";
-                    break;
-                case 'link':
-                    echo "<label>" . $a->title . "</label>";
-                    echo "<input class='attribute-link' name='attribute-" . $a->id . "' id='attribute-" . $a->id . "' value='" . $a->value . "' />";
-                    break;
-                case 'img':
-                    echo "<label>" . $a->title . "</label>";
-                    echo "<input class='attribute-img' name='attribute-" . $a->id . "' id='attribute-" . $a->id . "' value='" . $a->value . "' />";
-                    break;
-                default:
-                    echo "<label>" . $a->title . "</label>";
-                    break;
-            }
-            echo "</div>";
-        }
-    }
+foreach ($articleAttributes as $a) {
+    echo "<div class='row'>" . $a . "</div>";
 }
 ?>
+<?php } ?>
 
+
+<?php if (!empty($articleTemplate)) { ?>
 <h1>Article Information</h1>
 <div class="row">
     <label>Template</label>
@@ -61,3 +28,9 @@ if (isset($articleAttributes)) {
     <label>Last Updated</label>
     <data><?php echo $lastUpdated ?></data>
 </div>
+<?php } ?>
+
+<div class="display: none;">
+<?php echo $articleAttributeTemplates; ?>
+</div>
+

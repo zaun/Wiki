@@ -8,7 +8,7 @@ class SimpleList {
     
     
     public function edit($id, $title, $raw) {
-        $out .= "<textarea class='text expanding' id='attr-" . $id . "' name='attr-" . $id . "'>" . $raw . "</textarea>";
+        $out = "<input class='text' id='attr-" . $id . "' name='attr-" . $id . "' value='" . $raw . "' />";
         return $out;
     }
     
@@ -29,7 +29,7 @@ class SimpleList {
     
     
     public function rawValue($request, $id) {
-        $sID = 'section-' . $id;
+        $sID = 'attr-' . $id;
         return $request->post($sID, '', false);
     }
     

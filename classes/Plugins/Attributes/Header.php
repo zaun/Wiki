@@ -8,7 +8,7 @@ class Header {
     
     
     public function edit($id, $title, $raw) {
-        $out .= "<textarea class='text expanding' id='attr-" . $id . "' name='attr-" . $id . "'>" . $raw . "</textarea>";
+        $out = "<h1>" . $title . "</h1>";
         return $out;
     }
     
@@ -29,7 +29,7 @@ class Header {
     
     
     public function rawValue($request, $id) {
-        $sID = 'section-' . $id;
+        $sID = 'attr-' . $id;
         return $request->post($sID, '', false);
     }
     

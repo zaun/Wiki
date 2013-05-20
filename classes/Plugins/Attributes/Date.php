@@ -8,7 +8,10 @@ class Date {
     
     
     public function edit($id, $title, $raw) {
-        $out .= "<textarea class='text expanding' id='attr-" . $id . "' name='attr-" . $id . "'>" . $raw . "</textarea>";
+        $out = "<label>" . $title . "</label>";
+        $out .= "<data>";
+        $out .= "<input class='date' id='attr-" . $id . "' name='attr-" . $id . "' value='" . $raw . "' />";
+        $out .= "</data>";
         return $out;
     }
     
@@ -29,7 +32,7 @@ class Date {
     
     
     public function rawValue($request, $id) {
-        $sID = 'section-' . $id;
+        $sID = 'attr-' . $id;
         return $request->post($sID, '', false);
     }
     

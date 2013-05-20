@@ -1,3 +1,5 @@
+<h1><?php echo $articleTitle; ?></h1>
+
 <?php
 if (count($articleSections) > 2) {
 ?>
@@ -13,7 +15,6 @@ foreach ($articleSections as $s) {
 </div>
 <?php } ?>
 
-<h1><?php echo $articleTitle; ?></h1>
 <p><?php echo $articleSummary; ?></p>
 <div id='articleSections'>
 <?php
