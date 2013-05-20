@@ -65,20 +65,14 @@ $(document).ready(function() {
     });
     
     // Edit
-   $(document).on('click', '.sortable > li > .title', function(e) {
-        $(this).hide();
-        $(this).parent().children('.editTitle').show().children('input').focus();
-    });
-   $(document).on('blur', '.sortable > li > .editTitle > input', function(e) {
-        $(this).parent().hide();
-        $(this).parent().parent().children('.title').show().html($(this).val());
+   $(document).on('blur', '.inpSection, .inpType, .inpAttribute', function(e) {
         UpdateListCounts();
     });
     
     // Delete
-   $(document).on('click', '.sortable > li > button', function(e) {
-        if ($(this).parent().attr('data-can-delete') === 'yes') {
-            $(this).parent().remove();
+   $(document).on('click', '.btnDelete', function(e) {
+        if ($(this).parent().parent().parent().attr('data-can-delete') === 'yes') {
+            $(this).parent().parent().parent().remove();
             UpdateListCounts();
         } else {
             alert('This item is in use by at least one page so it can not be removed.');
@@ -103,12 +97,12 @@ function UpdateListCounts() {
 function UpdateSectionData() {
     var data = Array();
     $("#lstSections").each(function(index) {
-        $(this).children("li").each(function(index) {
+        $(this).find("li").each(function(index) {
             $(this).children(".order").text(index + 1);
             data[index] = Array(index, 
-                                $(this).children("input").val(), 
-                                $(this).children(".title").text(), 
-                                $(this).children(".type").val());
+                                $(this).find(".inpID").val(), 
+                                $(this).find(".inpSection").val(), 
+                                $(this).find(".inpType").val());
         });
     });
     var dataText = JSON.stringify(data, null, 2);
@@ -120,11 +114,11 @@ function UpdateAttributeData() {
     var data = Array();
     $("#lstAttributes").each(function(index) {
         $(this).children("li").each(function(index) {
-            $(this).children(".order").text(index + 1);
+            $(this).find(".order").text(index + 1);
             data[index] = Array(index, 
-                                $(this).children("input").val(), 
-                                $(this).children(".title").text(), 
-                                $(this).children(".type").val());
+                                $(this).find(".inpID").val(), 
+                                $(this).find(".inpAttribute").val(), 
+                                $(this).find(".inpType").val());
         });
     });
     var dataText = JSON.stringify(data, null, 2);

@@ -47,11 +47,11 @@ class Template extends \App\Page {
              // Add/Update sections
              foreach ($sections as $s) {
                  $order = $s[0];
-                 $orig = $s[1];
+                 $id = $s[1];
                  $title = $s[2];
                  $type = $s[3];
                  
-                 $sectionData = $this->templateData->sections->where('title', $orig)->find();
+                 $sectionData = $this->templateData->sections->where('id', $id)->find();
                  $sectionData->template = $this->templateData;
                  $sectionData->title = $title;
                  $sectionData->order = $order;
@@ -79,11 +79,11 @@ class Template extends \App\Page {
              // Add/Update attributes
              foreach ($attributes as $a) {
                  $order = $a[0];
-                 $orig  = $a[1];
+                 $id  = $a[1];
                  $title = $a[2];
                  $type  = $a[3];
                  
-                 $attributeData = $this->templateData->attributes->where('title', $orig)->find();
+                 $attributeData = $this->templateData->attributes->where('id', $id)->find();
                  $attributeData->template = $this->templateData;
                  $attributeData->title = $title;
                  $attributeData->order = $order;
@@ -139,6 +139,7 @@ class Template extends \App\Page {
         		        }
         		        $object = (object)array('title' => $tempSection->title,
         		                                'type' => $tempSection->type,
+        		                                'id' => $tempSection->id,
         		                                'inuse' => $inuse);
         		        array_push($sectionList, $object);
         		    }
@@ -158,6 +159,7 @@ class Template extends \App\Page {
         		        }
         		        $object = (object)array('title' => $tempAttribute->title,
         		                                'type' => $tempAttribute->type,
+        		                                'id' => $tempAttribute->id,
         		                                'inuse' => $inuse);
         		        array_push($attributeList, $object);
         		    }
