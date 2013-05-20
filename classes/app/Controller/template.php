@@ -50,6 +50,7 @@ class Template extends \App\Page {
                  $id = $s[1];
                  $title = $s[2];
                  $type = $s[3];
+                 if ($id == "") { $id = -1; }
                  
                  $sectionData = $this->templateData->sections->where('id', $id)->find();
                  $sectionData->template = $this->templateData;
@@ -82,7 +83,8 @@ class Template extends \App\Page {
                  $id  = $a[1];
                  $title = $a[2];
                  $type  = $a[3];
-                 
+                 if ($id == "") { $id = -1; }
+                     
                  $attributeData = $this->templateData->attributes->where('id', $id)->find();
                  $attributeData->template = $this->templateData;
                  $attributeData->title = $title;

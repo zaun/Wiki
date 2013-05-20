@@ -79,7 +79,7 @@ foreach ($templateAttributes as $a) {
     }
     echo "</select>";
     echo "<input class='inpAttribute' placeholder='Section Title' value='" . $a->title . "'>";
-    echo "<input class='inpID' type='hidden' value='" . $s->id . "'>";
+    echo "<input class='inpID' type='hidden' value='" . $a->id . "'>";
     echo "</div>";
     echo "</div>";
     echo "</li>";
