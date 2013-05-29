@@ -4,7 +4,7 @@ return array (
   array (
     'user' => 'root',
     'password' => 'root',
-    'driver' => 'pdo',
+    'driver' => 'PDO',
     'connection' => 'mysql:host=localhost;dbname=wiki',
     'db' => 'wiki',
     'host' => 'localhost',
