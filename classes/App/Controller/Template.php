@@ -13,7 +13,7 @@ class Template extends \App\Page {
     		$this->view->mode = 'view';
 
 	    if ($this->templateData->loaded()) {
-        		$this->pageView = 'template/View';
+        		$this->pageView = 'Template/View';
         		$this->view->pageTitle = 'Template: ' . $this->templateData->name;
         		$this->view->pageSummary = $this->templateData->description;
         		$this->view->templateSections = $this->templateData->sections->order_by('order', 'ASC')->find_all()->as_array(true);
@@ -114,7 +114,7 @@ class Template extends \App\Page {
 
 
         // Set page variables
-		$this->pageView = 'template/Edit';
+		$this->pageView = 'Template/Edit';
 		$this->view->mode = 'edit';
 		
 		// Setup the template sections
@@ -184,7 +184,7 @@ class Template extends \App\Page {
 		$this->templateData = $this->pixie->orm->get('template')->where('name', $this->id)->find();
 
         // Set page variables
-		$this->pageView = 'template/Talk';
+		$this->pageView = 'Template/Talk';
 		$this->view->mode = 'talk';
             
         // Save a new post

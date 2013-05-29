@@ -13,8 +13,8 @@ class Article extends \App\Page {
     		$this->view->mode = 'view';
 
 	    if ($this->loaded) {
-            $this->pageView = 'article/View';
-            $this->attributeView = 'attribute/View';
+            $this->pageView = 'Article/View';
+            $this->attributeView = 'Attribute/View';
 
             $this->view->pageTitle = $this->title;
             $this->view->articleTitle = $this->title;
@@ -120,8 +120,8 @@ class Article extends \App\Page {
         	    }
         	    
         	    // Setup the article for editing
-            $this->pageView = 'article/Edit';
-            $this->attributeView = 'attribute/Edit';
+            $this->pageView = 'Article/Edit';
+            $this->attributeView = 'Attribute/Edit';
             $this->view->mode = 'edit';
     
             $pageHasContent = false;
@@ -206,8 +206,8 @@ class Article extends \App\Page {
                 return $this->response->redirect('/!Default');
              }
 	    } else {
-            $this->pageView = 'article/Talk';
-            $this->attributeView = 'attribute/View';
+            $this->pageView = 'Article/Talk';
+            $this->attributeView = 'Attribute/View';
             $this->view->mode = 'talk';
             
             // Save a new post
@@ -440,8 +440,8 @@ class Article extends \App\Page {
         }
         
         // Setup the view for creating a new article
-        $this->pageView = 'article/Create';
-        $this->attributeView = 'attribute/Edit';
+        $this->pageView = 'Article/Create';
+        $this->attributeView = 'Attribute/Edit';
         $this->view->mode = 'edit';
 
         $selectedTemplate = $this->view->templateList[0];
