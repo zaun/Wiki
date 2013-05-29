@@ -428,6 +428,7 @@ class Article extends \App\Page {
 
     	    if($this->isPost()) {
     	        $this->save_article();
+    	        $this->init_article();
             $this->response->redirect('/' . $this->title);
             return true;
     	    }
