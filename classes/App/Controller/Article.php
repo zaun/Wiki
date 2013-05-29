@@ -443,6 +443,8 @@ class Article extends \App\Page {
         $this->pageView = 'Article/Create';
         $this->attributeView = 'Attribute/Edit';
         $this->view->mode = 'edit';
+        $this->view->articleAttributeTemplates = "";
+        $this->view->articleAttributeJavascript = "";
 
         $selectedTemplate = $this->view->templateList[0];
         $this->view->selectedTemplateID = $selectedTemplate->id;
