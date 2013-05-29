@@ -57,13 +57,13 @@ class Text {
                 $link = trim($match[2]);
                 
                 $ret = "";
-                if ($this->startsWith(strtolower($link), "https")) {
+                if (!strncmp(strtolower($link), "https", strlen($link))) {
                     $ret = "<a target='_blank' href='" . $link . "'>" . $title . "</a>";
                     $ret .= "<img src='/images/link_https.png' class='link' />";
-                } else if ($this->startsWith(strtolower($link), "http")) {
+                } else if (!strncmp(strtolower($link), "http", strlen($link))) {
                     $ret = "<a target='_blank' href='" . $link . "'>" . $title . "</a>";
                     $ret .= "<img src='/images/link_http.png' class='link' />";
-                } else if ($this->startsWith(strtolower($link),  "ftp")) {
+                } else if (!strncmp(strtolower($link),  "ftp", strlen($link))) {
                     $ret = "<a target='_blank' href='" . $link . "'>" . $title . "</a>";
                     $ret .= "<img src='/images/link_ftp.png' class='link' />";
                 } else {
@@ -84,13 +84,13 @@ class Text {
                 $link = trim($match[2]);
 
                 $ret = "";
-                if ($this->startsWith(strtolower($link), "https")) {
+                if (!strncmp(strtolower($link), "https", strlen($link))) {
                     $ret = "<a target='_blank' href='" . $link . "'>" . $link . "</a>";
                     $ret .= "<img src='/images/link_https.png' class='link' />";
-                } else if ($this->startsWith(strtolower($link), "http")) {
+                } else if (!strncmp(strtolower($link), "http", strlen($link))) {
                     $ret = "<a target='_blank' href='" . $link . "'>" . $link . "</a>";
                     $ret .= "<img src='/images/link_http.png' class='link' />";
-                } else if ($this->startsWith(strtolower($link),  "ftp")) {
+                } else if (!strncmp(strtolower($link),  "ftp", strlen($link))) {
                     $ret = "<a target='_blank' href='" . $link . "'>" . $link . "</a>";
                     $ret .= "<img src='/images/link_ftp.png' class='link' />";
                 } else {
@@ -120,9 +120,5 @@ class Text {
 	    $text = htmlspecialchars($text, ENT_COMPAT, "UTF-8");
 	    $text = str_replace("\n", "<br />", $text);
 	    return $text;
-    }
-    
-    private function startsWith($haystack, $needle) {
-        return !strncmp($haystack, $needle, strlen($needle));
     }
 }
