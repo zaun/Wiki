@@ -54,6 +54,11 @@ class Api extends \PHPixie\Controller {
 	}
 	
 	
+	function action_phpinfo() {
+	    phpinfo();
+	    exit();
+	}
+	
 	function update_top_bar() {
 //		$bar = View::get('pageTopBar');
 //		$bar->auth = Session::get('auth',false);
