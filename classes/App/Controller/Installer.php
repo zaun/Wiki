@@ -3,7 +3,7 @@ namespace App\Controller;
 
 class Installer extends \App\Wizard {
 
-    protected $template = "Installer";
+    protected $template = "installer";
 
     public function before() {
         parent::before();
@@ -17,7 +17,7 @@ class Installer extends \App\Wizard {
             return;
         }
 
-        $this->wizardName = "installer";
+        $this->wizardName = "Installer";
     }
     
     
