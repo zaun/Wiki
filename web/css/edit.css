@@ -38,47 +38,6 @@ input {
     display: none;
 }
 
-.pageAttributes .row {
-    position: relative;
-    height: 20px;
-}
-
-.pageAttributes input {
-    display: block;
-    width: 55%;
-    float:left;
-    height: 20px;
-    padding: 2px;
-    border: 1px solid #cccccc;
-    font-weight: normal;
-    font-size: 10px;
-    line-height: 13px;
-}
-
-
-.pageAttributes .ui-spinner {
-    width: 54%;
-    height: 17px;
-}
-
-.pageAttributes .ui-spinner input {
-    width: 74%;
-    padding: 0px;
-    border: 0px;
-    height: auto;
-}
-
-.pageAttributes .ui-icon {
-    position: absolute;
-    right: 2px;
-    top: 2px;
-}
-
-.pageAttributes .image-title {
-    width: 100%;
-    float: none;
-}
-
 #uploadBox {
 	position: fixed;
 	display: none;
@@ -227,7 +186,7 @@ input {
     background-color: white;
 }
 
-/* Template edit items */
+/* Template edit list items */
 .listItemContent .inpType {
     position: absolute;
     width: auto;
@@ -246,5 +205,77 @@ input {
     left: 195px;
     margin: 2px;
     background-color: white;
+}
+
+
+/* Attributes */
+.pageAttributes .row {
+    position: relative;
+    min-height: 20px;
+    margin-top: 3px;
+    margin-bottom: 0px;
+}
+
+.pageAttributes label {
+    display: block;
+    float: left;
+    width: 100px;
+    height: 20px;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 20px;
+}
+
+.pageAttributes data {
+    display: block;
+    position: absolute;
+    right: 0px;
+    left: 105px;
+    float:left;
+    min-height: 20px;
+    width: auto;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 20px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.pageAttributes .row input {
+    position: absolute;
+    display: block;
+    left: 0px;
+    right: 0px;
+    height: 20px;
+    width: auto;
+    padding: 2px;
+    border: 1px solid #cccccc;
+    font-weight: normal;
+    font-size: 10px;
+    line-height: 13px;
+}
+
+.pageAttributes .row input.small {
+    right: 24px;
+}
+
+.pageAttributes .row img.icon {
+    position: absolute;
+    widht: 20px;
+    height: 20px;
+    right: 0px;
+    cursor: pointer;
+}
+
+.pageAttributes .row button {
+    position: absolute;
+    padding: 2px;
+    border: 1px solid #cccccc;
+    background: #f6f6f6;
+    font-weight: bold;
+    width: 20px;
+    height: 20px;
+    right: 0px;
+    cursor: pointer;
 }
 

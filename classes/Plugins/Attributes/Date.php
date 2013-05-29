@@ -8,10 +8,13 @@ class Date {
     
     
     public function edit($id, $title, $raw) {
-        $out = "<label>" . $title . "</label>";
+        $out = "<div class='row'>";
+        $out .= "<label>" . $title . "</label>";
         $out .= "<data>";
-        $out .= "<input class='date' id='attr-" . $id . "' name='attr-" . $id . "' value='" . $raw . "' />";
+        $out .= "<input class='date small' id='attr-" . $id . "' name='attr-" . $id . "' value='" . $raw . "' placeholder='YYYY-MM-DD' />";
+        $out .= "<div style='display:none;'><img class='icon' id='trigger-for-attr-" . $id . "' src='/images/cal.png' alt='Calendar Icon' /></div>";
         $out .= "</data>";
+        $out .= "</div>";
         return $out;
     }
     
@@ -24,6 +27,19 @@ class Date {
     
     
     public function jsEdit() {
+        $EOL = "\n";
+        $out  = "$(document).ready(function() {" . $EOL;
+        $out .= "    $('.pageAttributes .date').each(function() {" . $EOL;
+        $out .= "        var \$trigger = $('#trigger-for-' + $(this).attr('id'));" . $EOL;
+//        $out .= "        alert(\$trigger[0]);";
+        $out .= "        $(this).datepick({" . $EOL;
+        $out .= "            showOnFocus: false," . $EOL;
+        $out .= "            showTrigger: \$trigger," . $EOL;
+        $out .= "            dateFormat: 'yyyy-mm-dd' " . $EOL;
+        $out .= "        });" . $EOL;
+        $out .= "    });" . $EOL;
+        $out .= "});" . $EOL;
+        return $out;
     }
     
     
@@ -47,63 +63,7 @@ class Date {
     
     
     public function convertRawToHtml($raw) {
-        $html = $this->rawToHtml($raw);
-
-        // Titled Links
-        // [Digg](http://digg.com)
-        // [Google](http://google.com)
-        $html = preg_replace_callback(
-            '/\[([^]]+)\]\(((?:https?|ftp):\/\/.*?)\)/',
-            function ($match) {
-                $title = trim($match[1]);
-                $link = trim($match[2]);
-                
-                $ret = "";
-                if ($this->startsWith(strtolower($link), "https")) {
-                    $ret = "<a target='_blank' href='" . $link . "'>" . $title . "</a>";
-                    $ret .= "<img src='/images/link_https.png' class='link' />";
-                } else if ($this->startsWith(strtolower($link), "http")) {
-                    $ret = "<a target='_blank' href='" . $link . "'>" . $title . "</a>";
-                    $ret .= "<img src='/images/link_http.png' class='link' />";
-                } else if ($this->startsWith(strtolower($link),  "ftp")) {
-                    $ret = "<a target='_blank' href='" . $link . "'>" . $title . "</a>";
-                    $ret .= "<img src='/images/link_ftp.png' class='link' />";
-                } else {
-                    $link = str_replace(" ", "_", $link);
-                    $ret = "<a href='" . $link . "'>" . $title . "</a>";
-                }
-                return $ret;
-            },
-            $html
-        );
-
-        // Untitled Links
-        // [Internal Page]
-        // [http://google.com]
-        $html = preg_replace_callback(
-            '/(\[)(.*?)(\])/',
-            function ($match) {
-                $link = trim($match[2]);
-
-                $ret = "";
-                if ($this->startsWith(strtolower($link), "https")) {
-                    $ret = "<a target='_blank' href='" . $link . "'>" . $link . "</a>";
-                    $ret .= "<img src='/images/link_https.png' class='link' />";
-                } else if ($this->startsWith(strtolower($link), "http")) {
-                    $ret = "<a target='_blank' href='" . $link . "'>" . $link . "</a>";
-                    $ret .= "<img src='/images/link_http.png' class='link' />";
-                } else if ($this->startsWith(strtolower($link),  "ftp")) {
-                    $ret = "<a target='_blank' href='" . $link . "'>" . $link . "</a>";
-                    $ret .= "<img src='/images/link_ftp.png' class='link' />";
-                } else {
-                    $link = str_replace(" ", "_", $link);
-                    $ret = "<a href='" . $link . "'>" . trim($match[2]) . "</a>";
-                }
-                return $ret;
-            },
-            $html
-        );
-                
+        $html = Date("F jS, Y", strtotime($raw));
         return $html;
     }
     

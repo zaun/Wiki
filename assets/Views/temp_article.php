@@ -7,14 +7,20 @@
         <link rel="stylesheet" href="/css/ui-lightness/jquery-ui-1.10.2.custom.css" />
         <script type="text/javascript" src="/js/json2.js"></script>
         <script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
-        <script type="text/javascript" src="/js/jquery-ui-1.10.2.min.js"></script>
         <script type="text/javascript" src="/js/standard.js"></script>
-        <?php if($mode === "edit") { ?>
+<?php if($mode === "edit") { ?>
         <link rel="stylesheet" href="/css/edit.css" type="text/css" />
+        <link rel="stylesheet" href="/css/jquery.datepick.css" type="text/css" />
+        <link rel="stylesheet" href="/css/ui-ui-lightness.datepick.css" type="text/css" />
         <script type="text/javascript" src="/js/expanding.js"></script>
         <script type="text/javascript" src="/js/ajaxfileupload.js"></script>
+        <script type="text/javascript" src="/js/jquery-ui-1.10.2.min.js"></script>
+        <!-- http://keith-wood.name/datepickRef.html -->
+        <script type="text/javascript" src="/js/jquery.datepick.min.js"></script>
+        <script type="text/javascript" src="/js/jquery.datepick.validation.min.js"></script>
+        <script type="text/javascript" src="/js/jquery.datepick.ext.min.js"></script>
         <script type="text/javascript" src="/js/articleEdit.js"></script>
-        <?php } ?>
+<?php } ?>
     </head>
     <body>
         <form method='post' accept-charset="utf-8">

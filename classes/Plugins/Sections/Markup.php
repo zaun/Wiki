@@ -52,7 +52,7 @@ class Markup {
 
     
     // Basic markup, based on markdown
-    private function rawToHtml($text, $items = []) {
+    public function rawToHtml($text, $items = []) {
         $text = $this->cleanup($text);
         
         // Make it html safe

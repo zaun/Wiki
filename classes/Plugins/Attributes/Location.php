@@ -2,16 +2,30 @@
 
 namespace Plugins\Attributes;
 
-class Text {
-    public $abbr = "text";
-    public $name = "Text";
+class Location {
+    public $abbr = "loc";
+    public $name = "Location";
     
     
     public function edit($id, $title, $raw) {
+        if ($raw == "") {
+            $raw = ["", "", ""];
+        }
         $out = "<div class='row'>";
         $out .= "<label>" . $title . "</label>";
         $out .= "<data>";
-        $out .= "<input class='text' id='attr-" . $id . "' name='attr-" . $id . "' value='" . $raw . "' />";
+        $out .= "<input class='location small' id='attr-" . $id . "' name='attr-" . $id . "' value='" . $raw[0] . "' placeholder='Name' />";
+        $out .= "<img class='icon' id='for-atte-" . $id . "' src='/images/loc.png' alt='Location Icon' />";
+        $out .= "</data>";
+        $out .= "</div>";
+        $out .= "<div class='row'>";
+        $out .= "<data>";
+        $out .= "<input class='lat' id='attr-" . $id . "-lat' name='attr-" . $id . "-lat' value='" . $raw[1] . "' placeholder='Latitude' />";
+        $out .= "</data>";
+        $out .= "</div>";
+        $out .= "<div class='row'>";
+        $out .= "<data>";
+        $out .= "<input class='lon' id='attr-" . $id . "-lon' name='attr-" . $id . "-lon' value='" . $raw[2] . "' placeholder='Longitude' />";
         $out .= "</data>";
         $out .= "</div>";
         return $out;

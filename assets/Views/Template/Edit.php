@@ -37,7 +37,11 @@ foreach ($templateSections as $s) {
     }
     echo "</select>";
     echo "<input class='inpSection' placeholder='Section Title' value='" . $s->title . "'>";
-    echo "<input class='inpID' type='hidden' value='" . $s->id . "'>";
+    if (isset($s->id)) {
+        echo "<input class='inpID' type='hidden' value='" . $s->id . "'>";
+    } else {
+        echo "<input class='inpID' type='hidden' value=''>";
+    }
     echo "</div>";
     echo "</div>";
     echo "</li>";

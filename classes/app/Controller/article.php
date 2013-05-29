@@ -209,26 +209,49 @@ class Article extends \App\Page {
             $this->pageView = 'article/Talk';
             $this->attributeView = 'attribute/View';
             $this->view->mode = 'talk';
-
+            
+            // Save a new post
+        	    if($this->isPost()) {
+        	        $title = $this->request->post('newTitle', '');
+        	        $body = $this->request->post('newBody', '');
+        	        
+        	        if (!empty($title) && !empty($body)) {
+                    $newPost = $this->pixie->orm->get('post');
+                    $newPost->title = $title;
+                    $newPost->content = $this->sectionTypeObjects['mu']-> rawToHtml($body);
+                    $newPost->article = $this->articleORM;
+                    $newPost->postDate = gmdate("Y-m-d\TH:i:s\Z");
+                    $newPost->parent_id = -1;
+                    $newPost->owner_id = -1;
+                    $newPost->save();
+                    $this->response->redirect('/talk/' . $this->title);
+                    $this->execute=false;
+                    return;
+        	        }
+        	    }
+        	    
         	    // Setup basic article items
-            $this->view->pageTitle = "Edit page " . $this->title;
+            $this->view->pageTitle = "Talk page " . $this->title;
             $this->view->articleTitle = $this->title;
             $this->view->articleSummary = $this->summary;
             $this->view->imageName = $this->imageName;
             $this->view->imageTitle = $this->imageTitle;
             $this->view->articleTemplate = $this->template->name;
-            $this->view->lastUpdated = $this->lastUpdated;	        
+            $this->view->lastUpdated = $this->lastUpdated;
+    
     
             // grab the article attributes
             $attributeList = array();
             $attributeListTemp = array();
             $articleAttributes = $this->template->attributes->order_by('order', 'ASC')->find_all()->as_array(true);
+            $kvAttr = [];
             foreach ($articleAttributes as $s) {
                 $articleAttribute = $this->articleORM->attributes->where('attribute_id', $s->id)->find();
                 $value = "";
                 if ($articleAttribute->loaded()) {
-                    $value = $articleAttribute->raw;
+                    $value = $articleAttribute->html;
                 }
+                $kvAttr[trim(strtolower($s->title))] = $value;
     		        $object = (object)array('id' => $s->id,
     		                                'type' => $s->type, 
     		                                'title' => $s->title,
@@ -239,6 +262,8 @@ class Article extends \App\Page {
         		        array_push($attributeListTemp, $object);
     		        }
             }
+            $this->view->articleSummary = $this->pixie->util->replaceValues($kvAttr, $this->view->articleSummary);
+            
             
             // Remove unneeded headers
             for ($i=0; $i < count($attributeListTemp) - 1; $i++) {
@@ -247,19 +272,22 @@ class Article extends \App\Page {
                 
                 if ($current->type == "hdr" && $next->type != "hdr") {
         		        array_push($attributeList, $current);
-                } else if ($current->raw != "") {
+                } else if ($current->value != "") {
         		        array_push($attributeList, $current);
                 }
             }
-            
             // Setup the attribute list
             if (count($attributeListTemp)) {
-                if ($attributeListTemp[count($attributeListTemp) - 1]->raw != "") {
+                if ($attributeListTemp[count($attributeListTemp) - 1]->value != "") {
         		        array_push($attributeList, $attributeListTemp[count($attributeListTemp) - 1]);
                 }
             }
             $this->view->articleAttributes = $attributeList;
-        }
+            
+
+            $this->view->posts = $this->pixie->orm->get('post')->where('article_id', $this->articleORM->id)->where('parent_id', -1)->find_all()->as_array(true);
+
+	    }
 	}
 	
 	

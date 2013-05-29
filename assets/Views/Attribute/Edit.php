@@ -12,7 +12,9 @@
 <?php if (isset($articleAttributes) > 0) { ?>
 <?php
 foreach ($articleAttributes as $a) {
-    echo "<div class='row'>" . $a . "</div>";
+    echo "<div>";
+    echo $a;
+    echo "</div>";
 }
 ?>
 <?php } ?>

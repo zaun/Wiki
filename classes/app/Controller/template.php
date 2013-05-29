@@ -180,6 +180,36 @@ class Template extends \App\Page {
 
 
 	public function action_talk() {
-	    
-	}
+        // Find the template in the database
+		$this->templateData = $this->pixie->orm->get('template')->where('name', $this->id)->find();
+
+        // Set page variables
+		$this->pageView = 'template/Talk';
+		$this->view->mode = 'talk';
+            
+        // Save a new post
+    	    if($this->isPost()) {
+    	        $title = $this->request->post('newTitle', '');
+    	        $body = $this->request->post('newBody', '');
+    	        
+    	        if (!empty($title) && !empty($body)) {
+                $newPost = $this->pixie->orm->get('post');
+                $newPost->title = $title;
+                $newPost->content = $this->sectionTypeObjects['mu']-> rawToHtml($body);
+                $newPost->template = $this->templateData;
+                $newPost->postDate = gmdate("Y-m-d\TH:i:s\Z");
+                $newPost->parent_id = -1;
+                $newPost->owner_id = -1;
+                $newPost->save();
+                $this->response->redirect('/talk/!' . $this->templateData->name);
+                $this->execute=false;
+                return;
+    	        }
+    	    }
+    	    
+    		$this->view->pageTitle = 'Template: ' . $this->templateData->name;
+
+        $this->view->posts = $this->pixie->orm->get('post')->where('template_id', $this->templateData->id)->where('parent_id', -1)->find_all()->as_array(true);
+    
+    }
 }

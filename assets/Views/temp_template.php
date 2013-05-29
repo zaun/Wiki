@@ -11,9 +11,16 @@
         <script type="text/javascript" src="/js/jquery-ui-1.10.2.min.js"></script>
         <script type="text/javascript" src="/js/standard.js"></script>
 <?php if($mode === "edit") { ?>
+        <link rel="stylesheet" href="/ui-lightness/ui-lightness.css" type="text/css" />
         <link rel="stylesheet" href="/css/edit.css" type="text/css" />
+        <script type="text/javascript" src="/js/jquery-ui-1.10.2.min.js"></script>
         <script type="text/javascript" src="/js/expanding.js"></script>
         <script type="text/javascript" src="/js/teamplateEdit.js"></script>
+        <!-- http://keith-wood.name/datepickRef.html -->
+        <script type="text/javascript" src="/js/jquery.datepick.min.js"></script>
+        <script type="text/javascript" src="/js/jquery.datepick.lang.min.js"></script>
+        <script type="text/javascript" src="/js/jquery.datepick.validation.min.js"></script>
+        <script type="text/javascript" src="/js/jquery.datepick.ext.min.js"></script>
 <?php } ?>
     </head>
     <body>

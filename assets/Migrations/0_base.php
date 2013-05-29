@@ -277,7 +277,7 @@ return array(
 	    'template_id' => array (
 	        'type' => 'int'
 	    ),
-	    'parent' => array (
+	    'parent_id' => array (
 	        'type' => 'int'
 	    ),
 		'owner_id' => array(

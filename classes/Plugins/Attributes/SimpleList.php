@@ -3,12 +3,35 @@
 namespace Plugins\Attributes;
 
 class SimpleList {
-    public $abbr = "lst";
+    public $abbr = "attrLst";
     public $name = "List";
     
     
     public function edit($id, $title, $raw) {
-        $out = "<input class='text' id='attr-" . $id . "' name='attr-" . $id . "' value='" . $raw . "' />";
+        if ($raw == "") {
+            $raw = "[\"\"]";
+        }
+        
+        $out = "";
+        $items = json_decode($raw);
+        $first = true;
+        foreach ($items as $i) {
+            $out .= "<div class='row'>";
+            if ($first) {
+                $out .= "<label>" . $title . "</label>";
+            }
+            $out .= "<data>";
+            $out .= "<input type='hidden' class='listValue' id='attr-" . $id . "' name='attr-" . $id . "' value='" . $i . "' />";
+            $out .= "<input class='text small listItem' value='" . $i . "' />";
+            if ($first) {
+                $out .= "<button class='btn" . $this->abbr . "Add' title='Add item to list'>+</button>";
+            } else {
+                $out .= "<button class='btn" . $this->abbr . "Delete' title='Remove item to list'>-</button>";
+            }
+            $out .= "</data>";
+            $out .= "</div>";
+            $first = false;
+        }
         return $out;
     }
     
@@ -17,10 +40,48 @@ class SimpleList {
      * Included once on the edit page
      */
     public function editOnce() {
+        $out  = "<div id='tmp" . $this->abbr . "' class='template'>";
+        $out .= "<div class='row'>";
+        $out .= "<data>";
+        $out .= "<input class='listItem small' value='' />";
+        $out .= "<button class='btn" . $this->abbr . "Delete' title='Remove item to list'>-</button>";
+        $out .= "</data>";
+        $out .= "</div>";
+        $out .= "</div>";
+        return $out;
     }
     
     
     public function jsEdit() {
+        $EOL = "\n";
+        $out  = "$(document).ready(function() {" . $EOL;
+        $out .= "UpdateAttr" . $this->abbr . "ListData();" . $EOL;
+        // Add to list buttons
+        $out .= "$(document).on('click', '.btn" . $this->abbr . "Add', function(e) {" . $EOL;
+        $out .= "    $('#tmp" . $this->abbr . " div').clone().appendTo($(this).parent().parent().parent());" . $EOL;
+        $out .= "    e.preventDefault();" . $EOL;
+        $out .= "    UpdateAttr" . $this->abbr . "ListData();" . $EOL;
+        $out .= "});" . $EOL;
+        // Delete
+        $out .= "$(document).on('click', '.btn" . $this->abbr . "Delete', function(e) {" . $EOL;
+        $out .= "    $(this).parent().parent().remove();" . $EOL;
+        $out .= "    e.preventDefault();" . $EOL;
+        $out .= "    UpdateAttr" . $this->abbr . "ListData();" . $EOL;
+        $out .= "});" . $EOL;
+        // Delete
+        $out .= "$(document).on('change', '.pageAttributes > div > div > data > .listItem', function(e) {" . $EOL;
+        $out .= "    UpdateAttr" . $this->abbr . "ListData();" . $EOL;
+        $out .= "});" . $EOL;
+        $out .= "});" . $EOL;
+        $out .= "function UpdateAttr" . $this->abbr . "ListData() {" . $EOL;
+        $out .= "    var data = Array();" . $EOL;
+        $out .= "    $('.pageAttributes > div > div > data > .listItem').each(function(index) {" . $EOL;
+        $out .= "        data[index] = $(this).val();" . $EOL;
+        $out .= "    });" . $EOL;
+        $out .= "    var dataText = JSON.stringify(data, null, 2);" . $EOL;
+        $out .= "    $('.pageAttributes > div > div > data > .listValue').val(dataText);" . $EOL;
+        $out .= "};" . $EOL;
+        return $out;
     }
     
     
@@ -44,7 +105,11 @@ class SimpleList {
     
     
     public function convertRawToHtml($raw) {
-        $html = $this->rawToHtml($raw);
+        $items = json_decode($raw);
+        $html = "";
+        foreach ($items as $i) {
+            $html .= $i . "<br />";
+        }
 
         // Titled Links
         // [Digg](http://digg.com)

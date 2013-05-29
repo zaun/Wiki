@@ -8,7 +8,9 @@ class Header {
     
     
     public function edit($id, $title, $raw) {
-        $out = "<h1>" . $title . "</h1>";
+        $out = "<div class='row'>";
+        $out .= "<h1>" . $title . "</h1>";
+        $out .= "</div>";
         return $out;
     }
     
