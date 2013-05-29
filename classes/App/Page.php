@@ -85,8 +85,8 @@ class Page extends \PHPixie\Controller {
     
     
     private function loadPlugins() {
-        $this->sectionTypeObjects = [];
-        $this->attributeTypeObjects = [];
+        $this->sectionTypeObjects = array();
+        $this->attributeTypeObjects = array();
         
         $plugins = $this->pixie->config->get('application.sections', array());
         foreach($plugins as $plugin) {
