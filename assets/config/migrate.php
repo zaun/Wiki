@@ -4,6 +4,6 @@ return array (
   array (
     'connection' => 'default',
     'path' => '/assets/migrations/',
-    'current_version' => '0_base',
+    'current_version' => '',
   ),
 );
