@@ -1,4 +1,6 @@
 <?php
+date_default_timezone_set("GMT");
+
 $root = dirname(__DIR__);
 $loader = require $root.'/vendor/autoload.php';
 $loader->add('', $root.'/classes/');
