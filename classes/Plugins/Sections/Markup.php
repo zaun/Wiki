@@ -213,13 +213,13 @@ class Markup {
                 $link = trim($match[2]);
                 
                 $ret = "";
-                if ($this->startsWith(strtolower($link), "https")) {
+                if (!strncmp(strtolower($link), "https", strlen($link))) {
                     $ret = "<a target='_blank' href='" . $link . "'>" . $title . "</a>";
                     $ret .= "&nbsp;<img src='/images/link_https.png' class='link' title='Secure HTTP external link' />";
-                } else if ($this->startsWith(strtolower($link), "http")) {
+                } else if (!strncmp(strtolower($link), "http", strlen($link))) {
                     $ret = "<a target='_blank' href='" . $link . "'>" . $title . "</a>";
                     $ret .= "&nbsp;<img src='/images/link_http.png' class='link' title='External link' />";
-                } else if ($this->startsWith(strtolower($link),  "ftp")) {
+                } else if (!strncmp(strtolower($link),  "ftp", strlen($link))) {
                     $ret = "<a target='_blank' href='" . $link . "'>" . $title . "</a>";
                     $ret .= "&nbsp;<img src='/images/link_ftp.png' class='link' title='File Transfer Protocol link' />";
                 } else {
@@ -240,13 +240,13 @@ class Markup {
                 $link = trim($match[2]);
 
                 $ret = "";
-                if ($this->startsWith(strtolower($link), "https")) {
+                if (!strncmp(strtolower($link), "https", strlen($link))) {
                     $ret = "<a target='_blank' href='" . $link . "'>" . $link . "</a>";
                     $ret .= "&nbsp;<img src='/images/link_https.png' class='link' title='Secure HTTP external link' />";
-                } else if ($this->startsWith(strtolower($link), "http")) {
+                } else if (!strncmp(strtolower($link), "http", strlen($link))) {
                     $ret = "<a target='_blank' href='" . $link . "'>" . $link . "</a>";
                     $ret .= "&nbsp;<img src='/images/link_http.png' class='link' title='External link' />";
-                } else if ($this->startsWith(strtolower($link),  "ftp")) {
+                } else if (!strncmp(strtolower($link),  "ftp", strlen($link))) {
                     $ret = "<a target='_blank' href='" . $link . "'>" . $link . "</a>";
                     $ret .= "&nbsp;<img src='/images/link_ftp.png' class='link' title='File Transfer Protocol link' />";
                 } else {
@@ -260,9 +260,5 @@ class Markup {
         
         
         return "\n" . trim($text) . "\n";
-    }
-    
-    private function startsWith($haystack, $needle) {
-        return !strncmp($haystack, $needle, strlen($needle));
     }
 }
