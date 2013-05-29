@@ -126,7 +126,7 @@ class Auth {
 	 * @return \PHPixie\Auth\Login\Provider  Login Provider
 	 */
 	public function build_login($provider, $service, $config) {
-		$login_class = '\PHPixie\Auth\Login\\'.$provider;
+		$login_class = '\PHPixie\Auth\Login\\'.ucfirst($provider);
 		return new $login_class($this->pixie, $service, $config);
 	}
 	
@@ -138,7 +138,7 @@ class Auth {
 	 * @return \PHPixie\Auth\Role\Driver  Role Driver
 	 */
 	public function build_role($driver, $config) {
-		$role_class = '\PHPixie\Auth\Role\\'.$driver;
+		$role_class = '\PHPixie\Auth\Role\\'.ucfirst($driver);
 		return new $role_class($this->pixie, $config);
 	}
 	
@@ -146,7 +146,7 @@ class Auth {
 	 * Sets the logged in user.
 	 * 
 	 * @param \PHPixie\ORM\Model $user logged in user
-	 * @param strong $logged_with Name of the provider that
+	 * @param string $logged_with Name of the provider that
 	 *                            performed the login
 	 * @param string  $config Configuration name of the service.
 	 *                        Defaults to  'default'.

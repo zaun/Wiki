@@ -6,18 +6,18 @@
         "source": {
             "type": "git",
             "url": "https://github.com/dracony/PHPixie-Core.git",
-            "reference": "2d92ce421262f8615ef2ebfabc26d46a84fcaeb1"
+            "reference": "387a6d25ca3c73ff8503263db75c7664a69975ca"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/dracony/PHPixie-Core/zipball/2d92ce421262f8615ef2ebfabc26d46a84fcaeb1",
-            "reference": "2d92ce421262f8615ef2ebfabc26d46a84fcaeb1",
+            "url": "https://api.github.com/repos/dracony/PHPixie-Core/zipball/387a6d25ca3c73ff8503263db75c7664a69975ca",
+            "reference": "387a6d25ca3c73ff8503263db75c7664a69975ca",
             "shasum": ""
         },
         "require": {
             "php": ">=5.3.0"
         },
-        "time": "2013-05-08 19:14:00",
+        "time": "2013-05-16 08:42:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -54,18 +54,18 @@
         "source": {
             "type": "git",
             "url": "https://github.com/dracony/PHPixie-DB.git",
-            "reference": "dc16ab10d82ab45bbf169b89ed635e2163055e53"
+            "reference": "8d6fd658171ec046375b409167941462850ff8f4"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/dracony/PHPixie-DB/zipball/dc16ab10d82ab45bbf169b89ed635e2163055e53",
-            "reference": "dc16ab10d82ab45bbf169b89ed635e2163055e53",
+            "url": "https://api.github.com/repos/dracony/PHPixie-DB/zipball/8d6fd658171ec046375b409167941462850ff8f4",
+            "reference": "8d6fd658171ec046375b409167941462850ff8f4",
             "shasum": ""
         },
         "require": {
             "phpixie/core": "2.*@dev"
         },
-        "time": "2013-05-08 06:02:23",
+        "time": "2013-05-11 19:35:58",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -105,18 +105,18 @@
         "source": {
             "type": "git",
             "url": "https://github.com/dracony/PHPixie-ORM.git",
-            "reference": "9519ecfbbbeb4ec5f4c654cb0920bb587dd36ddd"
+            "reference": "cf9c907091c978945889e766f299f4eda5fd90d9"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/dracony/PHPixie-ORM/zipball/9519ecfbbbeb4ec5f4c654cb0920bb587dd36ddd",
-            "reference": "9519ecfbbbeb4ec5f4c654cb0920bb587dd36ddd",
+            "url": "https://api.github.com/repos/dracony/PHPixie-ORM/zipball/cf9c907091c978945889e766f299f4eda5fd90d9",
+            "reference": "cf9c907091c978945889e766f299f4eda5fd90d9",
             "shasum": ""
         },
         "require": {
             "phpixie/db": "2.*@dev"
         },
-        "time": "2013-05-08 19:14:47",
+        "time": "2013-05-22 09:18:01",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -154,18 +154,18 @@
         "source": {
             "type": "git",
             "url": "https://github.com/dracony/PHPixie-Auth.git",
-            "reference": "c546a72c7a92da150ea12c8d99dfd41e3e3b8978"
+            "reference": "acade3931eb950cbce802c96ff7de93972bec3f1"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/dracony/PHPixie-Auth/zipball/c546a72c7a92da150ea12c8d99dfd41e3e3b8978",
-            "reference": "c546a72c7a92da150ea12c8d99dfd41e3e3b8978",
+            "url": "https://api.github.com/repos/dracony/PHPixie-Auth/zipball/acade3931eb950cbce802c96ff7de93972bec3f1",
+            "reference": "acade3931eb950cbce802c96ff7de93972bec3f1",
             "shasum": ""
         },
         "require": {
             "phpixie/orm": "2.*@dev"
         },
-        "time": "2013-05-02 21:26:24",
+        "time": "2013-05-22 16:26:14",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -204,18 +204,18 @@
         "source": {
             "type": "git",
             "url": "https://github.com/dracony/PHPixie-Migrate.git",
-            "reference": "567a59a921a276a49e10c59128584016bae46925"
+            "reference": "0313bfb98cf93407663afe6eb18aeea3cefaadee"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/dracony/PHPixie-Migrate/zipball/567a59a921a276a49e10c59128584016bae46925",
-            "reference": "567a59a921a276a49e10c59128584016bae46925",
+            "url": "https://api.github.com/repos/dracony/PHPixie-Migrate/zipball/0313bfb98cf93407663afe6eb18aeea3cefaadee",
+            "reference": "0313bfb98cf93407663afe6eb18aeea3cefaadee",
             "shasum": ""
         },
         "require": {
             "phpixie/db": "2.*@dev"
         },
-        "time": "2013-05-02 21:27:01",
+        "time": "2013-05-11 09:01:30",
         "type": "library",
         "extra": {
             "branch-alias": {
