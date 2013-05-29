@@ -20,7 +20,7 @@ class Template extends \App\Page {
         		$this->view->templateAttributes = $this->templateData->attributes->order_by('order', 'ASC')->find_all()->as_array(true);
         		$this->view->templateArticles = $this->templateData->articles->find_all()->as_array(true);
         } else {
-        		$this->pageView = 'template/New';
+        		$this->pageView = 'Template/New';
         		$this->view->pageTitle = 'Create template ' . $this->id . '?';
         		$this->view->pageSummary = '';
         		$this->view->templateSections = array();

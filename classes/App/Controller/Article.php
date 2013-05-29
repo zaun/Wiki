@@ -85,7 +85,7 @@ class Article extends \App\Page {
             $this->view->articleAttributes = $attributeList;
 
 	    } else {
-            $this->pageView = 'article/New';
+            $this->pageView = 'Article/New';
             $this->view->pageTitle = 'Create article ' . $this->id . '?';
 	    }
     }
