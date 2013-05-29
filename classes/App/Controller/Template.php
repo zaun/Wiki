@@ -23,8 +23,8 @@ class Template extends \App\Page {
         		$this->pageView = 'template/New';
         		$this->view->pageTitle = 'Create template ' . $this->id . '?';
         		$this->view->pageSummary = '';
-        		$this->view->templateSections = [];
-        		$this->view->templateArticles = [];
+        		$this->view->templateSections = array();
+        		$this->view->templateArticles = array();
         }
     }
 

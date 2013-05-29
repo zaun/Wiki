@@ -43,7 +43,7 @@ class Article extends \App\Page {
             $attributeList = array();
             $attributeListTemp = array();
             $articleAttributes = $this->template->attributes->order_by('order', 'ASC')->find_all()->as_array(true);
-            $kvAttr = [];
+            $kvAttr = array();
             foreach ($articleAttributes as $s) {
                 $articleAttribute = $this->articleORM->attributes->where('attribute_id', $s->id)->find();
                 $value = "";
@@ -193,7 +193,7 @@ class Article extends \App\Page {
                 $this->view->templateList = $this->pixie->orm->get('template')->find_all()->as_array();
             } else {
                 $this->view->selectedTemplateID = -1;
-                $this->view->templateList = [];
+                $this->view->templateList = array();
             }
 	    }
 	}
@@ -244,7 +244,7 @@ class Article extends \App\Page {
             $attributeList = array();
             $attributeListTemp = array();
             $articleAttributes = $this->template->attributes->order_by('order', 'ASC')->find_all()->as_array(true);
-            $kvAttr = [];
+            $kvAttr = array();
             foreach ($articleAttributes as $s) {
                 $articleAttribute = $this->articleORM->attributes->where('attribute_id', $s->id)->find();
                 $value = "";
@@ -357,7 +357,7 @@ class Article extends \App\Page {
         $attributeList = $selectedTemplate->attributes->order_by('order', 'ASC')->find_all()->as_array(true);
                 
         // Loop through the attributes and save them
-        $kvAttr = [];
+        $kvAttr = array();
         foreach ($attributeList as $s) {
             if ($s->type != "hdr") {
                 $articleAttribute = $this->articleORM->attributes->where('attribute_id', $s->id)->find();
