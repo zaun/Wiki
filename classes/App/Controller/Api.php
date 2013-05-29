@@ -38,7 +38,8 @@ class Api extends \PHPixie\Controller {
 	    $valid = "image/jpeg,image/png";
 	    $tempfile = $_FILES['mediaFile']['tmp_name'];
 	    $finfo = finfo_open(FILEINFO_MIME);
-	    $filetype = explode(";", finfo_file($finfo, $tempfile))[0];
+	    $fileparts = explode(";", finfo_file($finfo, $tempfile));
+	    $filetype = $fileparts[0];
 	    if (strpos($valid, $filetype) === false) {
             $this->response->body = json_encode(array(
                 'error' => "The file mime type, " . $filetype . " is not permitted.",
