@@ -14,6 +14,10 @@ return array(
 	                         'controller' => 'installer',
 	                         'action'     => 'start')
 	                        ),
+	'inst-special2'  => array('/~Installer(/<action>)', array(
+	                         'controller' => 'installer',
+	                         'action'     => 'start')
+	                        ),
 	'view-special'  => array('/~<id>', array(
 	                         'controller' => 'special',
 	                         'action'     => 'view')
