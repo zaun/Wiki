@@ -57,13 +57,13 @@ class Text {
                 $link = trim($match[2]);
                 
                 $ret = "";
-                if (!strncmp(strtolower($link), "https", strlen($link))) {
+                if (!strncmp(strtolower($link), "https", 5)) {
                     $ret = "<a target='_blank' href='" . $link . "'>" . $title . "</a>";
                     $ret .= "<img src='/images/link_https.png' class='link' />";
-                } else if (!strncmp(strtolower($link), "http", strlen($link))) {
+                } else if (!strncmp(strtolower($link), "http", 4)) {
                     $ret = "<a target='_blank' href='" . $link . "'>" . $title . "</a>";
                     $ret .= "<img src='/images/link_http.png' class='link' />";
-                } else if (!strncmp(strtolower($link),  "ftp", strlen($link))) {
+                } else if (!strncmp(strtolower($link),  "ftp", 3)) {
                     $ret = "<a target='_blank' href='" . $link . "'>" . $title . "</a>";
                     $ret .= "<img src='/images/link_ftp.png' class='link' />";
                 } else {
@@ -84,13 +84,13 @@ class Text {
                 $link = trim($match[2]);
 
                 $ret = "";
-                if (!strncmp(strtolower($link), "https", strlen($link))) {
+                if (!strncmp(strtolower($link), "https", 5)) {
                     $ret = "<a target='_blank' href='" . $link . "'>" . $link . "</a>";
                     $ret .= "<img src='/images/link_https.png' class='link' />";
-                } else if (!strncmp(strtolower($link), "http", strlen($link))) {
+                } else if (!strncmp(strtolower($link), "http", 4)) {
                     $ret = "<a target='_blank' href='" . $link . "'>" . $link . "</a>";
                     $ret .= "<img src='/images/link_http.png' class='link' />";
-                } else if (!strncmp(strtolower($link),  "ftp", strlen($link))) {
+                } else if (!strncmp(strtolower($link),  "ftp", 3)) {
                     $ret = "<a target='_blank' href='" . $link . "'>" . $link . "</a>";
                     $ret .= "<img src='/images/link_ftp.png' class='link' />";
                 } else {

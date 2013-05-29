@@ -9,4 +9,12 @@ return array (
     'db' => 'wiki',
     'host' => 'localhost',
   ),
+  'test' => 
+  array (
+    'host' => '',
+    'db' => '',
+    'user' => '',
+    'password' => '',
+    'connection' => '',
+  ),
 );

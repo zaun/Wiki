@@ -213,13 +213,13 @@ class Markup {
                 $link = trim($match[2]);
                 
                 $ret = "";
-                if (!strncmp(strtolower($link), "https", strlen($link))) {
+                if (!strncmp(strtolower($link), "https", 5)) {
                     $ret = "<a target='_blank' href='" . $link . "'>" . $title . "</a>";
                     $ret .= "&nbsp;<img src='/images/link_https.png' class='link' title='Secure HTTP external link' />";
-                } else if (!strncmp(strtolower($link), "http", strlen($link))) {
+                } else if (!strncmp(strtolower($link), "http", 4)) {
                     $ret = "<a target='_blank' href='" . $link . "'>" . $title . "</a>";
                     $ret .= "&nbsp;<img src='/images/link_http.png' class='link' title='External link' />";
-                } else if (!strncmp(strtolower($link),  "ftp", strlen($link))) {
+                } else if (!strncmp(strtolower($link),  "ftp", 3)) {
                     $ret = "<a target='_blank' href='" . $link . "'>" . $title . "</a>";
                     $ret .= "&nbsp;<img src='/images/link_ftp.png' class='link' title='File Transfer Protocol link' />";
                 } else {
@@ -240,13 +240,13 @@ class Markup {
                 $link = trim($match[2]);
 
                 $ret = "";
-                if (!strncmp(strtolower($link), "https", strlen($link))) {
+                if (!strncmp(strtolower($link), "https", 5)) {
                     $ret = "<a target='_blank' href='" . $link . "'>" . $link . "</a>";
                     $ret .= "&nbsp;<img src='/images/link_https.png' class='link' title='Secure HTTP external link' />";
-                } else if (!strncmp(strtolower($link), "http", strlen($link))) {
+                } else if (!strncmp(strtolower($link), "http", 4)) {
                     $ret = "<a target='_blank' href='" . $link . "'>" . $link . "</a>";
                     $ret .= "&nbsp;<img src='/images/link_http.png' class='link' title='External link' />";
-                } else if (!strncmp(strtolower($link),  "ftp", strlen($link))) {
+                } else if (!strncmp(strtolower($link),  "ftp", 3)) {
                     $ret = "<a target='_blank' href='" . $link . "'>" . $link . "</a>";
                     $ret .= "&nbsp;<img src='/images/link_ftp.png' class='link' title='File Transfer Protocol link' />";
                 } else {
