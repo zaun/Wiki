@@ -207,7 +207,7 @@ class Markup {
         // [Digg](http://digg.com)
         // [Google](http://google.com)
         $text = preg_replace_callback(
-            '/\[([^]]+)\]\(((?:https?|ftp):\/\/.*?)\)/',
+            '/\[([^]]+)\]\((((?:https?|ftp):\/\/)?.*?)\)/',
             function ($match) {
                 $title = trim($match[1]);
                 $link = trim($match[2]);
