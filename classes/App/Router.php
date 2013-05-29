@@ -10,7 +10,8 @@ class Router extends \PHPixie\Router {
         
         if ($clean != $uri) {
             header("HTTP/1.1 301 Moved Permanently"); 
-            header("Location: " . $clean); 
+            header("Location: " . $clean);
+            exit();
         } else {
             return parent::match($uri, $method);
         }
