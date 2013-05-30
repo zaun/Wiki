@@ -50,7 +50,7 @@ class Article extends \App\Page {
                 if ($articleAttribute->loaded()) {
                     $value = $articleAttribute->html;
                 }
-                $kvAttr[trim(strtolower($s->title))] = $value;
+                $kvAttr[trim(mb_strtolower($s->title))] = $value;
     		        $object = (object)array('id' => $s->id,
     		                                'type' => $s->type, 
     		                                'title' => $s->title,
@@ -251,7 +251,7 @@ class Article extends \App\Page {
                 if ($articleAttribute->loaded()) {
                     $value = $articleAttribute->html;
                 }
-                $kvAttr[trim(strtolower($s->title))] = $value;
+                $kvAttr[trim(mb_strtolower($s->title))] = $value;
     		        $object = (object)array('id' => $s->id,
     		                                'type' => $s->type, 
     		                                'title' => $s->title,
@@ -380,7 +380,7 @@ class Article extends \App\Page {
                 } else {
                     $articleAttribute->save();
                 }
-                $kvAttr[trim(strtolower($s->title))] = $articleAttribute->html;
+                $kvAttr[trim(mb_strtolower($s->title))] = $articleAttribute->html;
             }
         }
 
