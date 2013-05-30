@@ -7,6 +7,7 @@ class Router extends \PHPixie\Router {
         $clean = str_replace(' ','_', $uri);
         $clean = str_replace('+','_', $clean);
         $clean = str_replace('%20','_', $clean);
+        $clean = mb_strtolower($clean);
         
         if ($clean != $uri) {
             header("HTTP/1.1 301 Moved Permanently"); 
