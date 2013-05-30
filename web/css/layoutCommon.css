@@ -377,6 +377,10 @@ button {
 }
 
 /* General content */
+.symbol {
+    font-family: Symbol, Times;
+}
+
 .pageContent {
     line-height: 1.5em;
 }

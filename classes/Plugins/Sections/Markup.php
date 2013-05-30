@@ -124,14 +124,16 @@ class Markup {
         $text = preg_replace('{(\n|^)([-]+)(\n|$)}', "<hr />", $text);
         
         // Special Chars
-        // Have to use &gt; because everything is already made safe
-        $text = preg_replace('{(&lt;--&gt;)}', "&harr;", $text);
-        $text = preg_replace('{(&lt;--)}', "&larr;", $text);
-        $text = preg_replace('{(--&gt;)}', "&rarr;", $text);
-        $text = preg_replace('{(/c/)}', "&copy;", $text);
-        $text = preg_replace('{(/r/)}', "&reg;", $text);
-        $text = preg_replace('{(/tm/)}', "&trade;", $text);
-        $text = preg_replace('{(/pi/)}', "&Pi;", $text);
+        // Have to use &gt; and &lt because everything is already made safe
+        $text = preg_replace('{(&lt;---&gt;)}', "<span class='symbol'>&harr;</span>", $text);
+        $text = preg_replace('{(&lt;---)}', "<span class='symbol'>&larr;</span>", $text);
+        $text = preg_replace('{(---&gt;)}', "<span class='symbol'>&rarr;</span>", $text);
+        $text = preg_replace('{(/c/)}', "<span class='symbol'>&copy;</span>", $text);
+        $text = preg_replace('{(/r/)}', "<span class='symbol'>&reg;</span>", $text);
+        $text = preg_replace('{(/tm/)}', "<span class='symbol'>&trade;</span>", $text);
+        $text = preg_replace('{(/pi/)}', "<span class='symbol'>&Pi;</span>", $text);
+        $text = preg_replace('{(/ge/)}', "<span class='symbol'>&ge;</span>", $text);
+        $text = preg_replace('{(/le/)}', "<span class='symbol'>&le;</span>", $text);
 
         // Block Quote
         $text = preg_replace_callback(
