@@ -111,14 +111,13 @@ class Markup {
         );
         
         // Bold
-        $text = preg_replace('{(^|\n|\s|_|`|[<].*?[>])([*])(.+?)([*])($|\n|\s|_|`|[<].*?[>])}', "$1<strong>$3</strong>$5", $text);
-        
+        $text = preg_replace('/[*](?!([<].*?[>]))([^\n]+?)[*]/', "<strong>$2</strong>", $text);
         
         // Italic
-        $text = preg_replace('{(^|\n|\s|[*]|`|[<].*?[>])([_])(.+?)([_])($|\n|\s|[*]|`|[<].*?[>])}', "$1<em>$3</em>$5", $text);
+        $text = preg_replace('/[_](?!([<].*?[>]))([^\n]+?)[_]/', "<em>$2</em>", $text);
         
-        // mono
-        $text = preg_replace('{(^|\n|\s|[*]|_|[<].*?[>])([`])(.+?)([`])($|\n|\s|[*]|_|[<].*?[>])}', "$1<span style='font-family:monospace;'>$3</span>$5", $text);
+        // mono 
+        $text = preg_replace('/[`](?!([<].*?[>]))([^\n]+?)[`]/', "<span style='font-family:monospace;'>$2</span>", $text, -1);
         
         // bar
         $text = preg_replace('{(\n|^)([-]+)(\n|$)}', "<hr />", $text);
