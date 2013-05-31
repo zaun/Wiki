@@ -44,6 +44,23 @@ class Sandbox extends \App\Controller\Article {
             $templateSection->order = $order++;
             $templateSection->save();
         }
+        $order = 0;
+        $templateAttr = $this->pixie->orm->get('templateAttribute')->where('type', 'hdr')->find();
+        $templateAttr->template = $templateData;
+        $templateAttr->title = "Attributes";
+        $templateAttr->type = "hdr";
+        $templateAttr->order = $order++;
+        $templateAttr->save();
+        foreach ($this->attributeTypeObjects as $s) {
+            if ($s->abbr != "hdr") {
+                $templateAttr = $this->pixie->orm->get('templateAttribute')->where('type', $s->abbr)->find();
+                $templateAttr->template = $templateData;
+                $templateAttr->title = $s->name;
+                $templateAttr->type = $s->abbr;
+                $templateAttr->order = $order++;
+                $templateAttr->save();
+            }
+        }
         
         // Make sure the article exists
         $articleORM = $this->articleORM = $this->pixie->orm->get('article')->where('title', $this->id)->find();

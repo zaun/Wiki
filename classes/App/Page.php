@@ -94,6 +94,7 @@ class Page extends \PHPixie\Controller {
             $obj = new $class;
             $this->sectionTypeObjects[$obj->abbr] = $obj;
         }
+        asort($this->sectionTypeObjects);
         
         $plugins = $this->pixie->config->get('application.attributes', array());
         foreach($plugins as $plugin) {
@@ -101,5 +102,6 @@ class Page extends \PHPixie\Controller {
             $obj = new $class;
             $this->attributeTypeObjects[$obj->abbr] = $obj;
         }
+        asort($this->attributeTypeObjects);
     }
 }
