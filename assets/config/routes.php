@@ -14,6 +14,13 @@ return array(
 	                         'controller' => 'installer',
 	                         'action'     => 'start')
 	                        ),
+	'view-sandbox'  => array('/~sandbox', array(
+	                         'controller' => 'sandbox',
+	                         'action'     => 'view')
+	                        ),
+	'othr-sandbox'  => array('/<action>/~sandbox', array(
+	                         'controller' => 'sandbox')
+	                        ),
 	'view-special'  => array('/~<id>', array(
 	                         'controller' => 'special',
 	                         'action'     => 'view')

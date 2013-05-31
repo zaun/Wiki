@@ -300,7 +300,7 @@ class Article extends \App\Page {
 	 * @return void
 	 * @access private
 	 */
-	private function init_article() {
+	protected function init_article() {
         // Find the article in the database
 		$this->articleORM = $this->articleORM = $this->pixie->orm->get('article')->where('title', $this->id)->find();
 		if (! $this->articleORM->loaded()) {
@@ -340,7 +340,7 @@ class Article extends \App\Page {
 	 * @return void
 	 * @access private
 	 */
-	private function save_article() {
+	protected function save_article() {
         // Save the article
         $this->articleORM->title = $this->request->post('articleTitle', $this->id);
         $this->articleORM->summary = $this->request->post('articleSummary', $this->summary);
