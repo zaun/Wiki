@@ -184,9 +184,8 @@ button {
 .pageContent {
     position: relative;
     border: 1px solid #a7d7f9;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
     padding: 5px;
-    padding-bottom: 30px;
     background-color: white;
 }
 
