@@ -79,6 +79,15 @@ button {
     font-size: 12px;
 }
 
+.topBar .logo {
+    position: absolute;
+    margin-left: -10px;
+}
+
+.topBar .logo a, .topBar .logo a:hover {
+    border: 0px;
+}
+
 .pageAttributes {
     width: 245px;
     margin-bottom: 20px;

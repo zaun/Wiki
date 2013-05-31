@@ -56,6 +56,7 @@
 
         <div class="page">
         <div class="topBar">
+            <div class="logo"><a href="/" alt="Site Logo">Site Logo</a></div>
             <?php include('pageTopBar.php'); ?>
         </div>
         <div class="pageAttributes">
