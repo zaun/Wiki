@@ -35,6 +35,8 @@ return array(
     'PHPixie\\Migrate\\Driver\\PDO' => $vendorDir . '/phpixie/migrate/classes/PHPixie/Migrate/Driver/PDO.php',
     'PHPixie\\Migrate\\Migrator' => $vendorDir . '/phpixie/migrate/classes/PHPixie/Migrate/Migrator.php',
     'PHPixie\\ORM' => $vendorDir . '/phpixie/orm/classes/PHPixie/ORM.php',
+    'PHPixie\\ORM\\Extension' => $vendorDir . '/phpixie/orm/classes/PHPixie/ORM/Extension.php',
+    'PHPixie\\ORM\\Extension\\Nested' => $vendorDir . '/phpixie/orm/classes/PHPixie/ORM/Extension/Nested.php',
     'PHPixie\\ORM\\Model' => $vendorDir . '/phpixie/orm/classes/PHPixie/ORM/Model.php',
     'PHPixie\\ORM\\Result' => $vendorDir . '/phpixie/orm/classes/PHPixie/ORM/Result.php',
     'PHPixie\\Pixie' => $vendorDir . '/phpixie/core/classes/PHPixie/Pixie.php',

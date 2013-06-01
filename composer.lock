@@ -154,12 +154,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dracony/PHPixie-Migrate.git",
-                "reference": "0313bfb98cf93407663afe6eb18aeea3cefaadee"
+                "reference": "7a1344d12d6380da5d3bef81b6cc3051f53fb524"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dracony/PHPixie-Migrate/zipball/0313bfb98cf93407663afe6eb18aeea3cefaadee",
-                "reference": "0313bfb98cf93407663afe6eb18aeea3cefaadee",
+                "url": "https://api.github.com/repos/dracony/PHPixie-Migrate/zipball/7a1344d12d6380da5d3bef81b6cc3051f53fb524",
+                "reference": "7a1344d12d6380da5d3bef81b6cc3051f53fb524",
                 "shasum": ""
             },
             "require": {
@@ -192,7 +192,7 @@
             "keywords": [
                 "validate"
             ],
-            "time": "2013-05-11 09:01:30"
+            "time": "2013-06-01 09:12:55"
         },
         {
             "name": "phpixie/orm",
@@ -200,12 +200,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dracony/PHPixie-ORM.git",
-                "reference": "cf9c907091c978945889e766f299f4eda5fd90d9"
+                "reference": "ef3e68f3d786f14abbbae259f822b328b18e2e9d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dracony/PHPixie-ORM/zipball/cf9c907091c978945889e766f299f4eda5fd90d9",
-                "reference": "cf9c907091c978945889e766f299f4eda5fd90d9",
+                "url": "https://api.github.com/repos/dracony/PHPixie-ORM/zipball/ef3e68f3d786f14abbbae259f822b328b18e2e9d",
+                "reference": "ef3e68f3d786f14abbbae259f822b328b18e2e9d",
                 "shasum": ""
             },
             "require": {
@@ -239,7 +239,7 @@
                 "database",
                 "orm"
             ],
-            "time": "2013-05-22 09:18:01"
+            "time": "2013-05-30 21:54:57"
         }
     ],
     "packages-dev": [

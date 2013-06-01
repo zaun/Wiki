@@ -54,15 +54,26 @@ class ORM {
 	}
 	
 	/**
-	 * Initialized an ORM Result with which model to use and which result to
+	 * Initializes an ORM Result with which model to use and which result to
 	 * iterate over
 	 *
 	 * @param string          $model  Model name
 	 * @param \PHPixie\DB\Result $dbresult Database result
 	 * @param array           $with Array of rules for preloaded relationships
+	 * @return \PHPixie\ORM\Result Initialized Result
 	 */
 	public function result($model, $dbresult, $with = array()) {
 		return new \PHPixie\ORM\Result($this->pixie, $model, $dbresult, $with);
 	}
 	
+	/**
+	 * Initializes an ORM Model Extension.
+	 *
+	 * @param string $class  Extension class name
+	 * @param \PHPixie\ORM\Model $model Associated Model
+	 * @return \PHPixie\ORM\Extension Initialized Extension
+	 */
+	public function extension($class, $model) {
+		return new $class($this->pixie, $model);
+	}
 }
