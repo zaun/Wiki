@@ -88,20 +88,35 @@ class Page extends \PHPixie\Controller {
         $this->sectionTypeObjects = array();
         $this->attributeTypeObjects = array();
         
+        // Load up default sections
+        $obj = new Sections\Text;
+        $this->sectionTypeObjects[$obj->abbr] = $obj;
+        $obj = new Sections\Markup;
+        $this->sectionTypeObjects[$obj->abbr] = $obj;
+        
+        // Load up additional sections
         $plugins = $this->pixie->config->get('application.sections', array());
         foreach($plugins as $plugin) {
-            $class = '\Plugins\\Sections\\' . $plugin;
+            $class = 'Plugins\\Sections\\' . $plugin;
             $obj = new $class;
             $this->sectionTypeObjects[$obj->abbr] = $obj;
         }
-        asort($this->sectionTypeObjects);
+        uasort($this->sectionTypeObjects, array($this, 'cmp')); 
         
         $plugins = $this->pixie->config->get('application.attributes', array());
         foreach($plugins as $plugin) {
-            $class = '\Plugins\\Attributes\\' . $plugin;
+            $class = 'Plugins\\Attributes\\' . $plugin;
             $obj = new $class;
             $this->attributeTypeObjects[$obj->abbr] = $obj;
         }
-        asort($this->attributeTypeObjects);
+        uasort($this->attributeTypeObjects, array($this, 'cmp')); 
+    }
+    
+    
+    function cmp($a, $b) {
+        if ($a->name == $b->name) {
+            return 0;
+        }
+        return ($a->name < $b->name) ? -1 : 1;
     }
 }

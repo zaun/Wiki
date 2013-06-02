@@ -187,6 +187,12 @@ class Article extends \App\Page {
             }
             $this->view->articleSections = $sectionList;
             
+            // grab the article references
+            $objRef = new \App\Sections\ReferenceList;
+            $this->view->articleSectionTemplates .= $objRef->editOnce();
+            $this->view->articleSectionJavascript .= $objRef->jsEdit();
+            $this->view->referenceSection = $objRef->edit("Refs", "References", $raw);
+            
             // grab all templates
             if (!$pageHasContent) {
                 $this->view->selectedTemplateID = $this->templateID;
@@ -197,7 +203,8 @@ class Article extends \App\Page {
             }
 	    }
 	}
-
+	
+	
 	public function action_talk() {
         $this->init_article();
 

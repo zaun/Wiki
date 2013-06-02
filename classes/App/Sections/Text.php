@@ -1,6 +1,6 @@
 <?php
 
-namespace Plugins\Sections;
+namespace App\Sections;
 
 class Text {
     public $abbr = "txt";
