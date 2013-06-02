@@ -28,13 +28,13 @@ class Wizard extends \App\Page {
         $this->pageView = $this->wizardName . '/' . $this->pageView;
          
         // button links
-        $this->view->btnNextUrl = '/~' . $this->wizardName . '/' . $this->urlNext;
+        $this->view->btnNextUrl = '/~' . strtolower($this->wizardName) . '/' . $this->urlNext;
         if ($this->urlBack != '') {
-            $this->view->btnBackUrl = '/~' . $this->wizardName . '/' . $this->urlBack;
+            $this->view->btnBackUrl = '/~' . strtolower($this->wizardName) . '/' . $this->urlBack;
         } else {
-            $this->view->btnBackUrl = '/~' . $this->wizardName;
+            $this->view->btnBackUrl = '/~' . strtolower($this->wizardName);
         }
-        $this->view->btnFinishUrl = '/~' . $this->wizardName . '/save';
+        $this->view->btnFinishUrl = '/~' . strtolower($this->wizardName) . '/save';
 
         parent::after();
     }

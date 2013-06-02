@@ -263,8 +263,49 @@ return array(
 		'lastEditDate' => array(
 			'type' => 'date'
 		)
-	),	
+	),
 	
+	// Article References
+	'articleReferences' => array (
+	    'id' => array (
+	        'type' => 'id'
+	    ),
+	    'article_id' => array (
+	        'type' => 'int'
+	    ),
+	    'type' => array (
+	        'type' => 'enum',
+	        'options' => array('Website','Book','Magazine','Other')
+	    ),
+	    'author' => array(
+			'type' => 'text'
+		),
+	    'title' => array(
+			'type' => 'text'
+		),
+	    'publishDate' => array(
+			'type' => 'date'
+		),
+	    'url' => array(
+			'type' => 'text'
+		),
+	    'isbn' => array(
+			'type' => 'text'
+		),
+	    'issn' => array(
+			'type' => 'text'
+		),
+		'lastEditUser' => array(
+			'type' => 'int'
+		),
+		'lastEditIP' => array(
+			'type' => 'varchar',
+			'size' => 512
+		),
+		'lastEditDate' => array(
+			'type' => 'date'
+		)
+	),
 	
 	// Discussions
 	'posts' => array (

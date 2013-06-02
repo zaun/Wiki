@@ -116,7 +116,7 @@ class Installer extends \App\Wizard {
 		if ($this->pixie->session->get('temp.appName', '--__--None--__--') == '--__--None--__--') {
 		    $this->view->appName = $this->pixie->config->get('application.name', 'Wiki');
 		} else {
-		    $this->view->appName = $this->pixie->session->get('temp.appName');
+		    $this->view->appName = $this->pixie->session->get('temp.appName') . "dd";
 		}
 		if ($this->pixie->session->get('temp.appEmail', '--__--None--__--') == '--__--None--__--') {
 		    $this->view->appEmail = $this->pixie->config->get('application.email', '');;
@@ -144,23 +144,23 @@ class Installer extends \App\Wizard {
         $this->view->btnReturn = true;
         
         // Read in the application settings
-        $appName = $this->request->post('appName', '');
-        $appEmail = $this->request->post('appEmail', '');
+        $appName = $this->request->post('appName', '--__--None--__--');
+        $appEmail = $this->request->post('appEmail', '--__--None--__--');
+        $appNickname = $this->request->post('appNickname', '--__--None--__--');
         $appPass = $this->request->post('appPassword', '');
-        $appNickname = $this->request->post('appNickname', '');
         $appLicense = "by" . $this->request->post('appCommercial', '') . $this->request->post('appModification', '');
-
-		$this->pixie->session->set('temp.appName', $appName);
-		$this->pixie->session->set('temp.appEmail', $appEmail);
-		$this->pixie->session->set('temp.appNickname', $appNickname);
-		$this->pixie->session->set('temp.appLicense', $appLicense);
         
-	    if ($appName == '' || $appEmail == '' || $appPass == '')
+	    if ($appName == '--__--None--__--' || $appEmail == '--__--None--__--' || $appPass == '')
 	    {
             $this->response->redirect('/~installer/application');
             $this->execute=false;
             return;
 	    }
+
+		$this->pixie->session->set('temp.appName', $appName);
+		$this->pixie->session->set('temp.appEmail', $appEmail);
+		$this->pixie->session->set('temp.appNickname', $appNickname);
+		$this->pixie->session->set('temp.appLicense', $appLicense);
 	    
 	    // Write config to file
         $this->pixie->config->set('application.name', $appName);
