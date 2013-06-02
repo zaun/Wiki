@@ -275,7 +275,7 @@ return array(
 	    ),
 	    'type' => array (
 	        'type' => 'enum',
-	        'options' => array('Website','Book','Magazine','Other')
+	        'options' => array('Website','Book','Magazine','Journal','Other')
 	    ),
 	    'author' => array(
 			'type' => 'text'
