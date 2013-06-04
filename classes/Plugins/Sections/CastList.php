@@ -2,7 +2,7 @@
 
 namespace Plugins\Sections;
 
-class SimpleList extends \App\Sections\BaseList {
+class CastList extends \App\Sections\BaseList {
     public $abbr = "CastList";
     public $name = "Cast List";
 
