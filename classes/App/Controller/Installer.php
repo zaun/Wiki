@@ -116,7 +116,7 @@ class Installer extends \App\Wizard {
 		if ($this->pixie->session->get('temp.appName', '--__--None--__--') == '--__--None--__--') {
 		    $this->view->appName = $this->pixie->config->get('application.name', 'Wiki');
 		} else {
-		    $this->view->appName = $this->pixie->session->get('temp.appName') . "dd";
+		    $this->view->appName = $this->pixie->session->get('temp.appName');
 		}
 		if ($this->pixie->session->get('temp.appEmail', '--__--None--__--') == '--__--None--__--') {
 		    $this->view->appEmail = $this->pixie->config->get('application.email', '');;
