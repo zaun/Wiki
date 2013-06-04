@@ -5,9 +5,12 @@ return array (
   'initilized' => false,
   'sections' => 
   array (
-    0 => 'EducationList',
-    1 => 'SimpleList',
-    2 => 'EmploymentList',
+    0 => 'CastList',
+    1 => 'DetailList',
+    2 => 'EducationList',
+    3 => 'EmploymentList',
+    4 => 'MovieList',
+    5 => 'SimpleList',
   ),
   'attributes' => 
   array (
