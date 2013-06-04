@@ -23,7 +23,22 @@ class EducationList extends \App\Sections\BaseList {
         $html = "<ol>";
         foreach ($items as $i) {
             $order = $i->itemOrder;
-            $html .= "<li>" . $i->{$this->dataTitle} . " (" . $i->{$this->dataTitleDate} . ")<br />" . $i->{$this->dataDetail} . "</li>";
+            $school = $i->{$this->dataTitle};
+            $gradDate = $i->{$this->dataTitleDate};
+            $degree = $i->{$this->dataDetail};
+            if (!empty($school) || !empty($gradDate) || !empty($degree)) {
+                if (empty($school)) {
+                    $school = "Unknown Institution";
+                }
+                $html .= "<li>" . $school;
+                if (!empty($gradDate)) {
+                    $html .= " (" . $gradDate . ")";
+                }
+                if (!empty($degree)) {
+                    $html .= "<br />" . $degree;
+                }
+                $html .= "</li>";
+            }
         }
         $html .= "</ol>";
         return $html;

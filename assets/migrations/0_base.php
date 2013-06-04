@@ -109,7 +109,7 @@ return array(
 		),
 		'lastEditDate' => array(
 			'type' => 'date'
-		)
+		),
 	),
 	
 	// Site Tempate Sections
@@ -134,8 +134,8 @@ return array(
 		),
 		'order' => array(
 			'type' => 'int'
-		)
-	),
+		),
+    ),
 	
 	// Site Tempate Attributes
 	'template_attributes' => array (

@@ -17,4 +17,9 @@ class ReferenceList extends \App\Sections\BaseList {
     protected $placeholderSubdetail     = "URL or ISBN";
 
     protected $optionsTopSelect     = array('Select a reference type...', '---', 'Website','Book','Magazine','Journal','Other');
+
+    protected $dataTitle     = "author";
+    protected $dataTitleDate = "publishDate";
+    protected $dataDetail    = "title";
+    protected $dataSubdetail = "url";
 }
