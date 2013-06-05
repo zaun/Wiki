@@ -76,7 +76,9 @@ class SimpleList {
         $out .= "function UpdateAttr" . $this->abbr . "ListData() {" . $EOL;
         $out .= "    var data = Array();" . $EOL;
         $out .= "    $('.pageAttributes > div > div > data > .listItem').each(function(index) {" . $EOL;
-        $out .= "        data[index] = $(this).val();" . $EOL;
+        $out .= "        if ($.trim($(this).val()) != '') {" . $EOL;
+        $out .= "            data[index] = $(this).val();" . $EOL;
+        $out .= "        }" . $EOL;
         $out .= "    });" . $EOL;
         $out .= "    var dataText = JSON.stringify(data, null, 2);" . $EOL;
         $out .= "    $('.pageAttributes > div > div > data > .listValue').val(dataText);" . $EOL;
