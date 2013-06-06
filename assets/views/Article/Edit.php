@@ -3,7 +3,7 @@
 </script>
 
 <h2>Title:</h2>
-<input type='text' id='articleTitle' name='articleTitle' value='<?php echo $articleTitle; ?>' />
+<input type='text' id='articleTitle' name='articleTitle' value="<?php echo str_replace('"','\"', $articleTitle); ?>" />
 
 <h2>Summary (<span id='articleSummaryCount'></span>):</h2>
 <textarea id='articleSummary' name='articleSummary' class='expanding' maxlength='2048'><?php echo $articleSummary; ?></textarea>

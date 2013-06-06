@@ -170,6 +170,10 @@ return array(
 	    'template_id' => array (
 	        'type' => 'int'
 	    ),
+		'url' => array(
+			'type' => 'varchar',
+			'size' => 256
+		),
 		'title' => array(
 			'type' => 'varchar',
 			'size' => 256

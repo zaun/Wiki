@@ -309,9 +309,9 @@ class Article extends \App\Page {
 	 */
 	protected function init_article() {
         // Find the article in the database
-		$this->articleORM = $this->articleORM = $this->pixie->orm->get('article')->where('title', $this->id)->find();
+		$this->articleORM = $this->articleORM = $this->pixie->orm->get('article')->where('url', $this->id)->find();
 		if (! $this->articleORM->loaded()) {
-		    $this->articleORM = $this->articleORM = $this->pixie->orm->get('article')->where('title', str_replace("_", " ", $this->id))->find();
+		    $this->articleORM = $this->articleORM = $this->pixie->orm->get('article')->where('url', str_replace("_", " ", $this->id))->find();
 		}
 		
 		// Initilize article variable
@@ -350,6 +350,9 @@ class Article extends \App\Page {
 	protected function save_article() {
         // Save the article
         $this->articleORM->title = $this->request->post('articleTitle', $this->id);
+        $this->articleORM->url = $this->request->post('articleTitle', $this->id);
+        $this->articleORM->url = str_replace(' ','_', $this->articleORM->url);
+        $this->articleORM->url = str_replace("'",'', $this->articleORM->url);
         $this->articleORM->summary = $this->request->post('articleSummary', $this->summary);
         $this->articleORM->summary_html = $this->sectionTypeObjects['txt']->convertRawToHtml($this->articleORM->summary);
         $this->articleORM->image_title = $this->request->post('imageTitle', $this->imageTitle);
