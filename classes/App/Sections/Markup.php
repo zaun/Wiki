@@ -225,7 +225,7 @@ class Markup {
                     $ret .= "&nbsp;<img src='/images/link_ftp.png' class='link' title='File Transfer Protocol link' />";
                 } else {
                     $link = str_replace(" ", "_", $link);
-                    $ret = "<a href='" . $link . "'>" . $title . "</a>";
+                    $ret = "<a href='/" . $link . "'>" . $title . "</a>";
                 }
                 return $ret;
             },
@@ -252,7 +252,7 @@ class Markup {
                     $ret .= "&nbsp;<img src='/images/link_ftp.png' class='link' title='File Transfer Protocol link' />";
                 } else {
                     $link = str_replace(" ", "_", $link);
-                    $ret = "<a href='" . $link . "'>" . trim($match[2]) . "</a>";
+                    $ret = "<a href='/" . $link . "'>" . trim($match[2]) . "</a>";
                 }
                 return $ret;
             },
