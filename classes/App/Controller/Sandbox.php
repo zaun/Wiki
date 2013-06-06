@@ -14,6 +14,7 @@ class Sandbox extends \App\Controller\Article {
 	protected function save_article() {
         parent::save_article();
         $this->articleORM->title = "~Sandbox";
+        $this->articleORM->url = "~Sandbox";
         $this->articleORM->summary = "Welcome to the Sandbox! This is a special article that should be used to practice and to carry out experiments. Content will not stay permanently; this page is automatically cleaned regularly, although it tends to be overwritten by other testing users much faster than that. Additionally this article will not save changes to the title or the summary.";
         $this->articleORM->summary_html = $this->sectionTypeObjects['txt']->convertRawToHtml($this->articleORM->summary);
         $this->articleORM->save();
@@ -66,6 +67,7 @@ class Sandbox extends \App\Controller\Article {
         $articleORM = $this->articleORM = $this->pixie->orm->get('article')->where('title', $this->id)->find();
         if (!$articleORM->loaded()) {
             $articleORM->title = "~Sandbox";
+            $articleORM->url = "~Sandbox";
             $articleORM->template = $templateData;
             $articleORM->summary = "Welcome to the Sandbox! This is a special article that should be used to practice and to carry out experiments. Content will not stay permanently; this page is automatically cleaned regularly, although it tends to be overwritten by other testing users much faster than that. Additionally this article will not save changes to the title or the summary.";
             $articleORM->summary_html = $this->sectionTypeObjects['txt']->convertRawToHtml($articleORM->summary);
