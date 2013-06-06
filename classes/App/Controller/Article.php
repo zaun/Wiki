@@ -191,6 +191,7 @@ class Article extends \App\Page {
             $objRef = new \App\Sections\ReferenceList;
             $this->view->articleSectionTemplates .= $objRef->editOnce();
             $this->view->articleSectionJavascript .= $objRef->jsEdit();
+            $raw = "";
             $this->view->referenceSection = $objRef->edit("Refs", "References", $raw);
             
             // grab all templates
