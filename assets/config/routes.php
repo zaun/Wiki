@@ -33,7 +33,7 @@ return array(
 	                         'action'     => 'view',
 	                         'id'         => 'Welcome')
 	                        ),
-	'othr-article'  => array(array('/<action>/<id>', array('id'=>'.*+')), array(
+	'othr-article'  => array(array('/<action>/<id>', array('id'=>'[~/]*+')), array(
 	                         'controller' => 'article')
 	                        ),
 );
