@@ -28,12 +28,12 @@ return array(
 	'othr-special'  => array('/<action>/~<id>', array(
 	                         'controller' => 'special')
 	                        ),
-	'view-article'  => array(array('/<id>', array('id'=>'.+')), array(
+	'view-article'  => array(array('/<id>', array('id'=>'[^/]*+')), array(
 	                         'controller' => 'article',
 	                         'action'     => 'view',
 	                         'id'         => 'Welcome')
 	                        ),
-	'othr-article'  => array(array('/<action>/<id>', array('id'=>'.+')), array(
+	'othr-article'  => array(array('/<action>/<id>', array('id'=>'.*+')), array(
 	                         'controller' => 'article')
 	                        ),
 );
