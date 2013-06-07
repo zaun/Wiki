@@ -13,16 +13,17 @@ class Sandbox extends \App\Controller\Article {
 	
 	protected function save_article() {
         parent::save_article();
-        $this->articleORM->title = "~Sandbox";
-        $this->articleORM->url = "~Sandbox";
+        $this->articleORM->title = "Sandbox";
+        $this->articleORM->url = "~sandbox";
         $this->articleORM->summary = "Welcome to the Sandbox! This is a special article that should be used to practice and to carry out experiments. Content will not stay permanently; this page is automatically cleaned regularly, although it tends to be overwritten by other testing users much faster than that. Additionally this article will not save changes to the title or the summary.";
         $this->articleORM->summary_html = $this->sectionTypeObjects['txt']->convertRawToHtml($this->articleORM->summary);
         $this->articleORM->save();
+        $this->title = "~sandbox";
     }
     
     public function after() {
         $this->view->id = "~sandbox";
-        $this->view->pageTitle = "Sandbox";
+        $this->view->pageTitle = "~sandbox";
         $this->view->articleTitle = "Sandbox";
         $this->view->selectedTemplateID = -1;
         $this->view->templateList = array();
@@ -64,10 +65,10 @@ class Sandbox extends \App\Controller\Article {
         }
         
         // Make sure the article exists
-        $articleORM = $this->articleORM = $this->pixie->orm->get('article')->where('title', $this->id)->find();
+        $articleORM = $this->articleORM = $this->pixie->orm->get('article')->where('url', '~sandbox')->find();
         if (!$articleORM->loaded()) {
-            $articleORM->title = "~Sandbox";
-            $articleORM->url = "~Sandbox";
+            $articleORM->title = "Sandbox";
+            $articleORM->url = "~sandbox";
             $articleORM->template = $templateData;
             $articleORM->summary = "Welcome to the Sandbox! This is a special article that should be used to practice and to carry out experiments. Content will not stay permanently; this page is automatically cleaned regularly, although it tends to be overwritten by other testing users much faster than that. Additionally this article will not save changes to the title or the summary.";
             $articleORM->summary_html = $this->sectionTypeObjects['txt']->convertRawToHtml($articleORM->summary);
