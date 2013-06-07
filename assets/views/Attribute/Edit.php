@@ -26,10 +26,12 @@ foreach ($articleAttributes as $a) {
     <label>Template</label>
     <data><a href="../!<?php echo $articleTemplate ?>"><?php echo $articleTemplate ?></a></data>
 </div>
+<?php if (!empty($lastUpdated)) { ?>
 <div class="row">
     <label>Last Updated</label>
     <data><?php echo $lastUpdated ?></data>
 </div>
+<?php } ?>
 <?php } ?>
 
 <div class="display: none;">
