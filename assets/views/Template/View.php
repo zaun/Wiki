@@ -31,7 +31,7 @@ foreach ($templateAttributes as $a) {
 <?php
 foreach ($templateArticles as $a) {
     echo "<li>";
-    echo "<a href='" . $a->title . "'>" . $a->title . "</a>";
+    echo "<a href=\"" . $a->title . "\">" . $a->title . "</a>";
     echo "<dd>" . $a->summary_html . "</dd>";
     echo "</li>";
 }?>
