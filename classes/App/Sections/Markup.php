@@ -121,6 +121,22 @@ class Markup {
         
         // bar
         $text = preg_replace('{(\n|^)([-]+)(\n|$)}', "<hr />", $text);
+
+        // Images
+        $text = preg_replace_callback(
+            '/(\&gt;\&gt;)(.+)(\&gt;\&gt;)/',
+            function ($match) {
+                return "\n<img src='" . $match[2] . "' alt='' style='float:right;'>\n";
+            },
+            $text
+        );
+        $text = preg_replace_callback(
+            '/(\&lt;\&lt;)(.+)(\&lt;\&lt;)/',
+            function ($match) {
+                return "\n<img src='" . $match[2] . "' alt='' style='float:left;'>\n";
+            },
+            $text
+        );
         
         // Special Chars
         // Have to use &gt; and &lt because everything is already made safe
