@@ -49,15 +49,7 @@ Covered by the Invisibility Cloak, Harry and his two friends go to the three-hea
 He awakes in the school hospital, where Professor Dumbledore tells him that he survived because his mother sacrificed her life to protect him, and Voldemort could not understand the power of such love. Voldemort left Quirrell to die and is likely to return by some other means. The Stone has now been destroyed.
 
 Harry returns to the Dursleys for the summer holiday, but does not tell them that [under-age] wizards are forbidden to use magic outside Hogwarts.', 'html' => ''),
-                ),
-		    ),
-		),
-	),
-
-	'articleSections' => array (
-		'_data' => array(
-		    'up' => array(
-                    array('article_id' => 2, 'attribute_id' => 9, 'raw' => '[
+                    array('article_id' => 2, 'section_id' => 9, 'raw' => '[
   {
     "itemOrder": 0,
     "charachter": "Harry Potter",
@@ -71,6 +63,14 @@ Harry returns to the Dursleys for the summer holiday, but does not tell them tha
     "description": "Rowling describes him as the ultimate best friend, \"always there when you need him.\" He grew up in a fairly large pure-blood family as the sixth born of seven children. Although his family was quite poor, they still lived very comfortably and happy. His loyalty and bravery in the face of a game of Wizards Chess play a vital part in finding the Philosopher\'s Stone."
   }
 ]', 'html' => ''),
+                ),
+		    ),
+		),
+	),
+
+	'articleAttributes' => array (
+		'_data' => array(
+		    'up' => array(
 		    ),
 		),
 	),
