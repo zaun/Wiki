@@ -100,7 +100,38 @@ return array(
 		'_data' => array(
 		    'up' => array(
 		        'insert' => array(
-                    array('template_id' => 1, 'title' => 'Welcome', 'url' => 'Welcome', 'summary' => '', 'summary_html' => ''),
+                    array('template_id' => 1, 'title' => 'Welcome', 'url' => 'Welcome', 'summary' => 'Wiki - Noun, a Web site developed collaboratively by a community of users, allowing any user to add and edit content.
+
+Structured - Adjective, having and manifesting a clearly defined structure or organization.
+
+Structured Wiki (SWiki) - Noun, a Web site developed collaboratively by a community of users, allowing any user to add and edit content with a clearly defined structure.
+', 'summary_html' => 'Wiki - Noun, a Web site developed collaboratively by a community of users, allowing any user to add and edit content.<br /><br />Structured - Adjective, having and manifesting a clearly defined structure or organization.<br /><br />Structured Wiki (SWiki) - Noun, a Web site developed collaboratively by a community of users, allowing any user to add and edit content with a clearly defined structure.<br />'),
+                ),
+		    ),
+		),
+	),
+
+
+	'articleSections' => array (
+		'_data' => array(
+		    'up' => array(
+		        'insert' => array(
+                    array('article_id' => 1, 'section_id' => 1, 'raw' => 'TThis is a strucuted wiki based on the PHPixie framework. The main idea of this wiki compaired to all others is laying a level of structure under the data. For example each article uses a template and each template is a defined set of sections and attributes. Every article that uses the same template has the same available sections and attributes to use, though not all need be used.
+
+The use of templates means the each article about a person has the same sections and attributes to it, in the same order and format. If educational information isn\'t known for a specific person the section is not shown. Similarly if the birth date isn\'t known the attribute is not shown.
+
+Each section is defined as a type of data, something simple from text or markup to structured lists. Eventually other types will be addes such as graphs, data grids, image galleries, etc. This same idea of types is applied to attributes as well.
+
+Known Issues:
+*User accounts don\'t work at all
+*Media uploads don\'t work at all
+*Article references aren\'t saved
+*Example pages aren\'t finished
+*This site is alpha quality... articles may disappear.
+
+Example pages:
+*[Harry Potter and the Philosopher\'s Stone] using the [book](!book) template
+*[Buzz Aldrin] using the [person](!person) template', 'html' => '<div class=\'para\'>This is a strucuted wiki based on the PHPixie framework. The main idea of this wiki compaired to all others is laying a level of structure under the data. For example each article uses a template and each template is a defined set of sections and attributes. Every article that uses the same template has the same available sections and attributes to use, though not all need be used.</div><div class=\'para\'>The use of templates means the each article about a person has the same sections and attributes to it, in the same order and format. If educational information isn&#039;t known for a specific person the section is not shown. Similarly if the birth date isn&#039;t known the attribute is not shown.</div><div class=\'para\'>Each section is defined as a type of data, something simple from text or markup to structured lists. Eventually other types will be addes such as graphs, data grids, image galleries, etc. This same idea of types is applied to attributes as well.</div><div class=\'para\'>Known Issues:<ul><li>User accounts don&#039;t work at all</li><li>Media uploads don&#039;t work at all</li><li>Article references aren&#039;t saved</li><li>Example pages aren&#039;t finished</li><li>This site is alpha quality... articles may disappear.</li></ul></div><div class=\'para\'>Example pages:<ul><li><a href=\'/Harry_Potter_and_the_Philosopher&#039;s_Stone\'>Harry Potter and the Philosopher&#039;s Stone</a> using the <a href=\'/!book\'>book</a> template</li><li><a href=\'/Buzz_Aldrin\'>Buzz Aldrin</a> using the <a href=\'/!person\'>person</a> template</li></ul></div>'),
                 ),
 		    ),
 		),
