@@ -39,7 +39,7 @@ class Sandbox extends \App\Controller\Article {
         $templateData = $this->pixie->orm->get('template')->where('name', 'Sandbox')->find();
         $order = 0;
         foreach ($this->sectionTypeObjects as $s) {
-            $templateSection = $this->pixie->orm->get('templateSection')->where('type', $s->abbr)->find();
+            $templateSection = $this->pixie->orm->get('templateSection')->where('type', $s->abbr)->where('template_id', $templateData->id)->find();
             $templateSection->template = $templateData;
             $templateSection->title = $s->name;
             $templateSection->type = $s->abbr;
@@ -55,7 +55,7 @@ class Sandbox extends \App\Controller\Article {
         $templateAttr->save();
         foreach ($this->attributeTypeObjects as $s) {
             if ($s->abbr != "hdr") {
-                $templateAttr = $this->pixie->orm->get('templateAttribute')->where('type', $s->abbr)->find();
+                $templateAttr = $this->pixie->orm->get('templateAttribute')->where('type', $s->abbr)->where('template_id', $templateData->id)->find();
                 $templateAttr->template = $templateData;
                 $templateAttr->title = $s->name;
                 $templateAttr->type = $s->abbr;
