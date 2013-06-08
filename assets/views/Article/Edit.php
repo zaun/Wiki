@@ -9,7 +9,7 @@
 <textarea id='articleSummary' name='articleSummary' class='expanding' maxlength='2048'><?php echo $articleSummary; ?></textarea>
 
 <?php if (count($templateList) > 0) { ?>
-<h2>Template<br /><small>Once a template is choosen and the articlege is created it becomes more difficult to
+<h2>Template<br /><small>Once a template is choosen and the article is created it becomes more difficult to
 chane the template. For a change to be made,<br />the article needs to be blank.</small></h1>
 <select id='articleTemplate' name='articleTemplate'>
 <?php
