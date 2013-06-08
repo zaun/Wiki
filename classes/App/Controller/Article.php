@@ -91,6 +91,13 @@ class Article extends \App\Page {
     }
 
 
+	public function action_edit2() {
+	    $this->action_edit();
+	    print "<pre>";
+	    print_r($this->view->articleSections);
+	    print "</pre>";
+	}
+
 	public function action_edit() {
         $this->init_article();
         
