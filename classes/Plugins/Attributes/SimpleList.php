@@ -55,33 +55,35 @@ class SimpleList {
     public function jsEdit() {
         $EOL = "\n";
         $out  = "$(document).ready(function() {" . $EOL;
-        $out .= "UpdateAttr" . $this->abbr . "ListData();" . $EOL;
+        $out .= "$(document).find('.btn" . $this->abbr . "Add').each(function(index) {" . $EOL;
+        $out .= "    UpdateAttr" . $this->abbr . "ListData($(this).parent().parent().parent());" . $EOL;
+        $out .= "});" . $EOL;
         // Add to list buttons
         $out .= "$(document).on('click', '.btn" . $this->abbr . "Add', function(e) {" . $EOL;
         $out .= "    $('#tmp" . $this->abbr . " div').clone().appendTo($(this).parent().parent().parent());" . $EOL;
         $out .= "    e.preventDefault();" . $EOL;
-        $out .= "    UpdateAttr" . $this->abbr . "ListData();" . $EOL;
+        $out .= "    UpdateAttr" . $this->abbr . "ListData($(this).parent().parent().parent());" . $EOL;
         $out .= "});" . $EOL;
         // Delete
         $out .= "$(document).on('click', '.btn" . $this->abbr . "Delete', function(e) {" . $EOL;
         $out .= "    $(this).parent().parent().remove();" . $EOL;
         $out .= "    e.preventDefault();" . $EOL;
-        $out .= "    UpdateAttr" . $this->abbr . "ListData();" . $EOL;
+        $out .= "    UpdateAttr" . $this->abbr . "ListData($(this).parent().parent().parent());" . $EOL;
         $out .= "});" . $EOL;
-        // Delete
+        // Update
         $out .= "$(document).on('change', '.pageAttributes > div > div > data > .listItem', function(e) {" . $EOL;
-        $out .= "    UpdateAttr" . $this->abbr . "ListData();" . $EOL;
+        $out .= "    UpdateAttr" . $this->abbr . "ListData($(this).parent().parent().parent());" . $EOL;
         $out .= "});" . $EOL;
         $out .= "});" . $EOL;
-        $out .= "function UpdateAttr" . $this->abbr . "ListData() {" . $EOL;
+        $out .= "function UpdateAttr" . $this->abbr . "ListData(elm) {" . $EOL;
         $out .= "    var data = Array();" . $EOL;
-        $out .= "    $('.pageAttributes > div > div > data > .listItem').each(function(index) {" . $EOL;
+        $out .= "    elm.find('.listItem').each(function(index) {" . $EOL;
         $out .= "        if ($.trim($(this).val()) != '') {" . $EOL;
         $out .= "            data[index] = $(this).val();" . $EOL;
         $out .= "        }" . $EOL;
         $out .= "    });" . $EOL;
         $out .= "    var dataText = JSON.stringify(data, null, 2);" . $EOL;
-        $out .= "    $('.pageAttributes > div > div > data > .listValue').val(dataText);" . $EOL;
+        $out .= "    elm.find('.listValue').val(dataText);" . $EOL;
         $out .= "};" . $EOL;
         return $out;
     }
