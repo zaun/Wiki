@@ -115,7 +115,6 @@ class Text {
         $text = preg_replace('{^\xEF\xBB\xBF|\x1A}', '', $text);
         $text = preg_replace('{\r\n?}', "\n", $text);
         $text = trim($text);
-        $text .= "\n";
         return $text;
     }
 
