@@ -71,6 +71,24 @@ Harry returns to the Dursleys for the summer holiday, but does not tell them tha
 	'articleAttributes' => array (
 		'_data' => array(
 		    'up' => array(
+		        'insert' => array(
+                    array('article_id' => 2, 'attribute_id' => 38, 'raw' => '[
+  "[J. K. Rowling]"
+]', 'html' => '<a href=\'J._K._Rowling\'>J. K. Rowling</a><br />'),
+                    array('article_id' => 2, 'attribute_id' => 39, 'raw' => '[Fantasy](Fantasy:genre)', 'html' => '<a href=\'/Fantasy:genre\'>Fantasy</a>'),
+                    array('article_id' => 2, 'attribute_id' => 40, 'raw' => 'Harry Potter', 'html' => 'Harry Potter'),
+                    array('article_id' => 2, 'attribute_id' => 41, 'raw' => 'One', 'html' => 'One'),
+                    array('article_id' => 2, 'attribute_id' => 43, 'raw' => '[Harry Potter and the Chamber of Secrets]', 'html' => '<a href=\'/Harry_Potter_and_the_Chamber_of_Secrets\'>Harry Potter and the Chamber of Secrets</a>'),
+                    array('article_id' => 2, 'attribute_id' => 45, 'raw' => 'United Kingdom', 'html' => 'United Kingdom'),
+                    array('article_id' => 2, 'attribute_id' => 46, 'raw' => '[
+  "[Thomas Taylor]"
+]', 'html' => '<a href=\'Thomas_Taylor\'>Thomas Taylor</a><br />'),
+                    array('article_id' => 2, 'attribute_id' => 48, 'raw' => 'Bloomsbury', 'html' => 'Bloomsbury'),
+                    array('article_id' => 2, 'attribute_id' => 49, 'raw' => '1997-06-26', 'html' => 'June 26th, 1997'),
+                    array('article_id' => 2, 'attribute_id' => 50, 'raw' => '17', 'html' => '17'),
+                    array('article_id' => 2, 'attribute_id' => 51, 'raw' => '223', 'html' => '223'),
+                    array('article_id' => 2, 'attribute_id' => 52, 'raw' => '0-7475-3269-9', 'html' => '0-7475-3269-9'),
+                 ),
 		    ),
 		),
 	),
