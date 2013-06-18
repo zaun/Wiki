@@ -98,7 +98,7 @@
         </div>
         <div class="pageContent">
             <?php if (isset($pageView) && $pageView != '') { include($pageView); } ?>
-            <div style="clear:left"></div>
+            <div style="clear:both"></div>
         </div>
         <div class="pageFooter">
             <?php if (isset($pageFooter) && $pageFooter != '') { include($pageFooter); } ?>
