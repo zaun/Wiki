@@ -2,7 +2,7 @@
 
 namespace App\Sections;
 
-class BaseList {
+class BaseList extends Base {
     public $abbr = "BaseList";
     public $name = "Base List";
     

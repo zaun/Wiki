@@ -143,7 +143,7 @@ Each section is defined as a type of data, something simple from text or markup 
 
 Known Issues:
 *User accounts don\'t work at all
-*Media uploads don\'t work at all
+*Media uploads work but the media browser doesn\'t
 *Article references aren\'t saved
 *Example pages aren\'t finished
 *This site is alpha quality... articles may disappear.

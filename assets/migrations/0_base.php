@@ -211,6 +211,35 @@ return array(
 		)
 	),
 	
+	// Article Media
+	'articleMedia' => array (
+	    'id' => array (
+	        'type' => 'id'
+	    ),
+	    'article_id' => array (
+	        'type' => 'int'
+	    ),
+		'hash' => array(
+			'type' => 'text'
+		),
+		'title' => array(
+			'type' => 'text'
+		),
+		'description' => array(
+			'type' => 'text'
+		),
+		'lastEditUser' => array(
+			'type' => 'int'
+		),
+		'lastEditIP' => array(
+			'type' => 'varchar',
+			'size' => 512
+		),
+		'lastEditDate' => array(
+			'type' => 'date'
+		)
+	),	
+	
 	// Article Sections
 	'articleSections' => array (
 	    'id' => array (

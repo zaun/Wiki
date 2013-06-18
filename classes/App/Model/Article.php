@@ -17,6 +17,10 @@ class Article extends \PHPixie\ORM\Model {
         'attributes'=>array(
             'model'=>'ArticleAttribute',
             'key'=>'article_id'
+        ),
+        'media'=>array(
+            'model'=>'ArticleMedia',
+            'key'=>'article_id'
         )
     );
     

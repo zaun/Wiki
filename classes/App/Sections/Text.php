@@ -2,7 +2,7 @@
 
 namespace App\Sections;
 
-class Text {
+class Text extends Base {
     public $abbr = "txt";
     public $name = "Text";
     

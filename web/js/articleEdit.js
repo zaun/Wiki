@@ -2,17 +2,34 @@ $(document).ready(function() {
 
     // Show the the upload dialog
     $(document).on('click', '#btnUpload', function() {
+        $('#mediaTitle').val('');
+        $('#mediaFile').val('');
         overlay(true);
         $("#uploadBox").fadeIn("fast");
         return false;
     });
     
+    // Upload a file
     $(document).on('click', '.btnUploadSend', function() {
+        $file = $('#mediaFile');
+        $title = $('#mediaTitle');
+        $article = $('#mediaArticle');
+
+        if ($title.val() == "") {
+            alert('Please enter a title.');
+            return false;
+        }
+        if ($file.val() == "") {
+            alert('Please select a media file.');
+            return false;
+        }
+        
         $.ajaxFileUpload({
             url: '/~api/upload/media', 
             secureuri: false,
             fileElementId: 'mediaFile',
             dataType: 'json',
+            data: { 'mediaTitle': $title.val(), 'mediaArticle' : $article.val() },
             success: function (data, status) {
                 if(typeof(data.error) != 'undefined') {
                     if(data.error != '') {
@@ -26,10 +43,12 @@ $(document).ready(function() {
                 alert(e);
             }
         });
+        overlay(false);
+        $("#uploadBox").fadeOut("fast");
         return false;
     });
 
-    // Cancel a login or forgot password
+    // Cancel an upload
     $(document).on('click', '.btnUploadCancel', function() {
         overlay(false);
         $("#uploadBox").fadeOut("fast");

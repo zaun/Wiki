@@ -33,6 +33,11 @@ return array(
 	                         'action'     => 'view',
 	                         'id'         => 'Welcome')
 	                        ),
+	'media-article' => array(array('/<id>/media/<title>(/<size>)', array('id'=>'[^/]+', 'title'=>'[^/]+')), array(
+	                         'controller' => 'article',
+	                         'action'     => 'media',
+	                         'size'       => '450')
+	                        ),
 	'othr-article'  => array(array('/<action>/<id>', array('id'=>'[^/]+')), array(
 	                         'controller' => 'article')
 	                        ),

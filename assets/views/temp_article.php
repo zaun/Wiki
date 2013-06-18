@@ -23,7 +23,7 @@
 <?php } ?>
     </head>
     <body>
-        <form method='post' accept-charset="utf-8">
+        <form method='post' accept-charset="utf-8" enctype="multipart/form-data">
         <div id="overlay">
         </div>
 
@@ -47,6 +47,7 @@
         <?php if ($canEdit === true && $mode === "edit") { ?>
         <div id="uploadBox" class="dialog">
             <h2>Upload Media</h2>
+            <input type="hidden" id="mediaArticle" name="mediaArticle" value="<?php echo str_replace('"','\"', $articleTitle); ?>" />
             <input type="text" id="mediaTitle" name="mediaTitle" placeholder="Title" />
             <input type="file" id="mediaFile" name="mediaFile" />
             <button class='btnUploadSend'>Upload</button>

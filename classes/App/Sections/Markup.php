@@ -2,7 +2,7 @@
 
 namespace App\Sections;
 
-class Markup {
+class Markup extends Base {
     public $abbr = "mu";
     public $name = "Markup";
     
@@ -124,16 +124,24 @@ class Markup {
 
         // Images
         $text = preg_replace_callback(
-            '/(\&gt;\&gt;)(.+)(\&gt;\&gt;)/',
+            '/(\&gt;\&gt;)([^:]+?)(:\d+|:orig)?(\&gt;\&gt;)/',
             function ($match) {
-                return "\n<img src='" . $match[2] . "' alt='' style='float:right;'>\n";
+                if ($match[3] == "") {
+                    return "\n<img src='" . $this->request->param('id', '') . "/media/" . $match[2] . "' alt='' style='float:right;'>\n";
+                } else {
+                    return "\n<img src='" . $this->request->param('id', '') . "/media/" . $match[2] . "/" . str_replace(":", "", $match[3]) . "' alt='' style='float:right;width:" . str_replace(":", "", $match[3]) . "px;margin-left:5px;'>\n";
+                }
             },
             $text
         );
         $text = preg_replace_callback(
-            '/(\&lt;\&lt;)(.+)(\&lt;\&lt;)/',
+            '/(\&lt;\&lt;)([^:]+?)(:\d+|:orig)?(\&lt;\&lt;)/',
             function ($match) {
-                return "\n<img src='" . $match[2] . "' alt='' style='float:left;'>\n";
+                if ($match[3] == "") {
+                    return "\n<img src='" . $this->request->param('id', '') . "/media/" . $match[2] . "' alt='' style='float:left;'>\n";
+                } else {
+                    return "\n<img src='" . $this->request->param('id', '') . "/media/" . $match[2] . "/" . str_replace(":", "", $match[3]) . "' alt='' style='float:left;width:" . str_replace(":", "", $match[3]) . "px;margin-right:5px;'>\n";
+                }
             },
             $text
         );

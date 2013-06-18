@@ -89,16 +89,16 @@ class Page extends \PHPixie\Controller {
         $this->attributeTypeObjects = array();
         
         // Load up default sections
-        $obj = new Sections\Text;
+        $obj = new Sections\Text($this->request);
         $this->sectionTypeObjects[$obj->abbr] = $obj;
-        $obj = new Sections\Markup;
+        $obj = new Sections\Markup($this->request);
         $this->sectionTypeObjects[$obj->abbr] = $obj;
         
         // Load up additional sections
         $plugins = $this->pixie->config->get('application.sections', array());
         foreach($plugins as $plugin) {
             $class = 'Plugins\\Sections\\' . $plugin;
-            $obj = new $class;
+            $obj = new $class($this->request);
             $this->sectionTypeObjects[$obj->abbr] = $obj;
         }
         uasort($this->sectionTypeObjects, array($this, 'cmp')); 
@@ -106,7 +106,7 @@ class Page extends \PHPixie\Controller {
         $plugins = $this->pixie->config->get('application.attributes', array());
         foreach($plugins as $plugin) {
             $class = 'Plugins\\Attributes\\' . $plugin;
-            $obj = new $class;
+            $obj = new $class($this->request);
             $this->attributeTypeObjects[$obj->abbr] = $obj;
         }
         uasort($this->attributeTypeObjects, array($this, 'cmp')); 

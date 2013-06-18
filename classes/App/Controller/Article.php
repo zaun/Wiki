@@ -195,7 +195,7 @@ class Article extends \App\Page {
             $this->view->articleSections = $sectionList;
             
             // grab the article references
-            $objRef = new \App\Sections\ReferenceList;
+            $objRef = new \App\Sections\ReferenceList($this->request);
             $this->view->articleSectionTemplates .= $objRef->editOnce();
             $this->view->articleSectionJavascript .= $objRef->jsEdit();
             $raw = "";
@@ -305,6 +305,66 @@ class Article extends \App\Page {
 	    }
 	}
 	
+	
+	public function action_media() {
+	    $this->init_article();
+
+	    $mediaTitle = $this->request->param('title', '');
+	    $mediaSize = strtolower($this->request->param('size', '450'));
+	    $media = $this->articleORM->media->where('title', $mediaTitle)->find();
+	    $fileHash = $media->hash;
+	    $filename = $fileHash;
+	    if ($mediaSize != "orig") {
+	        $filename .= "-" . $mediaSize;
+	    }
+	    
+	    $found = FALSE;
+        $scriptPath = dirname(__FILE__);
+        $mediaPath = dirname(dirname(dirname($scriptPath))) . "/assets/media/";
+        if ($handle = opendir($mediaPath)) {
+            while (false !== ($entry = readdir($handle))) {
+                if (strtolower(pathinfo($entry, PATHINFO_FILENAME)) == strtolower($filename)) {
+                    $filename = $entry;
+                	   $found = TRUE;
+                }
+            }
+            closedir($handle);
+        }
+        
+        if ($found == FALSE) {
+            $filename = $fileHash;
+            if ($handle = opendir($mediaPath)) {
+                while (false !== ($entry = readdir($handle))) {
+                    if (strtolower(pathinfo($entry, PATHINFO_FILENAME)) == strtolower($filename)) {
+                        $filename = $entry;
+                    }
+                }
+                closedir($handle);
+            }
+        }
+        $filename = $mediaPath . $filename;
+        
+        $mimetypes = array(
+            'png' => 'image/png',
+            'jpg' => 'image/jepg',
+            'gif' => 'image/gif',
+            'css' => 'text/css',
+            'js' => 'application/x-javascript'
+        );
+        $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+        $mime = "application/octet-stream";
+        if(array_key_exists($ext, $mimetypes)) {
+            $mime = $mimetypes[$ext];
+        }
+        header('Content-Type: ' . $mime);
+        header('Content-Transfer-Encoding: binary');
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate');
+        header('Pragma: public');
+        header('Content-Length: ' . filesize($filename));
+        readfile($filename);
+        exit;
+	}
 	
 	/**
 	 * Load the article's data from the databsae and setup
