@@ -123,24 +123,25 @@ class Markup extends Base {
         $text = preg_replace('{(\n|^)([-]+)(\n|$)}', "<hr />", $text);
 
         // Images
+        $id = $this->request->param('id', '');
         $text = preg_replace_callback(
             '/(\&gt;\&gt;)([^:]+?)(:\d+|:orig)?(\&gt;\&gt;)/',
-            function ($match) {
+            function ($match) use ($id) {
                 if ($match[3] == "") {
-                    return "\n<img src='" . $this->request->param('id', '') . "/media/" . $match[2] . "' alt='' style='float:right;'>\n";
+                    return "\n<img src='" . $id . "/media/" . $match[2] . "' alt='' style='float:right;'>\n";
                 } else {
-                    return "\n<img src='" . $this->request->param('id', '') . "/media/" . $match[2] . "/" . str_replace(":", "", $match[3]) . "' alt='' style='float:right;width:" . str_replace(":", "", $match[3]) . "px;margin-left:5px;'>\n";
+                    return "\n<img src='" . $id . "/media/" . $match[2] . "/" . str_replace(":", "", $match[3]) . "' alt='' style='float:right;width:" . str_replace(":", "", $match[3]) . "px;margin-left:5px;'>\n";
                 }
             },
             $text
         );
         $text = preg_replace_callback(
             '/(\&lt;\&lt;)([^:]+?)(:\d+|:orig)?(\&lt;\&lt;)/',
-            function ($match) {
+            function ($match) use ($id) {
                 if ($match[3] == "") {
-                    return "\n<img src='" . $this->request->param('id', '') . "/media/" . $match[2] . "' alt='' style='float:left;'>\n";
+                    return "\n<img src='" . $id . "/media/" . $match[2] . "' alt='' style='float:left;'>\n";
                 } else {
-                    return "\n<img src='" . $this->request->param('id', '') . "/media/" . $match[2] . "/" . str_replace(":", "", $match[3]) . "' alt='' style='float:left;width:" . str_replace(":", "", $match[3]) . "px;margin-right:5px;'>\n";
+                    return "\n<img src='" . $id . "/media/" . $match[2] . "/" . str_replace(":", "", $match[3]) . "' alt='' style='float:left;width:" . str_replace(":", "", $match[3]) . "px;margin-right:5px;'>\n";
                 }
             },
             $text
