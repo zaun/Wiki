@@ -125,13 +125,13 @@ class SimpleList {
                 $link = trim($match[2]);
                 
                 $ret = "";
-                if ($this->startsWith(strtolower($link), "https")) {
+                if (!strncmp(strtolower($link), "https", 5)) {
                     $ret = "<a target='_blank' href='" . $link . "'>" . $title . "</a>";
                     $ret .= "<img src='/images/link_https.png' class='link' />";
-                } else if ($this->startsWith(strtolower($link), "http")) {
+                } else if (!strncmp(strtolower($link), "http", 4)) {
                     $ret = "<a target='_blank' href='" . $link . "'>" . $title . "</a>";
                     $ret .= "<img src='/images/link_http.png' class='link' />";
-                } else if ($this->startsWith(strtolower($link),  "ftp")) {
+                } else if (!strncmp(strtolower($link),  "ftp", 3)) {
                     $ret = "<a target='_blank' href='" . $link . "'>" . $title . "</a>";
                     $ret .= "<img src='/images/link_ftp.png' class='link' />";
                 } else {
@@ -152,13 +152,13 @@ class SimpleList {
                 $link = trim($match[2]);
 
                 $ret = "";
-                if ($this->startsWith(strtolower($link), "https")) {
+                if (!strncmp(strtolower($link), "https", 5)) {
                     $ret = "<a target='_blank' href='" . $link . "'>" . $link . "</a>";
                     $ret .= "<img src='/images/link_https.png' class='link' />";
-                } else if ($this->startsWith(strtolower($link), "http")) {
+                } else if (!strncmp(strtolower($link), "http", 4)) {
                     $ret = "<a target='_blank' href='" . $link . "'>" . $link . "</a>";
                     $ret .= "<img src='/images/link_http.png' class='link' />";
-                } else if ($this->startsWith(strtolower($link),  "ftp")) {
+                } else if (!strncmp(strtolower($link),  "ftp", 3)) {
                     $ret = "<a target='_blank' href='" . $link . "'>" . $link . "</a>";
                     $ret .= "<img src='/images/link_ftp.png' class='link' />";
                 } else {
