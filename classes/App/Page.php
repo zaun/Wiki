@@ -103,6 +103,16 @@ class Page extends \PHPixie\Controller {
         }
         uasort($this->sectionTypeObjects, array($this, 'cmp')); 
         
+
+        // Load up default attributes
+        $obj = new Attributes\Header($this->request);
+        $this->attributeTypeObjects[$obj->abbr] = $obj;
+        $obj = new Attributes\Text($this->request);
+        $this->attributeTypeObjects[$obj->abbr] = $obj;
+        $obj = new Attributes\Date($this->request);
+        $this->attributeTypeObjects[$obj->abbr] = $obj;
+
+        // Load up additional attributes
         $plugins = $this->pixie->config->get('application.attributes', array());
         foreach($plugins as $plugin) {
             $class = 'Plugins\\Attributes\\' . $plugin;

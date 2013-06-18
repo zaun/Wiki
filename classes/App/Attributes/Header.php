@@ -1,8 +1,8 @@
 <?php
 
-namespace Plugins\Attributes;
+namespace App\Attributes;
 
-class Header {
+class Header extends Base {
     public $abbr = "hdr";
     public $name = "Header";
     

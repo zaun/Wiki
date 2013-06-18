@@ -1,8 +1,8 @@
 <?php
 
-namespace Plugins\Attributes;
+namespace App\Attributes;
 
-class Text {
+class Text extends Base {
     public $abbr = "text";
     public $name = "Text";
     

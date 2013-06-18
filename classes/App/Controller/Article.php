@@ -43,14 +43,13 @@ class Article extends \App\Page {
             $attributeList = array();
             $attributeListTemp = array();
             $articleAttributes = $this->template->attributes->order_by('order', 'ASC')->find_all()->as_array(true);
-            $kvAttr = array();
             foreach ($articleAttributes as $s) {
                 $articleAttribute = $this->articleORM->attributes->where('attribute_id', $s->id)->find();
                 $value = "";
+                $rawValue = "";
                 if ($articleAttribute->loaded()) {
                     $value = $articleAttribute->html;
                 }
-                $kvAttr[trim(mb_strtolower($s->title))] = $value;
     		        $object = (object)array('id' => $s->id,
     		                                'type' => $s->type, 
     		                                'title' => $s->title,
@@ -61,8 +60,6 @@ class Article extends \App\Page {
         		        array_push($attributeListTemp, $object);
     		        }
             }
-            
-            $this->view->articleSummary = $this->pixie->util->replaceValues($kvAttr, $this->view->articleSummary);
             
             // Remove unneeded headers
             for ($i=0; $i < count($attributeListTemp) - 1; $i++) {
@@ -89,15 +86,8 @@ class Article extends \App\Page {
             $this->view->pageTitle = 'Create article ' . $this->id . '?';
 	    }
     }
-
-
-	public function action_edit2() {
-	    $this->action_edit();
-	    print "<pre>";
-	    print_r($this->view->articleSections);
-	    print "</pre>";
-	}
-
+    
+    
 	public function action_edit() {
         $this->init_article();
         
@@ -259,25 +249,22 @@ class Article extends \App\Page {
             $attributeList = array();
             $attributeListTemp = array();
             $articleAttributes = $this->template->attributes->order_by('order', 'ASC')->find_all()->as_array(true);
-            $kvAttr = array();
             foreach ($articleAttributes as $s) {
                 $articleAttribute = $this->articleORM->attributes->where('attribute_id', $s->id)->find();
                 $value = "";
                 if ($articleAttribute->loaded()) {
                     $value = $articleAttribute->html;
                 }
-                $kvAttr[trim(mb_strtolower($s->title))] = $value;
-    		        $object = (object)array('id' => $s->id,
-    		                                'type' => $s->type, 
-    		                                'title' => $s->title,
-    		                                'value' => $value);
+                $object = (object)array('id' => $s->id,
+                                        'type' => $s->type, 
+                                        'title' => $s->title,
+                                        'value' => $value);
     		        
-                 if ($s->type == "hdr" || $value != "") {
-    		            $pageHasContent = true;
-        		        array_push($attributeListTemp, $object);
-    		        }
+                if ($s->type == "hdr" || $value != "") {
+                    $pageHasContent = true;
+                    array_push($attributeListTemp, $object);
+                }
             }
-            $this->view->articleSummary = $this->pixie->util->replaceValues($kvAttr, $this->view->articleSummary);
             
             
             // Remove unneeded headers
@@ -416,18 +403,6 @@ class Article extends \App\Page {
 	 * @access private
 	 */
 	protected function save_article() {
-        // Save the article
-        $this->articleORM->title = $this->request->post('articleTitle', $this->id);
-        $this->articleORM->url = $this->request->post('articleTitle', $this->id);
-        $this->articleORM->url = str_replace(' ','_', $this->articleORM->url);
-        $this->articleORM->url = str_replace("'",'', $this->articleORM->url);
-        $this->articleORM->summary = $this->request->post('articleSummary', $this->summary);
-        $this->articleORM->summary_html = $this->sectionTypeObjects['txt']->convertRawToHtml($this->articleORM->summary);
-        $this->articleORM->image_title = $this->request->post('imageTitle', $this->imageTitle);
-        $this->articleORM->template_id = $this->request->post('articleTemplate', $this->templateID);
-        $this->articleORM->lastEditIP = $_SERVER['REMOTE_ADDR'];
-        $this->articleORM->lastEditDate = gmdate("Y-m-d\TH:i:s\Z");
-	    $this->articleORM->save();
 	    
         // grab the selected template's sections and attributes
         $selectedTemplate = $this->pixie->orm->get('template', $this->articleORM->template_id);
@@ -458,7 +433,11 @@ class Article extends \App\Page {
                 } else {
                     $articleAttribute->save();
                 }
-                $kvAttr[trim(mb_strtolower($s->title))] = $articleAttribute->html;
+    		        
+    		        // Setup the attributes for filling in the template
+                $tempKey = str_replace("(s)", "", trim(mb_strtolower($s->title)));
+                $tempValues = $this->attributeTypeObjects[$s->type]->templateValues($articleAttribute->raw);
+                $kvAttr[$tempKey] = $tempValues;
             }
         }
 
@@ -470,7 +449,7 @@ class Article extends \App\Page {
             $articleSection->raw = trim($this->sectionTypeObjects[$s->type]->rawValue($this->request, $s->id));
             $html = trim($this->sectionTypeObjects[$s->type]->htmlValue($this->request, $s->id));
             $html = $this->pixie->util->replaceValues($kvAttr, $html);
-            $articleSection->html = $html;
+            $articleSection->html = $this->pixie->util->replaceValues($kvAttr, $html);
             
             // Do a little cleanup
             if ($articleSection->raw == "") {
@@ -487,7 +466,20 @@ class Article extends \App\Page {
                 $articleSection->save();
             }
         }
-	}
+
+        // Save the article
+        $this->articleORM->title = $this->request->post('articleTitle', $this->id);
+        $this->articleORM->url = $this->request->post('articleTitle', $this->id);
+        $this->articleORM->url = str_replace(' ','_', $this->articleORM->url);
+        $this->articleORM->url = str_replace("'",'', $this->articleORM->url);
+        $this->articleORM->summary = $this->request->post('articleSummary', $this->summary);
+        $this->articleORM->summary_html = $this->sectionTypeObjects['txt']->convertRawToHtml($this->pixie->util->replaceValues($kvAttr, $this->articleORM->summary));
+        $this->articleORM->image_title = $this->request->post('imageTitle', $this->imageTitle);
+        $this->articleORM->template_id = $this->request->post('articleTemplate', $this->templateID);
+        $this->articleORM->lastEditIP = $_SERVER['REMOTE_ADDR'];
+        $this->articleORM->lastEditDate = gmdate("Y-m-d\TH:i:s\Z");
+	    $this->articleORM->save();
+    }
 	
 	
 	/**

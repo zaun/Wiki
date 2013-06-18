@@ -2,7 +2,7 @@
 
 namespace Plugins\Attributes;
 
-class Location {
+class Location extends \App\Attributes\Base {
     public $abbr = "loc";
     public $name = "Location";
     

@@ -2,7 +2,7 @@
 
 namespace Plugins\Attributes;
 
-class SimpleList {
+class SimpleList extends \App\Attributes\Base {
     public $abbr = "attrLst";
     public $name = "List";
     

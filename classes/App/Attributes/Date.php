@@ -1,8 +1,8 @@
 <?php
 
-namespace Plugins\Attributes;
+namespace App\Attributes;
 
-class Date {
+class Date extends Base {
     public $abbr = "date";
     public $name = "Date";
     
@@ -84,6 +84,12 @@ class Date {
 	    return $text;
     }
     
+    
+    public function templateValues($raw) {
+        $text = $this->convertRawToHtml($raw);
+        return $text;
+    }
+
     private function startsWith($haystack, $needle) {
         return !strncmp($haystack, $needle, strlen($needle));
     }

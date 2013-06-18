@@ -9,9 +9,9 @@ class Util {
             function ($match) use ($kvPairs) {
                 $attr = trim($match[2]);
                 if (isset($kvPairs[strtolower($attr)])) {
-                    return "<span class='attr'>" . $kvPairs[strtolower($attr)] . "</span>";
+                    return $kvPairs[strtolower($attr)];
                 } else {
-                    return "<span class='attrUnknown'>" . $attr . "</span>";
+                    return $attr;
                 }
             },
             $text
