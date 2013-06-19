@@ -1,8 +1,8 @@
 <?php if ((isset($imageName) && !empty($imageName)) ||
           (isset($imageTitle) && !empty($imageTitle))) { ?>
 <div class='pageImage'>
-    <?php if (isset($imageName) && !empty($imageName)) {
-        echo "<img src='" . $imageName . "' alt='Page Image'>";
+    <?php if (isset($pageImage) && !empty($pageImage)) {
+        echo "<img src='" . $pageImage . "' alt='Article Image'>";
     } ?>
     <?php if (isset($imageTitle) && !empty($imageTitle)) {
         echo "<label>" . $imageTitle . "</label>";

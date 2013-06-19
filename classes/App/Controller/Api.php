@@ -165,6 +165,9 @@ class Api extends \PHPixie\Controller {
         $articleMedia = $this->pixie->orm->get('articleMedia')->where('article_id', $articleORM->id)->where('hash', $fileHash)->find();
         $articleMedia->article = $articleORM;
         $articleMedia->hash = $fileHash;
+        $articleMedia->url = $title;
+        $articleMedia->url = str_replace(' ','_', $articleMedia->url);
+        $articleMedia->url = str_replace("'",'', $articleMedia->url);
         $articleMedia->title = $title;
         $articleMedia->description = $title;
         $articleMedia->lastEditIP = $_SERVER['REMOTE_ADDR'];

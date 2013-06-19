@@ -222,6 +222,9 @@ return array(
 		'hash' => array(
 			'type' => 'text'
 		),
+		'url' => array(
+			'type' => 'text'
+		),
 		'title' => array(
 			'type' => 'text'
 		),

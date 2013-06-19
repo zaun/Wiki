@@ -24,6 +24,10 @@ class Article extends \App\Page {
             $this->view->articleTemplate = $this->templateName;
             $this->view->lastUpdated = $this->lastUpdated;
             
+            // Grab the article image
+            if ($this->imageName != "") {
+                $this->view->pageImage = "/" . $this->id . "/media/" . $this->imageName . "/250";
+            }
             
             // Load in sections
             $sectionList = array();
@@ -152,6 +156,12 @@ class Article extends \App\Page {
     		        }
             }
             $this->view->articleAttributes = $attributeList;
+            
+            // Grab the article image
+            $this->view->pageImage = "/images/no_image.png";
+            if ($this->imageName != "") {
+                $this->view->pageImage = "/" . $this->id . "/media/" . $this->imageName . "/250";
+            }
     	    
     	    
             // grab the article sections
@@ -297,11 +307,15 @@ class Article extends \App\Page {
 	    $this->init_article();
 
 	    $mediaTitle = $this->request->param('title', '');
-	    $mediaSize = strtolower($this->request->param('size', '450'));
-	    $media = $this->articleORM->media->where('title', $mediaTitle)->find();
-	    $fileHash = $media->hash;
+	    $mediaSize = intval(strtolower($this->request->param('size', '450')));
+	    $mediaSize = ceil($mediaSize/50) * 50;
+	    $media = $this->articleORM->media->where('url', $mediaTitle)->find();
+	    $fileHash = "UNKNOWN HASH";
+	    if (isset($media->hash)) {
+            $fileHash = $media->hash;
+	    }
 	    $filename = $fileHash;
-	    if ($mediaSize != "orig") {
+	    if ($mediaSize != "0") {
 	        $filename .= "-" . $mediaSize;
 	    }
 	    
@@ -318,12 +332,14 @@ class Article extends \App\Page {
             closedir($handle);
         }
         
+        $orig = FALSE;
         if ($found == FALSE) {
             $filename = $fileHash;
             if ($handle = opendir($mediaPath)) {
                 while (false !== ($entry = readdir($handle))) {
                     if (strtolower(pathinfo($entry, PATHINFO_FILENAME)) == strtolower($filename)) {
                         $filename = $entry;
+                        $orig = TRUE;
                     }
                 }
                 closedir($handle);
@@ -331,6 +347,16 @@ class Article extends \App\Page {
         }
         $filename = $mediaPath . $filename;
         
+        // If we can't find the file load up the no_image
+        if (!file_exists($filename)) {
+            $filename = dirname(dirname(dirname($scriptPath))). "/web/images/no_image.png";
+        }
+        
+        // Scale image
+        if($found && $orig) {
+        }
+        
+        // Figure the mime type
         $mimetypes = array(
             'png' => 'image/png',
             'jpg' => 'image/jepg',
@@ -343,13 +369,16 @@ class Article extends \App\Page {
         if(array_key_exists($ext, $mimetypes)) {
             $mime = $mimetypes[$ext];
         }
+        
         header('Content-Type: ' . $mime);
-        header('Content-Transfer-Encoding: binary');
         header('Expires: 0');
         header('Cache-Control: must-revalidate');
         header('Pragma: public');
         header('Content-Length: ' . filesize($filename));
         readfile($filename);
+//        print $mediaSize . "<br />";
+//        print $orig . "<br />";
+//        print $filename;
         exit;
 	}
 	
