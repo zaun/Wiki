@@ -91,7 +91,6 @@ button {
 .pageAttributes {
     width: 245px;
     margin-bottom: 20px;
-    margin-top: -25px;
 }
 
 .pageAttributes h1 {
@@ -393,7 +392,6 @@ button {
     margin-bottom: 5px;
     padding: 5px;
     background-color: white;
-    overflow: auto;
     line-height: 1.5em;
 }
 
@@ -472,6 +470,10 @@ button {
     padding: 0px 5px 0px 5px;
     border: 1px dotted #CCC;
     font-style: italic;
+}
+
+.pageContentInner {
+    overflow: auto;
 }
 
 /* talk */
