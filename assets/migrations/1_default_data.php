@@ -23,7 +23,7 @@ return array(
 
 		            array('id' => 2,  'template_id' => 2, 'title' => 'Early Life',                'type' => 'mu',         'order' => 0),
 		            array('id' => 3,  'template_id' => 2, 'title' => 'Family',                    'type' => 'mu',         'order' => 1),
-		            array('id' => 4,  'template_id' => 2, 'title' => 'Military career',           'type' => 'mu',         'order' => 1),
+		            array('id' => 4,  'template_id' => 2, 'title' => 'Military Career',           'type' => 'mu',         'order' => 1),
 		            array('id' => 5,  'template_id' => 2, 'title' => 'Later Life',                'type' => 'mu',         'order' => 2),
 		            array('id' => 6,  'template_id' => 2, 'title' => 'Education',                 'type' => 'EduList',    'order' => 3),
 		            array('id' => 7,  'template_id' => 2, 'title' => 'Career',                    'type' => 'EmpList',    'order' => 4),

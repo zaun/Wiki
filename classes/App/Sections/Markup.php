@@ -128,9 +128,9 @@ class Markup extends Base {
             '/(\&gt;\&gt;)([^:]+?)(:\d+|:orig)?(\&gt;\&gt;)/',
             function ($match) use ($id) {
                 if ($match[3] == "") {
-                    return "\n<img src='" . $id . "/media/" . $match[2] . "' alt='' style='float:right;'>\n";
+                    return "\n<img src='" . $id . "/media/" . $match[2] . "' alt='' style='float:right;margin-left:5px;margin-top:5px;margin-bottom:5px;'>\n";
                 } else {
-                    return "\n<img src='" . $id . "/media/" . $match[2] . "/" . str_replace(":", "", $match[3]) . "' alt='' style='float:right;width:" . str_replace(":", "", $match[3]) . "px;margin-left:5px;'>\n";
+                    return "\n<img src='" . $id . "/media/" . $match[2] . "/" . str_replace(":", "", $match[3]) . "' alt='' style='float:right;width:" . str_replace(":", "", $match[3]) . "px;margin-left:5px;margin-top:5px;margin-bottom:5px;'>\n";
                 }
             },
             $text
@@ -139,9 +139,20 @@ class Markup extends Base {
             '/(\&lt;\&lt;)([^:]+?)(:\d+|:orig)?(\&lt;\&lt;)/',
             function ($match) use ($id) {
                 if ($match[3] == "") {
-                    return "\n<img src='" . $id . "/media/" . $match[2] . "' alt='' style='float:left;'>\n";
+                    return "\n<img src='" . $id . "/media/" . $match[2] . "' alt='' style='float:left;margin-right:5px;margin-top:5px;margin-bottom:5px;'>\n";
                 } else {
-                    return "\n<img src='" . $id . "/media/" . $match[2] . "/" . str_replace(":", "", $match[3]) . "' alt='' style='float:left;width:" . str_replace(":", "", $match[3]) . "px;margin-right:5px;'>\n";
+                    return "\n<img src='" . $id . "/media/" . $match[2] . "/" . str_replace(":", "", $match[3]) . "' alt='' style='float:left;width:" . str_replace(":", "", $match[3]) . "px;margin-right:5px;margin-top:5px;margin-bottom:5px;'>\n";
+                }
+            },
+            $text
+        );
+        $text = preg_replace_callback(
+            '/(\&gt;\&gt;)([^:]+?)(:\d+|:orig)?(\&lt;\&lt;)/',
+            function ($match) use ($id) {
+                if ($match[3] == "") {
+                    return "\n<div><img src='" . $id . "/media/" . $match[2] . "' alt='' style='margin:5px auto 5px auto;display:block;'></div>\n";
+                } else {
+                    return "\n<div><img src='" . $id . "/media/" . $match[2] . "/" . str_replace(":", "", $match[3]) . "' alt='' style=';width:" . str_replace(":", "", $match[3]) . "px;margin:5px auto 5px auto;display:block;'></div>\n";
                 }
             },
             $text

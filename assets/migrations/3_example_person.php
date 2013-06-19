@@ -41,4 +41,14 @@ Aldrin was born in [{{Birth Location}}] on {{Birth Date}}, to {{father}}, a care
 		),
 	),
 
+	'articleMedia' => array (
+		'_data' => array(
+		    'up' => array(
+		        'insert' => array(
+                    array('article_id' => 3, 'hash' => 'd6f760ecb51bf65b2e12c7199556107b', 'title' => 'Aldrin', 'description' => 'Aldrin'),
+                 )
+		    ),
+		),
+	),
+
 );
