@@ -46,61 +46,61 @@ class Text extends Base {
     
     public function convertRawToHtml($raw) {
         $html = $this->rawToHtml($raw);
-
-        // Titled Links
-        // [Digg](http://digg.com)
-        // [Google](http://google.com)
-        $html = preg_replace_callback(
-            '/\[([^]]+)\]\((((?:https?|ftp):\/\/)?.*?)\)/',
-            function ($match) {
-                $title = trim($match[1]);
-                $link = trim($match[2]);
-                
-                $ret = "";
-                if (!strncmp(strtolower($link), "https", 5)) {
-                    $ret = "<a target='_blank' href='" . $link . "'>" . $title . "</a>";
-                    $ret .= "&nbsp;<img src='/images/link_https.png' class='link' title='Secure HTTP external link' />";
-                } else if (!strncmp(strtolower($link), "http", 4)) {
-                    $ret = "<a target='_blank' href='" . $link . "'>" . $title . "</a>";
-                    $ret .= "&nbsp;<img src='/images/link_http.png' class='link' title='External link' />";
-                } else if (!strncmp(strtolower($link),  "ftp", 3)) {
-                    $ret = "<a target='_blank' href='" . $link . "'>" . $title . "</a>";
-                    $ret .= "&nbsp;<img src='/images/link_ftp.png' class='link' title='File Transfer Protocol link' />";
-                } else {
-                    $link = str_replace(" ", "_", $link);
-                    $ret = "<a href='/" . $link . "'>" . $title . "</a>";
-                }
-                return $ret;
-            },
-            $html
-        );
-
-        // Untitled Links
-        // [Internal Page]
-        // [http://google.com]
-        $html = preg_replace_callback(
-            '/(\[)(.*?)(\])/',
-            function ($match) {
-                $link = trim($match[2]);
-
-                $ret = "";
-                if (!strncmp(strtolower($link), "https", 5)) {
-                    $ret = "<a target='_blank' href='" . $link . "'>" . $link . "</a>";
-                    $ret .= "&nbsp;<img src='/images/link_https.png' class='link' title='Secure HTTP external link' />";
-                } else if (!strncmp(strtolower($link), "http", 4)) {
-                    $ret = "<a target='_blank' href='" . $link . "'>" . $link . "</a>";
-                    $ret .= "&nbsp;<img src='/images/link_http.png' class='link' title='External link' />";
-                } else if (!strncmp(strtolower($link),  "ftp", 3)) {
-                    $ret = "<a target='_blank' href='" . $link . "'>" . $link . "</a>";
-                    $ret .= "&nbsp;<img src='/images/link_ftp.png' class='link' title='File Transfer Protocol link' />";
-                } else {
-                    $link = str_replace(" ", "_", $link);
-                    $ret = "<a href='/" . $link . "'>" . trim($match[2]) . "</a>";
-                }
-                return $ret;
-            },
-            $html
-        );
+//
+//        // Titled Links
+//        // [Digg](http://digg.com)
+//        // [Google](http://google.com)
+//        $html = preg_replace_callback(
+//            '/\[([^]]+)\]\((((?:https?|ftp):\/\/)?.*?)\)/',
+//            function ($match) {
+//                $title = trim($match[1]);
+//                $link = trim($match[2]);
+//                
+//                $ret = "";
+//                if (!strncmp(strtolower($link), "https", 5)) {
+//                    $ret = "<a target='_blank' href='" . $link . "'>" . $title . "</a>";
+//                    $ret .= "&nbsp;<img src='/images/link_https.png' class='link' title='Secure HTTP external link' />";
+//                } else if (!strncmp(strtolower($link), "http", 4)) {
+//                    $ret = "<a target='_blank' href='" . $link . "'>" . $title . "</a>";
+//                    $ret .= "&nbsp;<img src='/images/link_http.png' class='link' title='External link' />";
+//                } else if (!strncmp(strtolower($link),  "ftp", 3)) {
+//                    $ret = "<a target='_blank' href='" . $link . "'>" . $title . "</a>";
+//                    $ret .= "&nbsp;<img src='/images/link_ftp.png' class='link' title='File Transfer Protocol link' />";
+//                } else {
+//                    $link = str_replace(" ", "_", $link);
+//                    $ret = "<a href='/" . $link . "'>" . $title . "</a>";
+//                }
+//                return $ret;
+//            },
+//            $html
+//        );
+//
+//        // Untitled Links
+//        // [Internal Page]
+//        // [http://google.com]
+//        $html = preg_replace_callback(
+//            '/(\[)(.*?)(\])/',
+//            function ($match) {
+//                $link = trim($match[2]);
+//
+//                $ret = "";
+//                if (!strncmp(strtolower($link), "https", 5)) {
+//                    $ret = "<a target='_blank' href='" . $link . "'>" . $link . "</a>";
+//                    $ret .= "&nbsp;<img src='/images/link_https.png' class='link' title='Secure HTTP external link' />";
+//                } else if (!strncmp(strtolower($link), "http", 4)) {
+//                    $ret = "<a target='_blank' href='" . $link . "'>" . $link . "</a>";
+//                    $ret .= "&nbsp;<img src='/images/link_http.png' class='link' title='External link' />";
+//                } else if (!strncmp(strtolower($link),  "ftp", 3)) {
+//                    $ret = "<a target='_blank' href='" . $link . "'>" . $link . "</a>";
+//                    $ret .= "&nbsp;<img src='/images/link_ftp.png' class='link' title='File Transfer Protocol link' />";
+//                } else {
+//                    $link = str_replace(" ", "_", $link);
+//                    $ret = "<a href='/" . $link . "'>" . trim($match[2]) . "</a>";
+//                }
+//                return $ret;
+//            },
+//            $html
+//        );
 
                 
         return $html;
