@@ -91,6 +91,7 @@ button {
 .pageAttributes {
     width: 245px;
     margin-bottom: 20px;
+    margin-top: -25px;
 }
 
 .pageAttributes h1 {
@@ -188,20 +189,6 @@ button {
     font-family: sans-serif;
     font-size: 13px;
     cursor: pointer;
-}
-
-.pageContent {
-    position: relative;
-    border: 1px solid #a7d7f9;
-    margin-bottom: 5px;
-    padding: 5px;
-    background-color: white;
-}
-
-.pageContent .quote {
-    margin: 20px 20px 20px 35px;
-    padding-left: 5px;
-    border-left: 2px solid #a7d7f9;
 }
 
 /* button bar */
@@ -401,8 +388,19 @@ button {
 }
 
 .pageContent {
+    position: relative;
+    border: 1px solid #a7d7f9;
+    margin-bottom: 5px;
+    padding: 5px;
+    background-color: white;
     overflow: auto;
     line-height: 1.5em;
+}
+
+.pageContent .quote {
+    margin: 20px 20px 20px 35px;
+    padding-left: 5px;
+    border-left: 2px solid #a7d7f9;
 }
 
 .pageContent P {

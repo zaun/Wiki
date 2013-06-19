@@ -60,9 +60,6 @@
             <div class="logo"><a href="/" alt="Site Logo">Site Logo</a></div>
             <?php include('pageTopBar.php'); ?>
         </div>
-        <div class="pageAttributes">
-            <?php if (isset($attributeView) && $attributeView != '') { include($attributeView); } ?>
-        </div>
         <div class="pageMenu">
             <?php if ($canEdit === true || $canTalk === true) { ?>
                 <?php if($mode === "view") { ?>
@@ -95,6 +92,9 @@
             Upload File
             </div>
             <?php } ?>
+        </div>
+        <div class="pageAttributes">
+            <?php if (isset($attributeView) && $attributeView != '') { include($attributeView); } ?>
         </div>
         <div class="pageContent">
             <?php if (isset($pageView) && $pageView != '') { include($pageView); } ?>
