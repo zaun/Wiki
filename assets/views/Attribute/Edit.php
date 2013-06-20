@@ -2,12 +2,16 @@
 <?php echo $articleAttributeJavascript; ?>
 </script>
 
-<div class='pageImage'>
-    <img src='<?php echo $pageImage; ?>' />
-    <?php
-    echo "<input class='image-title' name='imageTitle' id='imageTitle' value='" . $imageTitle . "' />";
-    ?>
+<h1>Article Image</h1>
+<div class="row">
+    <label>Image Name</label>
+    <data><input name='imageName' id='imageName' value='<?php echo $imageName ?>' placeholder='Image Name' /></data>
 </div>
+<div class="row">
+    <label>Image Title</label>
+    <data><input name='imageTitle' id='imageTitle' value='<?php echo $imageTitle ?>' placeholder='Image Title' /></data>
+</div>
+
 
 <?php if (isset($articleAttributes) > 0) { ?>
 <?php

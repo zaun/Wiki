@@ -501,11 +501,12 @@ class Article extends \App\Page {
         $this->articleORM->url = str_replace("'",'', $this->articleORM->url);
         $this->articleORM->summary = $this->request->post('articleSummary', $this->summary);
         $this->articleORM->summary_html = $this->sectionTypeObjects['txt']->convertRawToHtml($this->pixie->util->replaceValues($kvAttr, $this->articleORM->summary));
+        $this->articleORM->image_name = $this->request->post('imageName', $this->imageName);
         $this->articleORM->image_title = $this->request->post('imageTitle', $this->imageTitle);
         $this->articleORM->template_id = $this->request->post('articleTemplate', $this->templateID);
         $this->articleORM->lastEditIP = $_SERVER['REMOTE_ADDR'];
         $this->articleORM->lastEditDate = gmdate("Y-m-d\TH:i:s\Z");
-	    $this->articleORM->save();
+        $this->articleORM->save();
     }
 	
 	
