@@ -32,7 +32,7 @@ foreach ($articleAttributes as $a) {
 <h1>Article Information</h1>
 <div class="row">
     <label>Template</label>
-    <data><a href="!<?php echo $articleTemplate ?>"><?php echo $articleTemplate ?></a></data>
+    <data><a href="/!<?php echo $articleTemplate ?>"><?php echo $articleTemplate ?></a></data>
 </div>
 <?php if (!empty($lastUpdated)) { ?>
 <div class="row">
