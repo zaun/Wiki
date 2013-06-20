@@ -343,6 +343,7 @@ class Article extends \App\Page {
                 while (false !== ($entry = readdir($handle))) {
                     if (strtolower(pathinfo($entry, PATHINFO_FILENAME)) == strtolower($filename)) {
                         $filename = $entry;
+                    	   $found = TRUE;
                         $orig = TRUE;
                     }
                 }
@@ -357,7 +358,60 @@ class Article extends \App\Page {
         }
         
         // Scale image
-        if($found && $orig) {
+        if($found && $orig && file_exists($filename)) {
+            $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+            if (class_exists('Imagick')) {
+                $im = new Imagick($filename);
+                $im->thumbnailImage($mediaSize, 99999, TRUE);
+                $filename = $mediaPath . "/" . $fileHash . "-" . $mediaSize . "." . $ext;
+                $im->writeImage($filename);
+            } else if (extension_loaded('gd')) {
+                ini_set("memory_limit","256M");
+                list($source_image_width, $source_image_height, $source_image_type) = getimagesize($filename);
+                switch ($source_image_type) {
+                    case IMAGETYPE_GIF:
+                        $source_gd_image = imagecreatefromgif($filename);
+                        break;
+                    case IMAGETYPE_JPEG:
+                        $source_gd_image = imagecreatefromjpeg($filename);
+                        break;
+                    case IMAGETYPE_PNG:
+                        $source_gd_image = imagecreatefrompng($filename);
+                        break;
+                }
+                if ($source_gd_image !== false) {
+                    $source_aspect_ratio = $source_image_width / $source_image_height;
+                    $thumbnail_aspect_ratio = $mediaSize / 99999;
+                    if ($source_image_width <= $mediaSize && $source_image_height <= 99999) {
+                        $thumbnail_image_width = $source_image_width;
+                        $thumbnail_image_height = $source_image_height;
+                    } elseif ($thumbnail_aspect_ratio > $source_aspect_ratio) {
+                        $thumbnail_image_width = (int) (99999 * $source_aspect_ratio);
+                        $thumbnail_image_height = 99999;
+                    } else {
+                        $thumbnail_image_width = $mediaSize;
+                        $thumbnail_image_height = (int) ($mediaSize / $source_aspect_ratio);
+                    }
+                    $thumbnail_gd_image = imagecreatetruecolor($thumbnail_image_width, $thumbnail_image_height);
+                    imagecopyresampled($thumbnail_gd_image, $source_gd_image, 0, 0, 0, 0, $thumbnail_image_width, $thumbnail_image_height, $source_image_width, $source_image_height);
+                    switch ($source_image_type) {
+                        case IMAGETYPE_GIF:
+                            $filename = $mediaPath . "/" . $fileHash . "-" . $mediaSize . "." . $ext;
+                            imagegif($thumbnail_gd_image, $filename, 90);
+                            break;
+                        case IMAGETYPE_JPEG:
+                            $filename = $mediaPath . "/" . $fileHash . "-" . $mediaSize . "." . $ext;
+                            imagejpeg($thumbnail_gd_image, $filename, 90);
+                            break;
+                        case IMAGETYPE_PNG:
+                            $filename = $mediaPath . "/" . $fileHash . "-" . $mediaSize . "." . $ext;
+                            imagepng($thumbnail_gd_image, $filename, 90);
+                            break;
+                    }
+                    imagedestroy($thumbnail_gd_image);
+                    imagedestroy($source_gd_image);
+                }
+            }
         }
         
         // Figure the mime type
@@ -379,6 +433,7 @@ class Article extends \App\Page {
         header('Content-Length: ' . filesize($filename));
         readfile($filename);
 //        print $mediaSize . "<br />";
+//        print $found . "<br />";
 //        print $orig . "<br />";
 //        print $filename;
         exit;
