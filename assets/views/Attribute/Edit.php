@@ -5,11 +5,11 @@
 <h1>Article Image</h1>
 <div class="row">
     <label>Image Name</label>
-    <data><input name='imageName' id='imageName' value='<?php echo $imageName ?>' placeholder='Image Name' /></data>
+    <data><input name='imageName' id='imageName' value='<?php echo $imageName ?>' /></data>
 </div>
 <div class="row">
     <label>Image Title</label>
-    <data><input name='imageTitle' id='imageTitle' value='<?php echo $imageTitle ?>' placeholder='Image Title' /></data>
+    <data><input name='imageTitle' id='imageTitle' value='<?php echo $imageTitle ?>' /></data>
 </div>
 
 
