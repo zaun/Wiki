@@ -1,4 +1,4 @@
-<?php if ((isset($imageName) && !empty($imageName)) ||
+<?php if ((isset($pageImage) && !empty($pageImage)) ||
           (isset($imageTitle) && !empty($imageTitle))) { ?>
 <div class='pageImage'>
     <?php if (isset($pageImage) && !empty($pageImage)) {

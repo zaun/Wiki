@@ -254,6 +254,10 @@ class Article extends \App\Page {
             $this->view->articleTemplate = $this->template->name;
             $this->view->lastUpdated = $this->lastUpdated;
     
+            // Grab the article image
+            if ($this->imageName != "") {
+                $this->view->pageImage = "/" . $this->id . "/media/" . $this->imageName . "/250";
+            }
     
             // grab the article attributes
             $attributeList = array();

@@ -40,7 +40,6 @@ class Page extends \PHPixie\Controller {
         $this->id = strtolower($this->request->param('id', 'Welcome'));
         $this->view->id = $this->id;
         $this->attributeView = "";
-        $this->view->pageImage = "/defaultPageImage.jpg";
         $this->view->pageTitle = "Undefined Title";
         $this->view->username = $this->pixie->session->get('username', false);
         $this->view->imageName = "";
