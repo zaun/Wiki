@@ -359,10 +359,8 @@ class Article extends \App\Page {
         // Figure the mime type
         $mimetypes = array(
             'png' => 'image/png',
-            'jpg' => 'image/jepg',
-            'gif' => 'image/gif',
-            'css' => 'text/css',
-            'js' => 'application/x-javascript'
+            'jpg' => 'image/jpeg',
+            'gif' => 'image/gif'
         );
         $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
         $mime = "application/octet-stream";
