@@ -89,7 +89,7 @@
             </div>
             <?php } else if($mode === "edit") { ?>
             <div class="options">
-            Insert Media
+            Media Browser
             </div>
             <div class="options" id="btnUpload">
             Upload File
