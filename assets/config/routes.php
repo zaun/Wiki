@@ -21,9 +21,8 @@ return array(
 	'othr-sandbox'  => array('/<action>/~sandbox', array(
 	                         'controller' => 'sandbox')
 	                        ),
-	'view-special'  => array('/~<id>', array(
-	                         'controller' => 'special',
-	                         'action'     => 'view')
+	'view-special'  => array('/~<action>', array(
+	                         'controller' => 'special')
 	                        ),
 	'othr-special'  => array('/<action>/~<id>', array(
 	                         'controller' => 'special')
