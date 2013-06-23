@@ -1,11 +1,26 @@
 $(document).ready(function() {
 
     // Show the the upload dialog
-    $(document).on('click', '#btnUpload', function() {
+    $(document).on('click', '#btnUpload, #btnShowUpload', function() {
         $('#mediaTitle').val('');
         $('#mediaFile').val('');
         overlay(true);
+        $("#mediaBox").fadeOut("fast");
         $("#uploadBox").fadeIn("fast");
+        return false;
+    });
+
+    // Show the the media dialog
+    $(document).on('click', '#btnMedia', function() {
+        overlay(true);
+        $("#mediaBox").fadeIn("fast");
+        return false;
+    });
+
+    // close the the media dialog
+    $(document).on('click', '#btnCloseMedia', function() {
+        overlay(false);
+        $("#mediaBox").fadeOut("fast");
         return false;
     });
     

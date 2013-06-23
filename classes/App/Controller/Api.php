@@ -34,6 +34,24 @@ class Api extends \PHPixie\Controller {
     }
 	
 	
+	function action_media() {
+        $articleURL = $this->request->param('object', 'welcome');
+        $articleORM = $this->articleORM = $this->pixie->orm->get('article')->where('url', $articleURL)->find();
+		if ($articleORM->loaded()) {
+            $resp = array('article' => $articleORM->title);
+            $media = array();
+            $items = $articleORM->media->find_all();
+            foreach ($items as $item) {
+                $obj = array('title' => $item->title, 'url' => $item->url);
+                array_push($media, $obj);
+            }
+            
+            $resp['media'] = $media;
+            $this->response->body = json_encode($resp);
+		}
+	}
+	
+	
 	function action_upload() {
     	    $article = $this->request->post('mediaArticle', '');
     	    $title = $this->request->post('mediaTitle', '');

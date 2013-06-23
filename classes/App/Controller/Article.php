@@ -558,6 +558,7 @@ class Article extends \App\Page {
         $this->articleORM->url = $this->request->post('articleTitle', $this->id);
         $this->articleORM->url = str_replace(' ','_', $this->articleORM->url);
         $this->articleORM->url = str_replace("'",'', $this->articleORM->url);
+        $this->articleORM->url = strtolower($this->articleORM->url);
         $this->articleORM->summary = $this->request->post('articleSummary', $this->summary);
         $this->articleORM->summary_html = $this->sectionTypeObjects['txt']->convertRawToHtml($this->pixie->util->replaceValues($kvAttr, $this->articleORM->summary));
         $this->articleORM->image_name = $this->request->post('imageName', $this->imageName);
