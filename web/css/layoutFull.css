@@ -34,3 +34,7 @@
     float: right;
     margin-left: 5px;
 }
+
+.pageAttributes {
+    display: none;
+}

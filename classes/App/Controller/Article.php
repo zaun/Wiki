@@ -489,6 +489,17 @@ class Article extends \App\Page {
 	 * @access private
 	 */
 	protected function save_article() {
+	    // Setup some article basics
+        $this->articleORM->title = $this->request->post('articleTitle', $this->id);
+        $this->articleORM->url = $this->request->post('articleTitle', $this->id);
+        $this->articleORM->url = str_replace(' ','_', $this->articleORM->url);
+        $this->articleORM->url = str_replace("'",'', $this->articleORM->url);
+        $this->articleORM->url = strtolower($this->articleORM->url);
+        $this->articleORM->image_name = $this->request->post('imageName', $this->imageName);
+        $this->articleORM->image_title = $this->request->post('imageTitle', $this->imageTitle);
+        $this->articleORM->template_id = $this->request->post('articleTemplate', $this->templateID);
+        $this->articleORM->lastEditIP = $_SERVER['REMOTE_ADDR'];
+        $this->articleORM->lastEditDate = gmdate("Y-m-d\TH:i:s\Z");
 	    
         // grab the selected template's sections and attributes
         $selectedTemplate = $this->pixie->orm->get('template', $this->articleORM->template_id);
@@ -527,6 +538,11 @@ class Article extends \App\Page {
             }
         }
 
+        // Save the article
+        $this->articleORM->summary = $this->request->post('articleSummary', $this->summary);
+        $this->articleORM->summary_html = $this->sectionTypeObjects['txt']->convertRawToHtml($this->pixie->util->replaceValues($kvAttr, $this->articleORM->summary));
+        $this->articleORM->save();
+
         // Loop through the sections and save them
         foreach ($sectionList as $s) {
             $articleSection = $this->articleORM->sections->where('section_id', $s->id)->find();
@@ -552,21 +568,6 @@ class Article extends \App\Page {
                 $articleSection->save();
             }
         }
-
-        // Save the article
-        $this->articleORM->title = $this->request->post('articleTitle', $this->id);
-        $this->articleORM->url = $this->request->post('articleTitle', $this->id);
-        $this->articleORM->url = str_replace(' ','_', $this->articleORM->url);
-        $this->articleORM->url = str_replace("'",'', $this->articleORM->url);
-        $this->articleORM->url = strtolower($this->articleORM->url);
-        $this->articleORM->summary = $this->request->post('articleSummary', $this->summary);
-        $this->articleORM->summary_html = $this->sectionTypeObjects['txt']->convertRawToHtml($this->pixie->util->replaceValues($kvAttr, $this->articleORM->summary));
-        $this->articleORM->image_name = $this->request->post('imageName', $this->imageName);
-        $this->articleORM->image_title = $this->request->post('imageTitle', $this->imageTitle);
-        $this->articleORM->template_id = $this->request->post('articleTemplate', $this->templateID);
-        $this->articleORM->lastEditIP = $_SERVER['REMOTE_ADDR'];
-        $this->articleORM->lastEditDate = gmdate("Y-m-d\TH:i:s\Z");
-        $this->articleORM->save();
     }
 	
 	

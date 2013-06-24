@@ -178,6 +178,13 @@ class Installer extends \App\Wizard {
         $system->value = $migrate->current_version;
         $system->save();
         
+        // Setup some things
+        $this->pixie->db->get()->execute("ALTER TABLE articles ENGINE = MYISAM;");
+        $this->pixie->db->get()->execute("ALTER TABLE articleSections ENGINE = MYISAM;");
+        $this->pixie->db->get()->execute("ALTER TABLE articles ADD FULLTEXT(title)");
+        $this->pixie->db->get()->execute("ALTER TABLE articles ADD FULLTEXT(summary_html)");
+        $this->pixie->db->get()->execute("ALTER TABLE articleSections ADD FULLTEXT(html)");
+        
         // Set as application initilaze
         $this->pixie->config->set('application.initilized', true);
         $this->pixie->config->write('application');

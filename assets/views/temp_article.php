@@ -95,11 +95,11 @@
             <?php } ?>
             
             <?php if($mode === "view") { ?>
-            <form method='post' accept-charset="utf-8" action="~search">
-            <div class="search">
-            Search:&nbsp;&nbsp;
-            <input type="text" id="searchItem" />
-            </div>
+            <form method='post' accept-charset="utf-8" action="/~search">
+                <div class="search">
+                Search:&nbsp;&nbsp;
+                <input type="text" id="searchItem" name="searchItem" value="<?php if (isset($searchItem)) { echo $searchItem; } ?>" />
+                </div>
             </form>
             <?php } else if($mode === "edit") { ?>
             <div class="options" id="btnMedia">
@@ -109,6 +109,7 @@
             Upload File
             </div>
             <?php } ?>
+        <div style="clear:both;"></div>
         </div>
         <div style="clear:both;"></div>
         <form method='post' accept-charset="utf-8" enctype="multipart/form-data">
