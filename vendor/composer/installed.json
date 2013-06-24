@@ -54,18 +54,18 @@
         "source": {
             "type": "git",
             "url": "https://github.com/dracony/PHPixie-DB.git",
-            "reference": "8d6fd658171ec046375b409167941462850ff8f4"
+            "reference": "4a3706193b0064a18d5c3115e6f1831c9f14de2e"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/dracony/PHPixie-DB/zipball/8d6fd658171ec046375b409167941462850ff8f4",
-            "reference": "8d6fd658171ec046375b409167941462850ff8f4",
+            "url": "https://api.github.com/repos/dracony/PHPixie-DB/zipball/4a3706193b0064a18d5c3115e6f1831c9f14de2e",
+            "reference": "4a3706193b0064a18d5c3115e6f1831c9f14de2e",
             "shasum": ""
         },
         "require": {
             "phpixie/core": "2.*@dev"
         },
-        "time": "2013-05-11 19:35:58",
+        "time": "2013-06-22 22:25:03",
         "type": "library",
         "extra": {
             "branch-alias": {
