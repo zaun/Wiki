@@ -23,7 +23,6 @@
 <?php } ?>
     </head>
     <body>
-        <form method='post' accept-charset="utf-8" enctype="multipart/form-data">
         <div id="overlay">
         </div>
 
@@ -76,9 +75,6 @@
             <div class="logo"><a href="/" alt="Site Logo">Site Logo</a></div>
             <?php include('pageTopBar.php'); ?>
         </div>
-        <div class="pageAttributes">
-            <?php if (isset($attributeView) && $attributeView != '') { include($attributeView); } ?>
-        </div>
         <div class="pageMenu">
             <?php if ($canEdit === true || $canTalk === true) { ?>
                 <?php if($mode === "view") { ?>
@@ -99,10 +95,12 @@
             <?php } ?>
             
             <?php if($mode === "view") { ?>
+            <form method='post' accept-charset="utf-8" action="~search">
             <div class="search">
             Search:&nbsp;&nbsp;
             <input type="text" id="searchItem" />
             </div>
+            </form>
             <?php } else if($mode === "edit") { ?>
             <div class="options" id="btnMedia">
             Media Browser
@@ -112,16 +110,21 @@
             </div>
             <?php } ?>
         </div>
+        <div style="clear:both;"></div>
+        <form method='post' accept-charset="utf-8" enctype="multipart/form-data">
+        <div class="pageAttributes">
+            <?php if (isset($attributeView) && $attributeView != '') { include($attributeView); } ?>
+        </div>
         <div class="pageContent">
             <div class="pageContentInner">
                 <?php if (isset($pageView) && $pageView != '') { include($pageView); } ?>
                 <div style="clear:both"></div>
             </div>
         </div>
+        </form>
         <div class="pageFooter">
             <?php if (isset($pageFooter) && $pageFooter != '') { include($pageFooter); } ?>
         </div>
         </div>
-        </form>
     </body>
 </html>

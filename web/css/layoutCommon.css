@@ -90,6 +90,7 @@ button {
 
 .pageAttributes {
     width: 245px;
+    margin-top: -25px;
     margin-bottom: 20px;
 }
 
@@ -97,12 +98,16 @@ button {
     display: block;
     width: 100%;
     margin: 20px 0 0 0;
-    padding: 0px;
+    padding: 4px 0 0 0;
     font-weight: bold;
     font-size: 13px;
     text-align: center;
     border-bottom: 1px solid black;
     cursor: default;
+}
+
+.pageAttributes h1:first-of-type {
+    margin: 0px;
 }
 
 .pageAttributes .row {
