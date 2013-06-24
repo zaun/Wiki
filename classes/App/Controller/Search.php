@@ -23,7 +23,8 @@ class Search extends \App\Page {
   max(locSummary) locSummary,
   max(locContent) locContent,
   id,
-  title
+  title,
+  summary_html
 FROM
 (
   SELECT
@@ -33,7 +34,8 @@ FROM
     0 locSummary,
     0 locContent,
     id,
-    title
+    title,
+    summary_html
   FROM articles
   WHERE MATCH(title) AGAINST (? IN BOOLEAN MODE)
   UNION ALL
@@ -44,7 +46,8 @@ FROM
     1 locSummary,
     0 locContent,
     id,
-    title
+    title,
+    summary_html
   FROM articles
   WHERE MATCH(summary_html) AGAINST (? IN BOOLEAN MODE)
   UNION ALL
@@ -55,7 +58,8 @@ FROM
     0 locSummary,
     1 locContent,
     a.id,
-    title
+    title,
+    summary_html
   FROM articleSections
   INNER JOIN articles a ON a.id = article_id
   WHERE MATCH(html) AGAINST (? IN BOOLEAN MODE)
