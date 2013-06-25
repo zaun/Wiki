@@ -4,7 +4,7 @@ return array(
 		'_data' => array(
 		    'up' => array(
 		        'insert' => array(
-                    array('id' => 2, 'template_id' => 3, 'title' => 'Harry Potter and the Philosopher\'s Stone', 'url' => 'Harry_Potter_and_the_Philosophers_Stone', 'summary' => 'Harry Potter and the Philosopher\'s Stone is the first novel in the Harry Potter series written by J. K. Rowling and featuring Harry Potter, a young wizard. It describes how Harry discovers he is a wizard, makes close friends and a few enemies at the Hogwarts School of Witchcraft and Wizardry, and with the help of his friends thwarts an attempted comeback by the evil wizard Lord Voldemort, who killed Harry\'s parents when Harry was one year old.
+                    array('id' => 2, 'template_id' => 3, 'title' => 'Harry Potter and the Philosopher\'s Stone', 'url' => 'Harry_Potter_and_the_Philosophers_Stone', 'image_name' => 'Cover',  'image_title' => 'Original 1998 US Cover', 'summary' => 'Harry Potter and the Philosopher\'s Stone is the first novel in the Harry Potter series written by J. K. Rowling and featuring Harry Potter, a young wizard. It describes how Harry discovers he is a wizard, makes close friends and a few enemies at the Hogwarts School of Witchcraft and Wizardry, and with the help of his friends thwarts an attempted comeback by the evil wizard Lord Voldemort, who killed Harry\'s parents when Harry was one year old.
                     
 The book, which is J.K. Rowling\'s debut novel, was published on {{published}} by {{publisher}} in London. In 1998 Scholastic Corporation published an edition for the United States market under the title Harry Potter and the Sorcerer\'s Stone. The novel won most of the British book awards that were judged by children, and other awards in the US. The book reached the top of the New York Times list of best-selling fiction in August 1999, and stayed near the top of that list for much of 1999 and 2000. It has been translated into several other languages and has been made into a feature-length film of the same name.', 'summary_html' => 'Harry Potter and the Philosopher\'s Stone is the first novel in the Harry Potter series written by J. K. Rowling and featuring Harry Potter, a young wizard. It describes how Harry discovers he is a wizard, makes close friends and a few enemies at the Hogwarts School of Witchcraft and Wizardry, and with the help of his friends thwarts an attempted comeback by the evil wizard Lord Voldemort, who killed Harry\'s parents when Harry was one year old.<br />                    <br />The book, which is J.K. Rowling\'s debut novel, was published on June 26th, 1997 by Bloomsbury in London. In 1998 Scholastic Corporation published an edition for the United States market under the title Harry Potter and the Sorcerer\'s Stone. The novel won most of the British book awards that were judged by children, and other awards in the US. The book reached the top of the New York Times list of best-selling fiction in August 1999, and stayed near the top of that list for much of 1999 and 2000. It has been translated into several other languages and has been made into a feature-length film of the same name.<br />'),
                 ),
@@ -89,6 +89,16 @@ Harry returns to the Dursleys for the summer holiday, but does not tell them tha
                     array('article_id' => 2, 'attribute_id' => 51, 'raw' => '223', 'html' => '223'),
                     array('article_id' => 2, 'attribute_id' => 52, 'raw' => '0-7475-3269-9', 'html' => '0-7475-3269-9'),
                  ),
+		    ),
+		),
+	),
+
+	'articleMedia' => array (
+		'_data' => array(
+		    'up' => array(
+		        'insert' => array(
+                    array('article_id' => 2, 'hash' => '8057bf2598f57381c87c415627717dc5', 'url' => 'cover', 'title' => 'Cover', 'description' => 'Cover'),
+                 )
 		    ),
 		),
 	),
