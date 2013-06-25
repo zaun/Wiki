@@ -18,12 +18,12 @@ return array(
 	                         'controller' => 'sandbox',
 	                         'action'     => 'view')
 	                        ),
-	'view-sandbox'  => array('/~search(/<term>)', array(
-	                         'controller' => 'search',
-	                         'action'     => 'view')
-	                        ),
 	'othr-sandbox'  => array('/<action>/~sandbox', array(
 	                         'controller' => 'sandbox')
+	                        ),
+	'view-search'   => array('/~search(/<term>)', array(
+	                         'controller' => 'search',
+	                         'action'     => 'view')
 	                        ),
 	'view-special'  => array('/~<action>', array(
 	                         'controller' => 'special')
