@@ -296,8 +296,6 @@ class Markup extends Base {
         );
         
         
-        $text = preg_replace('{\n}', "", $text);
-
         return "\n" . trim($text) . "\n";
     }
 }
