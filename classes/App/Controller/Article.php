@@ -500,6 +500,9 @@ class Article extends \App\Page {
         $this->articleORM->template_id = $this->request->post('articleTemplate', $this->templateID);
         $this->articleORM->lastEditIP = $_SERVER['REMOTE_ADDR'];
         $this->articleORM->lastEditDate = gmdate("Y-m-d\TH:i:s\Z");
+	    if (!$this->articleORM->loaded()) {
+            $this->articleORM->save();
+	    }
 	    
         // grab the selected template's sections and attributes
         $selectedTemplate = $this->pixie->orm->get('template', $this->articleORM->template_id);
