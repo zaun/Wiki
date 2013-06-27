@@ -14,6 +14,23 @@ $(document).ready(function() {
     $(document).on('click', '#btnMedia', function() {
         overlay(true);
         $("#mediaBox").fadeIn("fast");
+
+        var $box = $('#mediaBox > .items');
+        $box.html('');
+        
+        $.ajax({
+            type: "POST",
+            url: "/~api/media/" + $('#articleTitle').val(),
+        }).done(function(data) {
+            var data = $.parseJSON(data);
+            var media = data['media'];
+            var $box = $('#mediaBox > .items');
+            media.forEach(function(item) {
+                var $item = $("<div class='item'><div class='title'>" + item['title'] + "</div><div class='img'><img src='/" + data['article'] + "/media/" + item['url'] + "/250' title='" + item['title'] + "'/></div></div>");
+                $box.append($item);
+            });
+        });
+        
         return false;
     });
 

@@ -87,13 +87,35 @@ input {
 
 #mediaBox .items .item .title {
     position: relative;
-    bottom:0px;
     height: 15px;
     line-height: 15px;
+    margin-top: 10px;
     font-size: 13px;
     font-weight: bold;
     text-align: center;
     text-decoration: underline;
+    cursor: default;
+}
+
+#mediaBox .items .item .img {
+    position: relative;
+    height: 200px;
+    width: 200px;
+    overflow: hidden;
+    margin-top: 10px;
+    margin-right: auto;
+    margin-left: auto;
+    cursor: default;
+}
+
+#mediaBox .items .item:hover .img {
+    overflow: visible;
+}
+
+#mediaBox .items .item img {
+    position: absolute;
+    display: block;
+    width: 200px;
     cursor: default;
 }
 

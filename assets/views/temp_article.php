@@ -55,15 +55,6 @@
         <div id="mediaBox" class="dialog">
             <h2>Article Media</h2>
             <div class='items'>
-                <div class='item'><div class='title'>Image Name</div></div>
-                <div class='item'></div>
-                <div class='item'></div>
-                <div class='item'></div>
-                <div class='item'></div>
-                <div class='item'></div>
-                <div class='item'></div>
-                <div class='item'></div>
-                <div class='item'></div>
             </div>
             <button id='btnCloseMedia'>Close</button>
             <button id='btnShowUpload'>Upload</button>

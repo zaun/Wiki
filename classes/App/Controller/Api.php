@@ -99,17 +99,17 @@ class Api extends \PHPixie\Controller {
             $im->thumbnailImage(450, 99999, TRUE);
             $im->writeImage($mediaPath . "/" . $fileHash . "-450." . $ext);
         } else if (extension_loaded('gd')) {
-            ini_set("memory_limit","256M");
+            ini_set("memory_limit","1024M");
             list($source_image_width, $source_image_height, $source_image_type) = getimagesize($mediaPath . "/" . $fileHash . "." . $ext);
             switch ($source_image_type) {
                 case IMAGETYPE_GIF:
-                    $source_gd_image = imagecreatefromgif($mediaPath . "/" . $fileHash . "." . $ext);
+                    $source_gd_image = @imagecreatefromgif($mediaPath . "/" . $fileHash . "." . $ext);
                     break;
                 case IMAGETYPE_JPEG:
-                    $source_gd_image = imagecreatefromjpeg($mediaPath . "/" . $fileHash . "." . $ext);
+                    $source_gd_image = @imagecreatefromjpeg($mediaPath . "/" . $fileHash . "." . $ext);
                     break;
                 case IMAGETYPE_PNG:
-                    $source_gd_image = imagecreatefrompng($mediaPath . "/" . $fileHash . "." . $ext);
+                    $source_gd_image = @imagecreatefrompng($mediaPath . "/" . $fileHash . "." . $ext);
                     break;
             }
             if ($source_gd_image === false) {
@@ -133,15 +133,19 @@ class Api extends \PHPixie\Controller {
             }
             $thumbnail_gd_image = imagecreatetruecolor($thumbnail_image_width, $thumbnail_image_height);
             imagecopyresampled($thumbnail_gd_image, $source_gd_image, 0, 0, 0, 0, $thumbnail_image_width, $thumbnail_image_height, $source_image_width, $source_image_height);
+                return false;
             switch ($source_image_type) {
                 case IMAGETYPE_GIF:
-                    imagegif($thumbnail_gd_image, $mediaPath . "/" . $fileHash . "-250." . $ext, 90);
+                    imagegif($thumbnail_gd_image, $mediaPath . "/" . $fileHash . "-250." . $ext);
                     break;
                 case IMAGETYPE_JPEG:
                     imagejpeg($thumbnail_gd_image, $mediaPath . "/" . $fileHash . "-250." . $ext, 90);
                     break;
                 case IMAGETYPE_PNG:
-                    imagepng($thumbnail_gd_image, $mediaPath . "/" . $fileHash . "-250." . $ext, 90);
+                    imagepng($thumbnail_gd_image, $mediaPath . "/" . $fileHash . "-250." . $ext, 9);
+                $this->response->body = json_encode(array(
+                    'error' => "Debug ",
+                ));
                     break;
             }
             imagedestroy($thumbnail_gd_image);
