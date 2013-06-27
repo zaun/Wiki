@@ -26,7 +26,7 @@ $(document).ready(function() {
             var media = data['media'];
             var $box = $('#mediaBox > .items');
             media.forEach(function(item) {
-                var $item = $("<div class='item'><div class='title'>" + item['title'] + "</div><div class='img'><img src='/" + data['article'] + "/media/" + item['url'] + "/250' title='" + item['title'] + "'/></div></div>");
+                var $item = $("<div class='item'><div class='title'>" + item['title'] + "</div><div class='img'><img src='/" + data['article_url'] + "/media/" + item['url'] + "/250' title='" + item['title'] + "'/></div></div>");
                 $box.append($item);
             });
         });

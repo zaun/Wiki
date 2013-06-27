@@ -38,7 +38,7 @@ class Api extends \PHPixie\Controller {
         $articleURL = $this->request->param('object', 'welcome');
         $articleORM = $this->articleORM = $this->pixie->orm->get('article')->where('url', $articleURL)->find();
 		if ($articleORM->loaded()) {
-            $resp = array('article' => $articleORM->title);
+            $resp = array('article' => $articleORM->title, 'article_url' => $articleORM->url);
             $media = array();
             $items = $articleORM->media->find_all();
             foreach ($items as $item) {
